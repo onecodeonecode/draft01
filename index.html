@@ -1,2 +1,296 @@
-<p><img style="display: block; margin-left: auto; margin-right: auto;" src="https://assets.onecompiler.app/43a28xmes/3wxcpbe5b/tainment.400.100.jpg" alt="" width="900" height="225" /></p>
-<p><img style="display: block; margin-left: auto; margin-right: auto;" src="https://assets.onecompiler.app/43a28xmes/3wxcpbe5b/film.3545454.png" alt="" width="300" height="300" /></p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Futuristic Time Machine</title>
+  <meta name="viewport" content="width=520,initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+  <style>
+    html,body {
+      height: 100%; margin: 0; padding: 0;
+      font-family: 'Orbitron', monospace;
+      background: #101022;
+      overflow-x: hidden;
+    }
+    /* STARFIELD BACKGROUND */
+    body::before {
+      content: '';
+      position: fixed;
+      top:0; left:0; right:0; bottom:0;
+      z-index: 0;
+      background:
+        radial-gradient(ellipse at 70% 30%, #60f9ff22 0%, #222 100%),
+        repeating-radial-gradient(circle, #fff 0 1px, transparent 1px 100px),
+        repeating-radial-gradient(circle, #fff2 0 2px, transparent 2px 100px);
+      animation: starMove 60s linear infinite;
+      pointer-events: none;
+    }
+    @keyframes starMove {
+      0% {background-position: 0 0, 0 0, 0 0;}
+      100% {background-position: 0 0, 200px 600px, -100px 900px;}
+    }
+
+    .dashboard {
+      z-index: 2;
+      position: relative;
+      margin: 60px auto 0;
+      width: 450px;
+      padding: 36px 36px 28px 36px;
+      border-radius: 24px;
+      box-shadow: 0 8px 32px #00ffe1a4, 0 1px 0px #fff2;
+      background: rgba(30,42,62,0.84);
+      backdrop-filter: blur(7px);
+      border: 2.5px solid #43ffe0;
+      overflow: hidden;
+    }
+    .neon-bar {
+      position: absolute;
+      left: 0; right: 0; height: 7px;
+      background: linear-gradient(90deg, #05c3dd 0%, #43ffe0 35%, #ed42f7 70%, #ff52a1 100%);
+      box-shadow: 0 0 24px #18fff9b0, 0 0 50px #ed42f766;
+      filter: blur(0.7px);
+      animation: barFlash 2.8s linear infinite;
+      z-index: 2;
+    }
+    .neon-bar.top {top:0;}
+    .neon-bar.bottom {bottom:0;}
+    @keyframes barFlash {
+      0% { opacity: 0.75; }
+      50% { opacity: 1; }
+      100% { opacity: 0.75; }
+    }
+
+    .display-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 21px;
+      border-bottom: 2.2px solid #3ff7e95a;
+      padding-bottom: 13px;
+      position: relative;
+    }
+    .label {
+      font-size: 21px;
+      letter-spacing: 3px;
+      color: #61f0ff;
+      text-shadow: 0 0 8px #00c4ff88, 0 1px 0px #fff5;
+      width: 184px;
+    }
+    .digital {
+      font-size: 22px;
+      letter-spacing: 4px;
+      padding: 9px 0 7px 0;
+      border-radius: 7px;
+      background: rgba(0,0,0,0.4);
+      color: #43ffe0;
+      min-width: 195px;
+      text-align: right;
+      border: 2px solid #4ff;
+      box-shadow: 0 0 10px #40ffe077, 0 0 3px #fff3;
+      text-shadow: 0 0 5px #43ffe0;
+    }
+    .destination-input {
+      font-size: 19px;
+      background: rgba(28,16,32,0.7);
+      color: #ff52a1;
+      border: 2px solid #ff52a1;
+      border-radius: 6px;
+      padding: 5px 7px;
+      width: 180px;
+      text-align: right;
+      font-family: 'Orbitron', monospace;
+      box-shadow: 0 0 8px #ff52a199;
+    }
+    /* Neon ENGAGE button */
+    .engage-btn {
+      margin-top: 35px;
+      width: 100%;
+      padding: 22px 0;
+      font-size: 25px;
+      font-family: 'Orbitron', monospace;
+      border-radius: 14px;
+      border: none;
+      background: linear-gradient(90deg, #00ffe1 0%, #ff52a1 100%);
+      color: #141414;
+      letter-spacing: 6px;
+      font-weight: bold;
+      box-shadow: 0 0 36px #00ffe1cc, 0 0 14px #ff52a1b0, 0 8px 40px #00ffe151;
+      text-shadow: 0 3px 12px #fff8, 0 1px 0px #fff5;
+      cursor: pointer;
+      transition: transform 0.09s, box-shadow 0.2s;
+      animation: btnPulse 1.2s infinite alternate;
+      position: relative;
+      z-index: 2;
+    }
+    .engage-btn:active {
+      transform: scale(0.97);
+      box-shadow: 0 0 16px #00ffe1bb, 0 0 7px #ff52a1bb;
+    }
+    @keyframes btnPulse {
+      0% { box-shadow: 0 0 36px #00ffe1cc, 0 0 14px #ff52a1b0, 0 8px 40px #00ffe151; }
+      100% { box-shadow: 0 0 66px #43ffe0dd, 0 0 24px #ff52a1dd, 0 16px 60px #43ffe099; }
+    }
+    /* Animated FLUX CAPACITOR */
+    .flux {
+      margin: 40px 0 7px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .flux-label {
+      font-size: 21px;
+      color: #fff9;
+      letter-spacing: 3px;
+      margin-bottom: 8px;
+      text-shadow: 0 0 6px #0ff9;
+    }
+    .capacitor {
+      position: relative;
+      width: 76px; height: 94px;
+      margin: 0 auto;
+      margin-bottom: 10px;
+    }
+    .cap-tube {
+      position: absolute;
+      width: 8px; height: 42px;
+      background: linear-gradient(180deg, #fff 10%, #43ffe0 50%, #ed42f7 100%);
+      left: 50%; transform: translateX(-50%);
+      border-radius: 5px;
+      box-shadow: 0 0 18px #00ffe1, 0 0 9px #ed42f7;
+      animation: tubePulse 1.4s infinite alternate;
+    }
+    .cap-tube.left {
+      transform: rotate(-60deg) translateX(-50%);
+      left: 19px; top: 25px;
+      height: 48px;
+    }
+    .cap-tube.right {
+      transform: rotate(60deg) translateX(-50%);
+      left: 57px; top: 25px;
+      height: 48px;
+    }
+    .cap-tube.center {
+      top: 2px; left: 50%;
+      height: 58px;
+      transform: translateX(-50%);
+    }
+    .cap-pulse {
+      position: absolute;
+      left: 50%; top: 73px;
+      width: 17px; height: 17px;
+      background: radial-gradient(circle, #fff 55%, #ff52a1 90%, transparent 100%);
+      border-radius: 50%;
+      transform: translate(-50%,0);
+      box-shadow: 0 0 20px #ff52a1bb, 0 0 8px #fff9;
+      animation: capGlow 1.5s infinite alternate;
+    }
+    @keyframes tubePulse {
+      0% {box-shadow: 0 0 16px #00ffe1, 0 0 6px #ed42f7;}
+      100% {box-shadow: 0 0 30px #ed42f7, 0 0 14px #43ffe0;}
+    }
+    @keyframes capGlow {
+      0% { box-shadow: 0 0 14px #ff52a1cc, 0 0 8px #fff9; }
+      100% { box-shadow: 0 0 32px #43ffe0cc, 0 0 24px #ed42f7cc; }
+    }
+    /* Responsive */
+    @media (max-width: 560px) {
+      .dashboard { width: 98vw; padding: 10vw 2vw 8vw 2vw;}
+      .label, .flux-label { font-size: 16px;}
+      .engage-btn { font-size: 19px;}
+      .digital { font-size: 16px;}
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard">
+    <div class="neon-bar top"></div>
+    <div class="neon-bar bottom"></div>
+
+    <div class="display-row">
+      <span class="label">DESTINATION TIME</span>
+      <input id="destTime" class="destination-input" type="datetime-local">
+    </div>
+    <div class="display-row">
+      <span class="label">PRESENT TIME</span>
+      <span id="presentTime" class="digital"></span>
+    </div>
+    <div class="display-row">
+      <span class="label">LAST DEPARTED</span>
+      <span id="lastTime" class="digital"></span>
+    </div>
+    <button class="engage-btn" id="engageBtn">ENGAGE TIME MACHINE</button>
+    <div class="flux">
+      <span class="flux-label">FLUX CAPACITOR</span>
+      <div class="capacitor">
+        <div class="cap-tube center"></div>
+        <div class="cap-tube left"></div>
+        <div class="cap-tube right"></div>
+        <div class="cap-pulse"></div>
+      </div>
+      <span style="color:#43ffe0;text-shadow:0 0 6px #43ffe0a2;font-size:16px;letter-spacing:2px;">ONLINE</span>
+    </div>
+  </div>
+
+  <script>
+    // Helper to format date as MMM DD YYYY HH:MM
+    function formatTime(date) {
+      const months = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
+      let mm = months[date.getMonth()];
+      let dd = ('0' + date.getDate()).slice(-2);
+      let yyyy = date.getFullYear();
+      let hh = ('0' + date.getHours()).slice(-2);
+      let min = ('0' + date.getMinutes()).slice(-2);
+      return `${mm}  ${dd}  ${yyyy}  ${hh}:${min}`;
+    }
+
+    // Set initial values
+    const presentTimeSpan = document.getElementById('presentTime');
+    const lastTimeSpan = document.getElementById('lastTime');
+    const destInput = document.getElementById('destTime');
+    const engageBtn = document.getElementById('engageBtn');
+
+    // Set default destination to now + 1 year
+    const now = new Date();
+    destInput.value = new Date(now.setFullYear(now.getFullYear() + 1)).toISOString().slice(0,16);
+
+    function updatePresentTime() {
+      presentTimeSpan.textContent = formatTime(new Date());
+    }
+    // Keep present time updated every second
+    updatePresentTime();
+    setInterval(updatePresentTime, 1000);
+
+    // Set initial last departed as ---
+    lastTimeSpan.textContent = '---';
+
+    // Futuristic animated transition for button
+    engageBtn.onclick = () => {
+      const destVal = destInput.value;
+      if(!destVal) return alert("Set a destination time!");
+      // Update LAST DEPARTED to PRESENT TIME
+      lastTimeSpan.textContent = presentTimeSpan.textContent;
+      // Simulate 'jump' to destination: set present time to dest, then animate back to real present
+      presentTimeSpan.textContent = formatTime(new Date(destVal.replace('T',' ')));
+      engageBtn.textContent = "INITIATING...";
+      engageBtn.disabled = true;
+      engageBtn.style.background = "linear-gradient(90deg,#ed42f7 0%,#43ffe0 100%)";
+      engageBtn.style.color = "#fff";
+      engageBtn.style.letterSpacing = "8px";
+      engageBtn.style.boxShadow = "0 0 64px #ff52a1bb,0 0 20px #43ffe0cc, 0 8px 44px #ff52a188";
+      // Animate flux capacitor
+      document.querySelector('.cap-pulse').style.background = 'radial-gradient(circle,#ff52a1 40%,#43ffe0 90%,transparent 100%)';
+      setTimeout(() => {
+        updatePresentTime();
+        engageBtn.textContent = "ENGAGE TIME MACHINE";
+        engageBtn.disabled = false;
+        engageBtn.style.background = "linear-gradient(90deg,#00ffe1 0%,#ff52a1 100%)";
+        engageBtn.style.color = "#141414";
+        engageBtn.style.letterSpacing = "6px";
+        engageBtn.style.boxShadow = "";
+        document.querySelector('.cap-pulse').style.background = 'radial-gradient(circle,#fff 55%,#ff52a1 90%,transparent 100%)';
+      }, 1700);
+    };
+  </script>
+</body>
+</html>
