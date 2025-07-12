@@ -1,12 +1,76 @@
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>1Code</title>
-        <link rel="icon" href="image/png" href="images/favicon.png"> 
-    </head>
-    <body>
-        
-    </body>
-    </html>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>1Code Social Media Links</title>
+  <style>
+    body {
+      background: #fff;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 0;
+    }
+    .logo {
+      margin-bottom: 32px;
+      width: 180px;
+    }
+    .social-row {
+      display: flex;
+      gap: 24px;
+    }
+    .social-link img {
+      width: 220px;
+      border-radius: 50px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+      border: 2px solid transparent;
+    }
+    .social-link img:hover {
+      transform: scale(1.07);
+      box-shadow: 0 6px 32px rgba(0,0,0,0.14);
+      border: 2px solid #09f;
+    }
+    @media (max-width: 700px) {
+      .social-row {
+        flex-direction: column;
+        gap: 16px;
+      }
+      .social-link img {
+        width: 100%;
+        max-width: 340px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Logo -->
+  <img class="logo" src="/mnt/data/01.1code.cir.44.jpg" alt="1Code Logo">
+
+  <!-- Social Media Buttons -->
+  <div class="social-row">
+    <a class="social-link" href="https://www.facebook.com/" target="_blank" rel="noopener">
+      <img src="/mnt/data/facebook.34567654355454.jpg" alt="Facebook">
+    </a>
+    <a class="social-link" href="https://www.instagram.com/" target="_blank" rel="noopener">
+      <img src="/mnt/data/instagram.345655678989.jpg" alt="Instagram">
+    </a>
+    <a class="social-link" href="https://www.linkedin.com/" target="_blank" rel="noopener">
+      <img src="/mnt/data/linkedin.436454654.jpg" alt="LinkedIn">
+    </a>
+  </div>
+
+  <!-- Optional JS for Alert on Click (customize if needed) -->
+  <script>
+    // Example: Show which social icon was clicked
+    document.querySelectorAll('.social-link').forEach(link => {
+      link.addEventListener('click', function() {
+        // Uncomment below line for a simple notification
+        // alert('Opening: ' + this.querySelector('img').alt);
+      });
+    });
+  </script>
+</body>
+</html>
