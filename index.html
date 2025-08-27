@@ -1,23 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>CBC News Embed</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Stopwatch</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Font - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
 </head>
-<body>
-  <div class="iframely-embed">
-    <div class="iframely-responsive" style="height: 140px; padding-bottom: 0;">
-      <a href="https://www.cbc.ca/news/canada/nova-scotia/hurricane-winds-didn-t-materialize-as-expected-but-rain-needed-to-minimize-long-lake-fire-dnr-1.7616347" 
-         data-iframely-url="//iframely.net/agXFbpQa?card=small&theme=light">
-        Read the CBC News Article
-      </a>
-    </div>
-  </div>
+<body class="bg-gradient-to-br from-purple-800 to-indigo-900 min-h-screen flex items-center justify-center p-4">
 
-  <script async src="//iframely.net/embed.js"></script>
+    <div class="bg-white p-8 rounded-3xl shadow-2xl max-w-md w-full text-center">
+        <h1 class="text-4xl font-bold text-gray-900 mb-6 tracking-wide">Stopwatch</h1>
+
+        <div class="text-6xl font-extrabold text-indigo-700 bg-gray-100 p-6 rounded-2xl mb-8 shadow-inner tabular-nums">
+            <span id="minutes">00</span>:<span id="seconds">00</span>:<span id="milliseconds" class="text-4xl">00</span>
+        </div>
+
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+            <button id="startButton"
+                    class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 active:scale-95 focus:outline-none focus:ring-4 focus:ring-green-300">
+                Start
+            </button>
+            <button id="stopButton" disabled
+                    class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 active:scale-95 focus:outline-none focus:ring-4 focus:ring-red-300 disabled:opacity-50 disabled:cursor-not-allowed">
+                Stop
+            </button>
+            <button id="resetButton" disabled
+                    class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 active:scale-95 focus:outline-none focus:ring-4 focus:ring-blue-300 disabled:opacity-50 disabled:cursor-not-allowed">
+                Reset
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Get references to DOM elements
+        const minutesDisplay = document.getElementById('minutes');
+        const secondsDisplay = document.getElementById('seconds');
+        const millisecondsDisplay = document.getElementById('milliseconds');
+        const startButton = document.getElementById('startButton');
+        const stopButton = document.getElementById('stopButton');
+        const resetButton = document.getElementById('resetButton');
+
+        // Initialize time variables
+        let minutes = 0;
+        let seconds = 0;
+        let milliseconds = 0;
+        let timerId = null; // Stores the interval ID
+        let isRunning = false; // Flag to check if the stopwatch is running
+
+        /**
+         * Formats a number to always have two digits.
+         * @param {number} num - The number to format.
+         * @returns {string} The formatted string.
+         */
+        function formatTime(num) {
+            return num < 10 ? '0' + num : num;
+        }
+
+        /**
+         * Updates the stopwatch display with current time values.
+         */
+        function updateDisplay() {
+            minutesDisplay.textContent = formatTime(minutes);
+            secondsDisplay.textContent = formatTime(seconds);
+            millisecondsDisplay.textContent = formatTime(Math.floor(milliseconds / 10)); // Display tens of milliseconds
+        }
+
+        /**
+         * Increments the stopwatch time and updates the display.
+         * This function is called repeatedly by setInterval.
+         */
+        function runStopwatch() {
+            milliseconds += 10; // Increment by 10ms (interval is 10ms)
+
+            if (milliseconds === 1000) {
+                milliseconds = 0;
+                seconds++;
+            }
+            if (seconds === 60) {
+                seconds = 0;
+                minutes++;
+            }
+            // Optional: Handle minutes exceeding 99 if desired, or let it run indefinitely.
+            // if (minutes === 60) { minutes = 0; }
+
+            updateDisplay();
+        }
+
+        /**
+         * Starts the stopwatch.
+         */
+        function startTimer() {
+            if (!isRunning) {
+                // Set interval to call runStopwatch every 10 milliseconds
+                timerId = setInterval(runStopwatch, 10);
+                isRunning = true;
+
+                // Disable start button, enable stop and reset
+                startButton.disabled = true;
+                stopButton.disabled = false;
+                resetButton.disabled = false;
+            }
+        }
+
+        /**
+         * Stops the stopwatch.
+         */
+        function stopTimer() {
+            if (isRunning) {
+                clearInterval(timerId); // Clear the interval to stop time incrementing
+                isRunning = false;
+
+                // Enable start button, disable stop
+                startButton.disabled = false;
+                stopButton.disabled = true;
+            }
+        }
+
+        /**
+         * Resets the stopwatch to initial state (00:00:00).
+         */
+        function resetTimer() {
+            stopTimer(); // First, ensure the timer is stopped
+
+            // Reset all time variables
+            minutes = 0;
+            seconds = 0;
+            milliseconds = 0;
+
+            updateDisplay(); // Update display to show zeros
+
+            // Enable start button, disable stop and reset
+            startButton.disabled = false;
+            stopButton.disabled = true;
+            resetButton.disabled = true;
+        }
+
+        // Add event listeners to buttons
+        startButton.addEventListener('click', startTimer);
+        stopButton.addEventListener('click', stopTimer);
+        resetButton.addEventListener('click', resetTimer);
+
+        // Initial display update when the page loads
+        document.addEventListener('DOMContentLoaded', updateDisplay);
+
+    </script>
 </body>
 </html>
-
-
-
-
