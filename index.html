@@ -1,1 +1,102 @@
-<p><img style="display: block; margin-left: auto; margin-right: auto;" src="https://uploads.onecompiler.io/43wkmw2n3/3wxcpbe5b/facebook.3456465656565.png" alt="" width="400" height="400" /><img style="display: block; margin-left: auto; margin-right: auto;" src="https://uploads.onecompiler.io/43wkmw2n3/3wxcpbe5b/snapchat.logo.3545465.png" alt="" width="400" height="400" /></p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beer Freezer Timer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #007BFF;
+            color: white;
+            padding: 20px;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            color: black;
+        }
+        .timer {
+            font-size: 4em;
+            margin: 20px 0;
+        }
+        .button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            font-size: 1.2em;
+            margin: 10px 0;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .start {
+            background-color: green;
+            color: white;
+        }
+        .reset {
+            background-color: red;
+            color: white;
+        }
+        .instructions {
+            margin-top: 20px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+<p style="text-align:center;"><strong>Never forget your beer&nbsp;</strong></p>
+<p style="text-align:center;"><strong>In the freezer again!</strong></p>
+    <div class="container">
+        <div class="timer" id="timer">20:00</div>
+        <button class="button start" onclick="startTimer()">Start</button>
+        <button class="button reset" onclick="resetTimer()">Reset</button>
+    </div>
+    <div class="instructions">
+        <h3>How to Quick-Chill Your Beer</h3>
+        <p>1. Wrap your beer in a damp paper towel (optional but recommended)</p>
+        <p>2. Place the beer in the freezer</p>
+        <p>3. Start the 20-minute timer immediately</p>
+        <p>4. Remove when the timer goes off</p>
+        <h4>Important Notes:</h4>
+        <p>- Never leave beer in the freezer without a timer.</p>
+        <p>- Different beer sizes may require different times.</p>
+        <p>- Check occasionally if possible.</p>
+    </div>
+
+    <script>
+        let timer;
+        let timeLeft = 1200; // 20 minutes in seconds
+
+        function startTimer() {
+            clearInterval(timer);
+            timer = setInterval(() => {
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    alert("Time's up! Remove your beer from the freezer!");
+                } else {
+                    timeLeft--;
+                    updateDisplay();
+                }
+            }, 1000);
+        }
+
+        function resetTimer() {
+            clearInterval(timer);
+            timeLeft = 1200;
+            updateDisplay();
+        }
+
+        function updateDisplay() {
+            let minutes = Math.floor(timeLeft / 60);
+            let seconds = timeLeft % 60;
+            document.getElementById("timer").textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+        }
+    </script>
+</body>
+</html>
+
