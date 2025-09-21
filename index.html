@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Say Sorry — Apology App</title>
+  <title>Say Sorry</title>
   <style>
     :root{--bg:#0f1724;--card:#0b1220;--accent:#10b981;--muted:#9aa6b2;--glass:rgba(255,255,255,0.03)}
     *{box-sizing:border-box;font-family:Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial}
@@ -33,7 +33,7 @@
   <div class="wrap">
     <header>
       <div>
-        <h1>Say Sorry — Apology App</h1>
+        <h1>Say Sorry</h1>
         <p class="lead">Write a sincere apology in seconds. Pick a tone, customize, preview, then copy or share.</p>
       </div>
     </header>
@@ -96,7 +96,6 @@
         <div style="display:flex;gap:8px;margin-top:12px">
           <button id="copy">Copy Text</button>
           <button id="email" class="ghost">Share by Email</button>
-          <button id="save" class="ghost">Download .txt</button>
         </div>
 
         <div style="margin-top:14px">
@@ -111,7 +110,7 @@
     </div>
 
     <footer>
-      Built for quick, thoughtful apologies. Use with sincerity — the app helps with words, not feelings.
+      1Code
     </footer>
   </div>
 
@@ -229,15 +228,6 @@
       const subject = encodeURIComponent('I owe you an apology');
       const body = encodeURIComponent(el('preview').textContent + '\n\n— Sent from Say Sorry app');
       window.location.href = `mailto:?subject=${subject}&body=${body}`;
-    });
-
-    el('save').addEventListener('click',()=>{
-      const txt = el('preview').textContent || 'Apology';
-      const blob = new Blob([txt],{type:'text/plain'});
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      a.download = 'apology.txt';
-      document.body.appendChild(a);a.click();a.remove();
     });
 
     // Init
