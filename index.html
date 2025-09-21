@@ -1,266 +1,247 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beer Freezer Timer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --blue-background: #007bff;
-            --card-background: rgba(255, 255, 255, 0.2);
-            --text-color: #fff;
-            --start-color: #28a745;
-            --reset-color: #dc3545;
-            --disabled-color: #6c757d;
-        }
-
-        body {
-            background-color: var(--blue-background);
-            color: var(--text-color);
-            font-family: 'Roboto', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 20px;
-            box-sizing: border-box;
-            text-align: center;
-            flex-direction: column;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 500px;
-        }
-
-        .timer-display {
-            font-size: 8rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .buttons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-
-        .btn {
-            background: none;
-            border: 2px solid var(--text-color);
-            color: var(--text-color);
-            padding: 12px 24px;
-            font-size: 1.2rem;
-            font-weight: 700;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .btn-start {
-            background-color: var(--start-color);
-            border-color: var(--start-color);
-        }
-
-        .btn-reset {
-            background-color: var(--reset-color);
-            border-color: var(--reset-color);
-        }
-
-        .btn:hover:not(:disabled) {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .btn:disabled {
-            background-color: var(--disabled-color);
-            border-color: var(--disabled-color);
-            cursor: not-allowed;
-            opacity: 0.7;
-        }
-
-        .card {
-            background-color: var(--card-background);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 20px;
-            text-align: left;
-        }
-
-        .card h2 {
-            margin-top: 0;
-            font-size: 1.5rem;
-        }
-
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        li {
-            margin-bottom: 10px;
-            line-height: 1.4;
-        }
-        
-        #final-message {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-top: 20px;
-            color: var(--text-color);
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-            display: none;
-        }
-
-        @media (max-width: 768px) {
-            .timer-display {
-                font-size: 6rem;
-            }
-            .buttons {
-                flex-direction: column;
-                gap: 15px;
-            }
-            .btn {
-                width: 100%;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .timer-display {
-                font-size: 4rem;
-            }
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Say Sorry — Apology App</title>
+  <style>
+    :root{--bg:#0f1724;--card:#0b1220;--accent:#10b981;--muted:#9aa6b2;--glass:rgba(255,255,255,0.03)}
+    *{box-sizing:border-box;font-family:Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial}
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,#071025 0,#071628 100%);color:#e6eef6}
+    .wrap{max-width:980px;margin:28px auto;padding:20px}
+    header{display:flex;gap:16px;align-items:center;margin-bottom:18px}
+    h1{font-size:1.5rem;margin:0}
+    p.lead{margin:0;color:var(--muted);font-size:0.95rem}
+    .grid{display:grid;grid-template-columns:1fr 420px;gap:18px;margin-top:18px}
+    .card{background:var(--card);border-radius:12px;padding:16px;box-shadow:0 6px 18px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.03)}
+    label{display:block;font-size:0.85rem;color:var(--muted);margin-bottom:6px}
+    input[type=text],textarea,select{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:var(--glass);color:inherit;font-size:0.95rem}
+    textarea{min-height:160px;resize:vertical}
+    .row{display:flex;gap:10px}
+    .small{font-size:0.8rem;color:var(--muted)}
+    .controls{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+    button{background:var(--accent);color:#04201a;border:none;padding:10px 12px;border-radius:10px;font-weight:600;cursor:pointer}
+    button.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+    .preset-list{display:flex;flex-direction:column;gap:8px;margin-top:10px}
+    .preset{background:transparent;border:1px dashed rgba(255,255,255,0.04);padding:10px;border-radius:8px;cursor:pointer}
+    .preview-box{white-space:pre-wrap;background:linear-gradient(180deg,rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);min-height:120px}
+    footer{margin-top:18px;color:var(--muted);font-size:0.85rem;text-align:center}
+    @media (max-width:880px){.grid{grid-template-columns:1fr;}.wrap{padding:12px}}
+  </style>
 </head>
 <body>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>Say Sorry — Apology App</h1>
+        <p class="lead">Write a sincere apology in seconds. Pick a tone, customize, preview, then copy or share.</p>
+      </div>
+    </header>
 
-    <div class="container">
-        <h1 style="font-size: 2.5rem; margin-bottom: 10px;">🍻 Beer Freezer Timer 🍻</h1>
-        <div id="timer" class="timer-display">20:00</div>
+    <div class="grid">
+      <section class="card">
+        <label for="recipient">Recipient's name <span class="small">(optional)</span></label>
+        <input id="recipient" type="text" placeholder="e.g. Alex" />
 
-        <div class="buttons">
-            <button id="start-btn" class="btn btn-start">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-play">
-                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                </svg>
-                Start
-            </button>
-            <button id="reset-btn" class="btn btn-reset">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-refresh-ccw">
-                    <path d="M23 4v6h-6"></path>
-                    <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
-                </svg>
-                Reset
-            </button>
+        <div style="display:flex;gap:10px;margin-top:12px">
+          <div style="flex:1">
+            <label for="tone">Tone</label>
+            <select id="tone">
+              <option value="sincere">Sincere</option>
+              <option value="casual">Casual</option>
+              <option value="formal">Formal</option>
+              <option value="short">Short & Direct</option>
+              <option value="light">Lighthearted</option>
+            </select>
+          </div>
+          <div style="width:160px">
+            <label for="length">Length</label>
+            <select id="length">
+              <option value="short">Short</option>
+              <option value="medium" selected>Medium</option>
+              <option value="long">Long</option>
+            </select>
+          </div>
         </div>
 
-        <div id="final-message">Enjoy Your Beer!!! 🍺</div>
-
-        <div class="card">
-            <h2>Important Notes</h2>
-            <ul>
-                <li>⏳ The timer is set for 20 minutes, which is the ideal time for most beers to chill in a standard home freezer without freezing solid.</li>
-                <li>🧊 **Warning:** Don't leave your beer in the freezer for longer than 30 minutes! It could explode due to the water content freezing and expanding.</li>
-                <li>🔔 We recommend you *turn on sound notifications for this website to receive an alert when the time is up.</li>
-                <li>💡 **Tip:** Placing a wet paper towel around the bottle or can can help it chill even faster!</li>
-            </ul>
+        <div style="margin-top:12px;display:flex;gap:8px;align-items:center">
+          <input id="ownUp" type="checkbox" checked /> <label for="ownUp" style="margin:0">I take responsibility</label>
         </div>
+        <div style="margin-top:6px;display:flex;gap:8px;align-items:center">
+          <input id="offerFix" type="checkbox" /> <label for="offerFix" style="margin:0">Offer to make amends</label>
+        </div>
+
+        <label style="margin-top:10px">Reason (optional)</label>
+        <input id="reason" type="text" placeholder="What you are apologizing for (keep it brief)" />
+
+        <label style="margin-top:10px">Custom note (optional)</label>
+        <textarea id="customNote" placeholder="Add a personal line, memory, or promise..."></textarea>
+
+        <div class="controls">
+          <button id="generate">Generate Apology</button>
+          <button class="ghost" id="randomize">Randomize Template</button>
+          <button class="ghost" id="clear">Clear</button>
+        </div>
+
+        <div style="margin-top:12px">
+          <label>Preset templates</label>
+          <div class="preset-list" id="presets"></div>
+        </div>
+      </section>
+
+      <aside class="card">
+        <label>Preview</label>
+        <div class="preview-box" id="preview">Your apology will appear here when you press "Generate Apology".</div>
+
+        <div style="display:flex;gap:8px;margin-top:12px">
+          <button id="copy">Copy Text</button>
+          <button id="email" class="ghost">Share by Email</button>
+          <button id="save" class="ghost">Download .txt</button>
+        </div>
+
+        <div style="margin-top:14px">
+          <label class="small">Tips:</label>
+          <ul style="color:var(--muted);margin:8px 0;padding-left:18px">
+            <li>Be specific about what happened.</li>
+            <li>Take responsibility — avoid excuses.</li>
+            <li>Offer to make things better and give space if needed.</li>
+          </ul>
+        </div>
+      </aside>
     </div>
 
-    <script>
-        const timerDisplay = document.getElementById('timer');
-        const startBtn = document.getElementById('start-btn');
-        const resetBtn = document.getElementById('reset-btn');
-        const finalMessage = document.getElementById('final-message');
+    <footer>
+      Built for quick, thoughtful apologies. Use with sincerity — the app helps with words, not feelings.
+    </footer>
+  </div>
 
-        let timer;
-        let timeLeft = 20 * 60; // 20 minutes in seconds
-        let isRunning = false;
+  <script>
+    // Preset templates with placeholders
+    const TEMPLATES = {
+      sincere: [
+        "{name}, I'm truly sorry for {reason}. I was wrong and I take full responsibility. {custom} I hope you can forgive me.",
+        "{name}, I let you down when {reason}. I understand how that affected you, and I'm sorry. {custom} I'm committed to doing better."
+      ],
+      casual: [
+        "Hey {name}, I'm really sorry about {reason}. I messed up — won't happen again. {custom}",
+        "Hey {name}, sorry for how I handled {reason}. I didn't mean to hurt you. {custom}"
+      ],
+      formal: [
+        "Dear {name}, I want to apologize for {reason}. I take responsibility for my actions and regret causing you distress. {custom} Sincerely,",
+        "{name}, I apologize for {reason}. Please accept my sincere apologies — I will make every effort to prevent this from repeating. {custom}"
+      ],
+      short: [
+        "{name}, I'm sorry for {reason}.",
+        "I'm sorry. I was wrong about {reason}, {name}."
+      ],
+      light: [
+        "{name}, I'm sorry — I wasn't at my best when {reason}. Can we talk? {custom}",
+        "Oops. Sorry about {reason}, {name}. Let me make it up to you. {custom}"
+      ]
+    };
 
-        // Keep awake functionality (simple version)
-        let wakeLock = null;
-        const requestWakeLock = async () => {
-            if ('wakeLock' in navigator) {
-                try {
-                    wakeLock = await navigator.wakeLock.request('screen');
-                    console.log('Screen wake lock active.');
-                } catch (err) {
-                    console.error('Wake lock request failed:', err);
-                }
-            }
-        };
+    // Helpers
+    const el = (id)=>document.getElementById(id);
+    const fill = (template, data)=>{
+      return template.replace(/\{name\}/g, data.name||'')
+                     .replace(/\{reason\}/g, data.reason||'something I did')
+                     .replace(/\{custom\}/g, data.custom||'')
+                     .replace(/\s{2,}/g,' ').trim();
+    }
 
-        const releaseWakeLock = () => {
-            if (wakeLock) {
-                wakeLock.release().then(() => {
-                    console.log('Screen wake lock released.');
-                    wakeLock = null;
-                });
-            }
-        };
+    // Populate presets area
+    function renderPresets(){
+      const container = el('presets');
+      container.innerHTML = '';
+      Object.keys(TEMPLATES).forEach(key=>{
+        TEMPLATES[key].slice(0,1).forEach(t=>{
+          const d = document.createElement('div');
+          d.className='preset';
+          d.textContent = t.replace('{name}','[name]').replace('{reason}','[reason]').replace('{custom}','[custom]');
+          d.addEventListener('click',()=>{
+            el('tone').value = key;
+            el('reason').focus();
+            el('customNote').focus();
+          });
+          container.appendChild(d);
+        })
+      })
+    }
 
-        function formatTime(seconds) {
-            const minutes = Math.floor(seconds / 60);
-            const remainingSeconds = seconds % 60;
-            return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
+    function generate(){
+      const name = el('recipient').value.trim();
+      const tone = el('tone').value;
+      const length = el('length').value;
+      const reason = el('reason').value.trim();
+      const custom = el('customNote').value.trim();
+      const ownUp = el('ownUp').checked;
+      const offerFix = el('offerFix').checked;
+
+      // pick a template based on tone and length
+      let pool = TEMPLATES[tone] ? [...TEMPLATES[tone]] : [...TEMPLATES['sincere']];
+      if(length==='long'){
+        // for long, take a base template and append a longer closing
+        pool = pool.map(t=> t + ' I understand if you need time, and I would like to make amends where I can.' )
+      }
+
+      let template = pool[Math.floor(Math.random()*pool.length)];
+
+      // build data
+      let data = {name: name?name:'', reason: reason?reason:'what happened', custom: custom?custom:''};
+
+      let apology = fill(template,data);
+
+      // Add responsibility if user unchecked 'ownUp' we avoid blaming language (but default checked)
+      if(ownUp){
+        // Ensure a sentence that shows responsibility exists; if not, append one
+        if(!/\b(I|I'm|I am|I take)\b/i.test(apology)){
+          apology += ' I take responsibility for my actions.';
         }
+      }
 
-        function updateTimerDisplay() {
-            timerDisplay.textContent = formatTime(timeLeft);
-        }
+      if(offerFix){
+        apology += ' I would like to make this right — tell me how I can help.';
+      }
 
-        function startTimer() {
-            if (isRunning) return;
-            isRunning = true;
-            startBtn.disabled = true;
-            finalMessage.style.display = 'none';
+      // Tidy punctuation
+      apology = apology.replace(/\s+([.,!])/g,'$1');
 
-            requestWakeLock();
+      el('preview').textContent = apology;
+    }
 
-            timer = setInterval(() => {
-                timeLeft--;
-                updateTimerDisplay();
+    // Buttons
+    el('generate').addEventListener('click',generate);
+    el('randomize').addEventListener('click',()=>{
+      el('tone').value = Object.keys(TEMPLATES)[Math.floor(Math.random()*Object.keys(TEMPLATES).length)];
+      generate();
+    });
+    el('clear').addEventListener('click',()=>{
+      ['recipient','reason','customNote'].forEach(id=>el(id).value='');
+      el('ownUp').checked=true;el('offerFix').checked=false;el('preview').textContent='Your apology will appear here when you press "Generate Apology".';
+    });
 
-                if (timeLeft <= 0) {
-                    clearInterval(timer);
-                    isRunning = false;
-                    startBtn.disabled = false;
-                    timeLeft = 20 * 60;
-                    timerDisplay.textContent = formatTime(timeLeft);
-                    finalMessage.style.display = 'block';
-                    
-                    // Trigger an alert or sound for notification
-                    new Audio('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3').play();
-                    
-                    releaseWakeLock();
-                }
-            }, 1000);
-        }
+    el('copy').addEventListener('click',async ()=>{
+      const txt = el('preview').textContent;
+      try{await navigator.clipboard.writeText(txt);alert('Copied to clipboard!')}catch(e){alert('Unable to copy — highlight the text and copy manually.')}
+    });
 
-        function resetTimer() {
-            clearInterval(timer);
-            isRunning = false;
-            timeLeft = 20 * 60;
-            updateTimerDisplay();
-            startBtn.disabled = false;
-            finalMessage.style.display = 'none';
+    el('email').addEventListener('click',()=>{
+      const subject = encodeURIComponent('I owe you an apology');
+      const body = encodeURIComponent(el('preview').textContent + '\n\n— Sent from Say Sorry app');
+      window.location.href = `mailto:?subject=${subject}&body=${body}`;
+    });
 
-            releaseWakeLock();
-        }
+    el('save').addEventListener('click',()=>{
+      const txt = el('preview').textContent || 'Apology';
+      const blob = new Blob([txt],{type:'text/plain'});
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'apology.txt';
+      document.body.appendChild(a);a.click();a.remove();
+    });
 
-        startBtn.addEventListener('click', startTimer);
-        resetBtn.addEventListener('click', resetTimer);
-
-        // Initial display update
-        updateTimerDisplay();
-
-    </script>
-
+    // Init
+    renderPresets();
+  </script>
 </body>
 </html>
