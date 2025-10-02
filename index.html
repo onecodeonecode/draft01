@@ -3,72 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>How High Are You?</title>
+    <title>The Alphabet</title>
     <style>
-        body { 
-            display: flex; 
-            height: 100vh; 
-            background-color: #4CBB17; 
-            color: #fff; 
-            justify-content: center; 
-            align-items: center; 
-            text-align: center; 
-            font-family: Arial, sans-serif; 
-            margin: 0; 
-            padding: 20px;
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color:ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: black;
         }
-        .container {
-            background: #222;
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-            width: 100%;
-            max-width: 350px;
+
+        #title {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            text-align: center;
         }
-        h1 { color: #FFD700; }
-        .result { 
-            margin-top: 20px; 
-            font-size: 1.4rem; 
+
+        #letter {
+            font-size: 10rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
         }
-        button { 
-            background-color: #FF3131; 
-            border: none; 
-            color: #ffffff; 
-            padding: 10px 20px; 
-            font-size: 1.2rem; 
-            border-radius: 10px; 
-            cursor: pointer; 
-            width: 100%;
+
+        .controls {
+            display: flex;
+            gap: 10px;
         }
-        button:hover { background-color: #4CBB17; }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #start {
+            background-color: green;
+            color: white;
+        }
+
+        #pause {
+            background-color: yellow;
+            color: black;
+        }
+
+        #reset {
+            background-color: red;
+            color: white;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>How High Are You?</h1>
-        <p>Click the button to find out your highness!</p>
-        <button onclick="showLevel()">CLICK</button>
-        <div class="result" id="result"></div>
+    <div id="title">Press Start to Begin</div>
+    <div id="letter">A</div>
+    <div class="controls">
+        <button id="start">START</button>
+        <button id="pause">PAUSE</button>
+        <button id="reset">RESET</button>
     </div>
 
     <script>
-        const levels = [
-            "Sober as a judge",
-            "Feeling a little buzzed",
-            "Getting philosophical about life",
-            "Convinced your cat is a CIA agent",
-            "You're now part of the couch",
-            "Giggling at your own thoughts",
-            "Lost in the fridge for 20 minutes",
-            "Staring at your hand... mesmerized",
-            "Talking to plants like they're your best friends",
-            "Floating in space, man..."
-        ];
+        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+        let currentIndex = 0;
+        let interval = null;
 
-        function showLevel() {
-            const randomLevel = levels[Math.floor(Math.random() * levels.length)];
-            document.getElementById('result').textContent = `Level: ${randomLevel}`;
+        const letterDiv = document.getElementById("letter");
+        const startButton = document.getElementById("start");
+        const pauseButton = document.getElementById("pause");
+        const resetButton = document.getElementById("reset");
+
+        function showNextLetter() {
+            letterDiv.textContent = letters[currentIndex];
+            currentIndex = (currentIndex + 1) % letters.length;
         }
+
+        startButton.addEventListener("click", () => {
+            if (!interval) {
+                interval = setInterval(showNextLetter, 1000);
+            }
+        });
+
+        pauseButton.addEventListener("click", () => {
+            clearInterval(interval);
+            interval = null;
+        });
+
+        resetButton.addEventListener("click", () => {
+            clearInterval(interval);
+            interval = null;
+            currentIndex = 0;
+            letterDiv.textContent = letters[currentIndex];
+        });
+
+        // Initialize with the first letter
+        letterDiv.textContent = letters[currentIndex];
     </script>
 </body>
 </html>
