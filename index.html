@@ -1,113 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Alphabet</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color:ffffff;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            color: black;
-        }
-
-        #title {
-            font-size: 2rem;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        #letter {
-            font-size: 10rem;
-            font-weight: bold;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .controls {
-            display: flex;
-            gap: 10px;
-        }
-
-        button {
-            padding: 10px 20px;
-            font-size: 1rem;
-            font-weight: bold;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        #start {
-            background-color: green;
-            color: white;
-        }
-
-        #pause {
-            background-color: yellow;
-            color: black;
-        }
-
-        #reset {
-            background-color: red;
-            color: white;
-        }
-
-        button:hover {
-            opacity: 0.8;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Timer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #1e1e2f;
+      color: #00e5ff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+    #timer {
+      font-size: 3rem;
+      background: #292943;
+      padding: 20px 40px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 229, 255, 0.5);
+      margin-bottom: 30px;
+    }
+    button {
+      background-color: #00e5ff;
+      border: none;
+      color: #1e1e2f;
+      font-size: 1rem;
+      font-weight: bold;
+      padding: 10px 20px;
+      margin: 5px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    button:hover {
+      background-color: #00bcd4;
+    }
+  </style>
 </head>
 <body>
-    <div id="title">Press Start to Begin</div>
-    <div id="letter">A</div>
-    <div class="controls">
-        <button id="start">START</button>
-        <button id="pause">PAUSE</button>
-        <button id="reset">RESET</button>
-    </div>
+  <h1>Timer</h1>
+  <div id="timer">00:00:00</div>
+  <div>
+    <button onclick="startTimer()">Start</button>
+    <button onclick="pauseTimer()">Pause</button>
+    <button onclick="resetTimer()">Reset</button>
+  </div>
 
-    <script>
-        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
-        let currentIndex = 0;
-        let interval = null;
+  <script>
+    let timer;
+    let totalSeconds = 0;
+    let isRunning = false;
 
-        const letterDiv = document.getElementById("letter");
-        const startButton = document.getElementById("start");
-        const pauseButton = document.getElementById("pause");
-        const resetButton = document.getElementById("reset");
+    function updateTimerDisplay() {
+      let hours = Math.floor(totalSeconds / 3600);
+      let minutes = Math.floor((totalSeconds % 3600) / 60);
+      let seconds = totalSeconds % 60;
 
-        function showNextLetter() {
-            letterDiv.textContent = letters[currentIndex];
-            currentIndex = (currentIndex + 1) % letters.length;
-        }
+      document.getElementById("timer").textContent =
+        String(hours).padStart(2, '0') + ":" +
+        String(minutes).padStart(2, '0') + ":" +
+        String(seconds).padStart(2, '0');
+    }
 
-        startButton.addEventListener("click", () => {
-            if (!interval) {
-                interval = setInterval(showNextLetter, 1000);
-            }
-        });
+    function startTimer() {
+      if (!isRunning) {
+        timer = setInterval(() => {
+          totalSeconds++;
+          updateTimerDisplay();
+        }, 1000);
+        isRunning = true;
+      }
+    }
 
-        pauseButton.addEventListener("click", () => {
-            clearInterval(interval);
-            interval = null;
-        });
+    function pauseTimer() {
+      clearInterval(timer);
+      isRunning = false;
+    }
 
-        resetButton.addEventListener("click", () => {
-            clearInterval(interval);
-            interval = null;
-            currentIndex = 0;
-            letterDiv.textContent = letters[currentIndex];
-        });
+    function resetTimer() {
+      clearInterval(timer);
+      isRunning = false;
+      totalSeconds = 0;
+      updateTimerDisplay();
+    }
 
-        // Initialize with the first letter
-        letterDiv.textContent = letters[currentIndex];
-    </script>
+    // Initialize display
+    updateTimerDisplay();
+  </script>
 </body>
 </html>
