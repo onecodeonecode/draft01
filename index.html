@@ -1,97 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Timer</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #1e1e2f;
-      color: #00e5ff;
+      background-color: #0f172a;
+      color: #f8fafc;
+      font-family: 'Segoe UI', sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
-      flex-direction: column;
     }
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 20px;
-    }
-    #timer {
-      font-size: 3rem;
-      background: #292943;
-      padding: 20px 40px;
+    .timer-container {
+      text-align: center;
+      background-color: #1e293b;
+      padding: 40px;
       border-radius: 12px;
-      box-shadow: 0 0 20px rgba(0, 229, 255, 0.5);
-      margin-bottom: 30px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
     }
-    button {
-      background-color: #00e5ff;
+    .time-display {
+      font-size: 48px;
+      margin: 20px 0;
+      color: #38bdf8;
+    }
+    .controls button {
+      background-color: #38bdf8;
+      color: #0f172a;
       border: none;
-      color: #1e1e2f;
-      font-size: 1rem;
-      font-weight: bold;
       padding: 10px 20px;
       margin: 5px;
+      font-size: 16px;
       border-radius: 8px;
       cursor: pointer;
-      transition: 0.2s;
     }
-    button:hover {
-      background-color: #00bcd4;
+    .controls button:hover {
+      background-color: #0ea5e9;
+    }
+    .inputs input {
+      width: 60px;
+      padding: 5px;
+      margin: 5px;
+      font-size: 16px;
+      border-radius: 6px;
+      border: none;
+      text-align: center;
     }
   </style>
 </head>
 <body>
-  <h1>Timer</h1>
-  <div id="timer">00:00:00</div>
-  <div>
-    <button onclick="startTimer()">Start</button>
-    <button onclick="pauseTimer()">Pause</button>
-    <button onclick="resetTimer()">Reset</button>
+  <div class="timer-container">
+    <h1>TAPFONE Timer</h1>
+    <div class="inputs">
+      <input type="number" id="inputHours" placeholder="Hrs." min="0" />
+      <input type="number" id="inputMinutes" placeholder="Mins." min="0" />
+      <input type="number" id="inputSeconds" placeholder="Secs." min="0" />
+    </div>
+    <div class="time-display">
+      <span id="hours">00</span> :
+      <span id="minutes">00</span> :
+      <span id="seconds">00</span>
+    </div>
+    <div class="controls">
+      <button onclick="startCountdown()">Start</button>
+      <button onclick="pauseCountdown()">Pause</button>
+      <button onclick="resetCountdown()">Reset</button>
+    </div>
+    <audio id="alertSound" src="https://www.soundjay.com/button/beep-07.mp3" preload="auto"></audio>
   </div>
 
   <script>
-    let timer;
     let totalSeconds = 0;
-    let isRunning = false;
+    let countdownInterval = null;
 
-    function updateTimerDisplay() {
-      let hours = Math.floor(totalSeconds / 3600);
-      let minutes = Math.floor((totalSeconds % 3600) / 60);
-      let seconds = totalSeconds % 60;
+    function updateDisplay() {
+      const hrs = Math.floor(totalSeconds / 3600);
+      const mins = Math.floor((totalSeconds % 3600) / 60);
+      const secs = totalSeconds % 60;
 
-      document.getElementById("timer").textContent =
-        String(hours).padStart(2, '0') + ":" +
-        String(minutes).padStart(2, '0') + ":" +
-        String(seconds).padStart(2, '0');
+      document.getElementById('hours').textContent = String(hrs).padStart(2, '0');
+      document.getElementById('minutes').textContent = String(mins).padStart(2, '0');
+      document.getElementById('seconds').textContent = String(secs).padStart(2, '0');
     }
 
-    function startTimer() {
-      if (!isRunning) {
-        timer = setInterval(() => {
-          totalSeconds++;
-          updateTimerDisplay();
-        }, 1000);
-        isRunning = true;
+    function startCountdown() {
+      if (countdownInterval) return;
+
+      if (totalSeconds === 0) {
+        const hrs = parseInt(document.getElementById('inputHours').value) || 0;
+        const mins = parseInt(document.getElementById('inputMinutes').value) || 0;
+        const secs = parseInt(document.getElementById('inputSeconds').value) || 0;
+        totalSeconds = hrs * 3600 + mins * 60 + secs;
       }
+
+      countdownInterval = setInterval(() => {
+        if (totalSeconds > 0) {
+          totalSeconds--;
+          updateDisplay();
+        } else {
+          clearInterval(countdownInterval);
+          countdownInterval = null;
+          document.getElementById('alertSound').play();
+        }
+      }, 1000);
     }
 
-    function pauseTimer() {
-      clearInterval(timer);
-      isRunning = false;
+    function pauseCountdown() {
+      clearInterval(countdownInterval);
+      countdownInterval = null;
     }
 
-    function resetTimer() {
-      clearInterval(timer);
-      isRunning = false;
+    function resetCountdown() {
+      pauseCountdown();
       totalSeconds = 0;
-      updateTimerDisplay();
+      updateDisplay();
     }
 
-    // Initialize display
-    updateTimerDisplay();
+    updateDisplay();
   </script>
 </body>
 </html>
