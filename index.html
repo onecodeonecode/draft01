@@ -1,2 +1,152 @@
-<p><a href="https://1code.ca/"><img src="https://uploads.onecompiler.io/43a28xmes/3wxcpbe5b/01.1code.cir.44.jpg" alt="" width="150" height="150" /></a></p>
-<p><img style="display: block; margin-left: auto; margin-right: auto;" src="https://uploads.onecompiler.io/43a28xmes/3wxcpbe5b/1code.qr.400x100.jpg" alt="" width="900" height="225" /></p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stopwatch</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #4facfe, #00f2fe);
+      color: #fff;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .stopwatch {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      width: 320px;
+    }
+
+    h1 {
+      font-size: 3em;
+      margin-bottom: 20px;
+      letter-spacing: 2px;
+    }
+
+    .time {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+    }
+
+    .buttons button {
+      background: #fff;
+      border: none;
+      color: #333;
+      font-size: 1.1em;
+      margin: 6px;
+      padding: 12px 25px;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .buttons button:hover {
+      transform: scale(1.1);
+    }
+
+    .start { background: #00e676; }
+    .stop { background: #ff3d00; }
+    .reset { background: #2979ff; }
+    .lap { background: #ffea00; color: #333; }
+
+    .laps {
+      margin-top: 20px;
+      max-height: 150px;
+      overflow-y: auto;
+      text-align: left;
+      font-size: 1.1em;
+      background: rgba(255, 255, 255, 0.15);
+      padding: 10px;
+      border-radius: 10px;
+    }
+
+    .lap-item {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 4px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="stopwatch">
+    <h1>TAPFONE</h1>
+    <h1>Stopwatch</h1>
+    <div class="time" id="display">00:00.00</div>
+    <div class="buttons">
+      <button class="start" id="startBtn">Start</button>
+      <button class="stop" id="stopBtn">Stop</button>
+      <button class="lap" id="lapBtn">Lap</button>
+      <button class="reset" id="resetBtn">Reset</button>
+    </div>
+    <div class="laps" id="laps"></div>
+  </div>
+
+  <script>
+    let startTime, updatedTime, difference = 0, timerInterval;
+    let running = false;
+    let lapCount = 0;
+
+    const display = document.getElementById("display");
+    const startBtn = document.getElementById("startBtn");
+    const stopBtn = document.getElementById("stopBtn");
+    const resetBtn = document.getElementById("resetBtn");
+    const lapBtn = document.getElementById("lapBtn");
+    const laps = document.getElementById("laps");
+
+    function updateDisplay() {
+      updatedTime = new Date().getTime();
+      difference = updatedTime - startTime;
+
+      let minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+      let seconds = Math.floor((difference % (1000 * 60)) / 1000);
+      let milliseconds = Math.floor((difference % 1000) / 10);
+
+      minutes = (minutes < 10) ? "0" + minutes : minutes;
+      seconds = (seconds < 10) ? "0" + seconds : seconds;
+      milliseconds = (milliseconds < 10) ? "0" + milliseconds : milliseconds;
+
+      display.innerHTML = `${minutes}:${seconds}.${milliseconds}`;
+    }
+
+    startBtn.onclick = () => {
+      if (!running) {
+        running = true;
+        startTime = new Date().getTime() - difference;
+        timerInterval = setInterval(updateDisplay, 10);
+      }
+    };
+
+    stopBtn.onclick = () => {
+      running = false;
+      clearInterval(timerInterval);
+    };
+
+    resetBtn.onclick = () => {
+      running = false;
+      clearInterval(timerInterval);
+      difference = 0;
+      display.innerHTML = "00:00.00";
+      laps.innerHTML = "";
+      lapCount = 0;
+    };
+
+    lapBtn.onclick = () => {
+      if (running) {
+        lapCount++;
+        const lapTime = display.textContent;
+        const lapElement = document.createElement("div");
+        lapElement.classList.add("lap-item");
+        lapElement.textContent = `Lap ${lapCount}: ${lapTime}`;
+        laps.prepend(lapElement);
+      }
+    };
+  </script>
+</body>
+</html>
