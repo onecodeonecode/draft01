@@ -1,152 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Crypto Advisor</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #0f172a;
-      color: #e5e7eb;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-    }
-    .app {
-      width: 100%;
-      max-width: 420px;
-      background: #020617;
-      border-radius: 16px;
-      padding: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-    }
-    h1 {
-      text-align: center;
-      margin-bottom: 10px;
-    }
-    select {
-      width: 100%;
-      padding: 10px;
-      border-radius: 8px;
-      border: none;
-      margin-bottom: 15px;
-      font-size: 16px;
-    }
-    .price {
-      text-align: center;
-      font-size: 28px;
-      margin: 10px 0;
-    }
-    .signal {
-      text-align: center;
-      font-size: 22px;
-      font-weight: bold;
-      margin: 15px 0;
-      padding: 10px;
-      border-radius: 10px;
-    }
-    .buy { background: #064e3b; color: #6ee7b7; }
-    .sell { background: #7f1d1d; color: #fecaca; }
-    .hold { background: #1e3a8a; color: #bfdbfe; }
-    .stats {
-      font-size: 14px;
-      margin-top: 15px;
-      line-height: 1.6;
-    }
-    footer {
-      text-align: center;
-      margin-top: 20px;
-      font-size: 12px;
-      color: #9ca3af;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crypto Picker AI</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0d1117;
+    color: #fff;
+}
+header {
+    text-align: center;
+    padding: 15px;
+    background: #161b22;
+    font-size: 20px;
+    font-weight: bold;
+}
+.container {
+    padding: 10px;
+}
+.crypto {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #161b22;
+    border-radius: 10px;
+    padding: 12px;
+    margin-bottom: 10px;
+}
+.name {
+    font-weight: bold;
+}
+.price {
+    font-size: 14px;
+}
+.signal {
+    font-weight: bold;
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 13px;
+}
+.buy { background: #1f883d; }
+.sell { background: #da3633; }
+.hold { background: #1f6feb; }
+footer {
+    text-align: center;
+    font-size: 12px;
+    opacity: 0.7;
+    padding: 10px;
+}
+</style>
 </head>
+
 <body>
-  <div class="app">
-    <h1>Crypto Advisor</h1>
 
-    <select id="symbol">
-      <option value="btcusdt">Bitcoin (BTC)</option>
-      <option value="ethusdt">Ethereum (ETH)</option>
-      <option value="solusdt">Solana (SOL)</option>
-      <option value="dogeusdt">Dogecoin (DOGE)</option>
-    </select>
+<header>📈 Crypto Picker</header>
 
-    <div class="price" id="price">$0.00</div>
+<div class="container" id="cryptoList"></div>
 
-    <div class="signal hold" id="signal">HOLD</div>
+<footer>1Code</footer>
 
-    <div class="stats" id="stats">
-      Waiting for data...
-    </div>
+<script>
+const coins = [
+    "btcusdt","ethusdt","bnbusdt","solusdt","xrpusdt",
+    "adausdt","dogeusdt","avaxusdt","dotusdt","maticusdt"
+];
 
-    <footer>
-      Educational use only · Not financial advice
-    </footer>
-  </div>
+const priceHistory = {};
+const cryptoList = document.getElementById("cryptoList");
 
-  <script>
-    let prices = [];
-    let socket;
+coins.forEach(symbol => {
+    priceHistory[symbol] = [];
+    const div = document.createElement("div");
+    div.className = "crypto";
+    div.id = symbol;
+    div.innerHTML = `
+        <div>
+            <div class="name">${symbol.toUpperCase().replace("USDT","")}</div>
+            <div class="price">$0.00</div>
+        </div>
+        <div class="signal hold">HOLD</div>
+    `;
+    cryptoList.appendChild(div);
+});
 
-    function connect(symbol) {
-      if (socket) socket.close();
-      prices = [];
+function sma(data, length) {
+    if (data.length < length) return null;
+    const slice = data.slice(-length);
+    return slice.reduce((a,b)=>a+b,0) / length;
+}
 
-      socket = new WebSocket(`wss://stream.binance.com:9443/ws/${symbol}@trade`);
+const ws = new WebSocket(
+    "wss://stream.binance.com:9443/stream?streams=" +
+    coins.map(c => c + "@trade").join("/")
+);
 
-      socket.onmessage = (event) => {
-        const data = JSON.parse(event.data);
-        const price = parseFloat(data.p);
+ws.onmessage = (event) => {
+    const msg = JSON.parse(event.data);
+    const symbol = msg.data.s;
+    const price = parseFloat(msg.data.p);
 
-        prices.push(price);
-        if (prices.length > 50) prices.shift();
+    const key = symbol.toLowerCase();
+    if (!priceHistory[key]) return;
 
-        document.getElementById('price').innerText = `$${price.toFixed(2)}`;
-        updateSignal();
-      };
+    priceHistory[key].push(price);
+    if (priceHistory[key].length > 50) {
+        priceHistory[key].shift();
     }
 
-    function sma(period) {
-      if (prices.length < period) return null;
-      const slice = prices.slice(-period);
-      const sum = slice.reduce((a, b) => a + b, 0);
-      return sum / period;
+    const sma10 = sma(priceHistory[key], 10);
+    const sma30 = sma(priceHistory[key], 30);
+
+    const row = document.getElementById(key);
+    row.querySelector(".price").textContent = "$" + price.toFixed(2);
+
+    const signalEl = row.querySelector(".signal");
+
+    if (sma10 && sma30) {
+        if (sma10 > sma30) {
+            signalEl.textContent = "🟢 BUY";
+            signalEl.className = "signal buy";
+        } else if (sma10 < sma30) {
+            signalEl.textContent = "🔴 SELL";
+            signalEl.className = "signal sell";
+        } else {
+            signalEl.textContent = "🔵 HOLD";
+            signalEl.className = "signal hold";
+        }
     }
+};
+</script>
 
-    function updateSignal() {
-      const smaFast = sma(10);
-      const smaSlow = sma(30);
-      if (!smaFast || !smaSlow) return;
-
-      let signal = 'HOLD';
-      let cls = 'hold';
-
-      if (smaFast > smaSlow) {
-        signal = 'BUY';
-        cls = 'buy';
-      } else if (smaFast < smaSlow) {
-        signal = 'SELL';
-        cls = 'sell';
-      }
-
-      const el = document.getElementById('signal');
-      el.innerText = signal;
-      el.className = `signal ${cls}`;
-
-      document.getElementById('stats').innerText =
-        `SMA 10: ${smaFast.toFixed(2)}\nSMA 30: ${smaSlow.toFixed(2)}`;
-    }
-
-    document.getElementById('symbol').addEventListener('change', (e) => {
-      connect(e.target.value);
-    });
-
-    connect(document.getElementById('symbol').value);
-  </script>
 </body>
 </html>
