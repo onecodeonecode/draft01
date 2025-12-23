@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Crypto Picker AI</title>
+<title>Crypto Picker</title>
 
 <style>
 body {
@@ -12,127 +12,184 @@ body {
     background: #0d1117;
     color: #fff;
 }
+
 header {
     text-align: center;
     padding: 15px;
     background: #161b22;
-    font-size: 20px;
+    font-size: 1.3rem;
     font-weight: bold;
 }
+
 .container {
+    max-width: 420px;
+    margin: auto;
     padding: 10px;
 }
-.crypto {
+
+.crypto-card {
+    background: #161b22;
+    border-radius: 12px;
+    padding: 12px;
+    margin-bottom: 12px;
+}
+
+.crypto-top {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #161b22;
-    border-radius: 10px;
-    padding: 12px;
-    margin-bottom: 10px;
 }
-.name {
+
+.crypto-name {
     font-weight: bold;
+    font-size: 1.1rem;
 }
-.price {
-    font-size: 14px;
+
+.crypto-price {
+    font-size: 1.1rem;
 }
+
 .signal {
+    margin-top: 6px;
     font-weight: bold;
-    padding: 6px 10px;
-    border-radius: 20px;
-    font-size: 13px;
+    font-size: 0.9rem;
 }
-.buy { background: #1f883d; }
-.sell { background: #da3633; }
-.hold { background: #1f6feb; }
-footer {
-    text-align: center;
-    font-size: 12px;
-    opacity: 0.7;
-    padding: 10px;
+
+.buy { color: #00ff9c; }
+.sell { color: #ff4d4d; }
+.hold { color: #4da3ff; }
+
+canvas {
+    width: 100%;
+    height: 60px;
+    margin-top: 8px;
+}
+
+@media (max-width: 600px) {
+    .container {
+        max-width: 95%;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<header>📈 Crypto Picker</header>
+<header>📊 Crypto Picker</header>
 
 <div class="container" id="cryptoList"></div>
 
-<footer>1Code</footer>
-
 <script>
-const coins = [
-    "btcusdt","ethusdt","bnbusdt","solusdt","xrpusdt",
-    "adausdt","dogeusdt","avaxusdt","dotusdt","maticusdt"
+const cryptos = [
+    { name: "Bitcoin", symbol: "btcusdt" },
+    { name: "Ethereum", symbol: "ethusdt" },
+    { name: "BNB", symbol: "bnbusdt" },
+    { name: "Solana", symbol: "solusdt" },
+    { name: "XRP", symbol: "xrpusdt" },
+    { name: "Cardano", symbol: "adausdt" },
+    { name: "Dogecoin", symbol: "dogeusdt" },
+    { name: "Polygon", symbol: "maticusdt" },
+    { name: "Polkadot", symbol: "dotusdt" },
+    { name: "Avalanche", symbol: "avaxusdt" }
 ];
 
 const priceHistory = {};
-const cryptoList = document.getElementById("cryptoList");
+const prices = {};
+const list = document.getElementById("cryptoList");
 
-coins.forEach(symbol => {
-    priceHistory[symbol] = [];
-    const div = document.createElement("div");
-    div.className = "crypto";
-    div.id = symbol;
-    div.innerHTML = `
-        <div>
-            <div class="name">${symbol.toUpperCase().replace("USDT","")}</div>
-            <div class="price">$0.00</div>
+// Create UI
+cryptos.forEach(c => {
+    priceHistory[c.symbol] = [];
+
+    const card = document.createElement("div");
+    card.className = "crypto-card";
+    card.id = c.symbol;
+
+    card.innerHTML = `
+        <div class="crypto-top">
+            <div class="crypto-name">${c.name}</div>
+            <div class="crypto-price">$0.00</div>
         </div>
-        <div class="signal hold">HOLD</div>
+        <div class="signal hold">🔵 HOLD</div>
+        <canvas width="300" height="60"></canvas>
     `;
-    cryptoList.appendChild(div);
+    list.appendChild(card);
 });
 
-function sma(data, length) {
-    if (data.length < length) return null;
-    const slice = data.slice(-length);
-    return slice.reduce((a,b)=>a+b,0) / length;
+// SMA calculation
+function SMA(data, period) {
+    if (data.length < period) return null;
+    const slice = data.slice(-period);
+    return slice.reduce((a,b) => a + b, 0) / period;
 }
 
-const ws = new WebSocket(
-    "wss://stream.binance.com:9443/stream?streams=" +
-    coins.map(c => c + "@trade").join("/")
-);
+// Draw mini chart
+function drawChart(canvas, data) {
+    const ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-ws.onmessage = (event) => {
-    const msg = JSON.parse(event.data);
-    const symbol = msg.data.s;
-    const price = parseFloat(msg.data.p);
+    ctx.beginPath();
+    ctx.strokeStyle = "#00ff9c";
+    ctx.lineWidth = 2;
 
-    const key = symbol.toLowerCase();
-    if (!priceHistory[key]) return;
+    const max = Math.max(...data);
+    const min = Math.min(...data);
 
-    priceHistory[key].push(price);
-    if (priceHistory[key].length > 50) {
-        priceHistory[key].shift();
+    data.forEach((p, i) => {
+        const x = (i / data.length) * canvas.width;
+        const y = canvas.height - ((p - min) / (max - min || 1)) * canvas.height;
+        i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    });
+
+    ctx.stroke();
+}
+
+// Binance WebSocket
+const streams = cryptos.map(c => `${c.symbol}@trade`).join("/");
+const socket = new WebSocket(`wss://stream.binance.com:9443/stream?streams=${streams}`);
+
+socket.onmessage = (event) => {
+    const data = JSON.parse(event.data).data;
+    const symbol = data.s.toLowerCase();
+    const price = parseFloat(data.p);
+
+    const card = document.getElementById(symbol);
+    if (!card) return;
+
+    const priceEl = card.querySelector(".crypto-price");
+    const signalEl = card.querySelector(".signal");
+    const canvas = card.querySelector("canvas");
+
+    priceEl.textContent = `$${price.toFixed(2)}`;
+
+    // Store price history
+    priceHistory[symbol].push(price);
+    if (priceHistory[symbol].length > 40) {
+        priceHistory[symbol].shift();
     }
 
-    const sma10 = sma(priceHistory[key], 10);
-    const sma30 = sma(priceHistory[key], 30);
-
-    const row = document.getElementById(key);
-    row.querySelector(".price").textContent = "$" + price.toFixed(2);
-
-    const signalEl = row.querySelector(".signal");
+    // SMA Logic
+    const sma10 = SMA(priceHistory[symbol], 10);
+    const sma30 = SMA(priceHistory[symbol], 30);
 
     if (sma10 && sma30) {
         if (sma10 > sma30) {
             signalEl.textContent = "🟢 BUY";
             signalEl.className = "signal buy";
-        } else if (sma10 < sma30) {
+        } else {
             signalEl.textContent = "🔴 SELL";
             signalEl.className = "signal sell";
-        } else {
-            signalEl.textContent = "🔵 HOLD";
-            signalEl.className = "signal hold";
         }
     }
+
+    drawChart(canvas, priceHistory[symbol]);
+};
+
+socket.onclose = () => {
+    console.log("WebSocket disconnected");
 };
 </script>
 
+  <header>Tapfone</header>
 </body>
 </html>
