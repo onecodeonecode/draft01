@@ -1,195 +1,221 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Crypto Picker</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>420 Countdown</title>
 
 <style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #0d1117;
-    color: #fff;
-}
-
-header {
-    text-align: center;
-    padding: 15px;
-    background: #161b22;
-    font-size: 1.3rem;
-    font-weight: bold;
-}
-
-.container {
-    max-width: 420px;
-    margin: auto;
-    padding: 10px;
-}
-
-.crypto-card {
-    background: #161b22;
-    border-radius: 12px;
-    padding: 12px;
-    margin-bottom: 12px;
-}
-
-.crypto-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.crypto-name {
-    font-weight: bold;
-    font-size: 1.1rem;
-}
-
-.crypto-price {
-    font-size: 1.1rem;
-}
-
-.signal {
-    margin-top: 6px;
-    font-weight: bold;
-    font-size: 0.9rem;
-}
-
-.buy { color: #00ff9c; }
-.sell { color: #ff4d4d; }
-.hold { color: #4da3ff; }
-
-canvas {
-    width: 100%;
-    height: 60px;
-    margin-top: 8px;
-}
-
-@media (max-width: 600px) {
-    .container {
-        max-width: 95%;
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: linear-gradient(135deg, #0f3d1e, #145a32, #1e8449);
+        color: #eaffea;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        text-align: center;
     }
-}
+
+    .container {
+        padding: 20px;
+        width: 100%;
+        max-width: 420px;
+    }
+
+    h1 {
+        font-size: 2rem;
+        margin-bottom: 10px;
+        color: #b6ffb6;
+        text-shadow: 0 0 8px rgba(0,255,120,0.6);
+    }
+
+    .countdown {
+        font-size: 1.6rem;
+        margin: 20px 0;
+        line-height: 1.6;
+        background: rgba(0,255,120,0.08);
+        padding: 15px;
+        border-radius: 12px;
+        border: 1px solid rgba(0,255,120,0.25);
+    }
+
+    .time-box { margin: 6px 0; }
+
+    button {
+        background: linear-gradient(135deg, #1db954, #17a74a);
+        border: none;
+        padding: 14px 18px;
+        font-size: 1rem;
+        border-radius: 30px;
+        color: white;
+        cursor: pointer;
+        width: 100%;
+        max-width: 280px;
+        margin: 10px auto;
+        display: block;
+        font-weight: bold;
+        box-shadow: 0 0 12px rgba(0,255,120,0.5);
+    }
+
+    button:active { transform: scale(0.98); }
+
+    /* History modal */
+    .modal {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0,40,0,0.75);
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+    }
+
+    .modal-content {
+        background: #0e2f1a;
+        color: #d8ffd8;
+        border-radius: 16px;
+        padding: 20px;
+        max-width: 500px;
+        max-height: 80vh;
+        overflow-y: auto;
+        text-align: left;
+        border: 1px solid rgba(0,255,120,0.25);
+    }
+
+    .modal-content h2 { color: #8aff8a; }
+
+    .close {
+        text-align: right;
+        font-weight: bold;
+        cursor: pointer;
+        font-size: 1.1rem;
+        color: #8aff8a;
+    }
+
+    /* Celebration popup */
+    .celebration {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: radial-gradient(circle, #145a32, #0b2e13);
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        z-index: 10;
+        animation: fadeIn 0.6s ease-in;
+    }
+
+    .celebration h1 {
+        font-size: 3rem;
+        color: #a8ffb0;
+        text-shadow: 0 0 15px rgba(0,255,120,0.9);
+        margin-bottom: 20px;
+    }
+
+    .celebration button {
+        max-width: 200px;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    @media (max-width: 480px) {
+        h1 { font-size: 1.6rem; }
+        .countdown { font-size: 1.3rem; }
+        .celebration h1 { font-size: 2.2rem; }
+    }
 </style>
 </head>
 
 <body>
+<div class="container">
+    <h1>Countdown to 420 </h1>
+    <div>April 20, 2026</div>
 
-<header>📊 Crypto Picker</header>
+    <div class="countdown" id="countdown">
+        Loading countdown...
+    </div>
 
-<div class="container" id="cryptoList"></div>
+    <button onclick="openModal()">History of 420</button>
+</div>
+
+<!-- History Modal -->
+<div class="modal" id="historyModal">
+    <div class="modal-content">
+        <div class="close" onclick="closeModal()">✖ Close</div>
+        <h2>History of 420</h2>
+        <p>“420” is a number connected with cannabis culture.</p>
+        <p>
+            A widely known origin traces back to students in California in the early 1970s
+            who used “4:20” as a code to meet after school.
+        </p>
+        <ul>
+            <li><strong>4:20 PM</strong> became a symbolic time</li>
+            <li><strong>April 20 (4/20)</strong> became an informal gathering day</li>
+        </ul>
+        <p>
+            Today, many people recognize 4/20 as a cultural event with festivals
+            and community gatherings where it’s legal.
+        </p>
+    </div>
+</div>
+
+<!-- Celebration Popup -->
+<div class="celebration" id="celebration">
+    <h1>🌿 Happy 420 🌿</h1>
+    <button onclick="closeCelebration()">Close</button>
+</div>
 
 <script>
-const cryptos = [
-    { name: "Bitcoin", symbol: "btcusdt" },
-    { name: "Ethereum", symbol: "ethusdt" },
-    { name: "BNB", symbol: "bnbusdt" },
-    { name: "Solana", symbol: "solusdt" },
-    { name: "XRP", symbol: "xrpusdt" },
-    { name: "Cardano", symbol: "adausdt" },
-    { name: "Dogecoin", symbol: "dogeusdt" },
-    { name: "Polygon", symbol: "maticusdt" },
-    { name: "Polkadot", symbol: "dotusdt" },
-    { name: "Avalanche", symbol: "avaxusdt" }
-];
+    const targetDate = new Date("April 20, 2026 00:00:00").getTime();
+    const countdownEl = document.getElementById("countdown");
+    const celebrationEl = document.getElementById("celebration");
+    let finished = false;
 
-const priceHistory = {};
-const prices = {};
-const list = document.getElementById("cryptoList");
+    function updateCountdown() {
+        const now = new Date().getTime();
+        const diff = targetDate - now;
 
-// Create UI
-cryptos.forEach(c => {
-    priceHistory[c.symbol] = [];
-
-    const card = document.createElement("div");
-    card.className = "crypto-card";
-    card.id = c.symbol;
-
-    card.innerHTML = `
-        <div class="crypto-top">
-            <div class="crypto-name">${c.name}</div>
-            <div class="crypto-price">$0.00</div>
-        </div>
-        <div class="signal hold">🔵 HOLD</div>
-        <canvas width="300" height="60"></canvas>
-    `;
-    list.appendChild(card);
-});
-
-// SMA calculation
-function SMA(data, period) {
-    if (data.length < period) return null;
-    const slice = data.slice(-period);
-    return slice.reduce((a,b) => a + b, 0) / period;
-}
-
-// Draw mini chart
-function drawChart(canvas, data) {
-    const ctx = canvas.getContext("2d");
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    ctx.beginPath();
-    ctx.strokeStyle = "#00ff9c";
-    ctx.lineWidth = 2;
-
-    const max = Math.max(...data);
-    const min = Math.min(...data);
-
-    data.forEach((p, i) => {
-        const x = (i / data.length) * canvas.width;
-        const y = canvas.height - ((p - min) / (max - min || 1)) * canvas.height;
-        i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
-    });
-
-    ctx.stroke();
-}
-
-// Binance WebSocket
-const streams = cryptos.map(c => `${c.symbol}@trade`).join("/");
-const socket = new WebSocket(`wss://stream.binance.com:9443/stream?streams=${streams}`);
-
-socket.onmessage = (event) => {
-    const data = JSON.parse(event.data).data;
-    const symbol = data.s.toLowerCase();
-    const price = parseFloat(data.p);
-
-    const card = document.getElementById(symbol);
-    if (!card) return;
-
-    const priceEl = card.querySelector(".crypto-price");
-    const signalEl = card.querySelector(".signal");
-    const canvas = card.querySelector("canvas");
-
-    priceEl.textContent = `$${price.toFixed(2)}`;
-
-    // Store price history
-    priceHistory[symbol].push(price);
-    if (priceHistory[symbol].length > 40) {
-        priceHistory[symbol].shift();
-    }
-
-    // SMA Logic
-    const sma10 = SMA(priceHistory[symbol], 10);
-    const sma30 = SMA(priceHistory[symbol], 30);
-
-    if (sma10 && sma30) {
-        if (sma10 > sma30) {
-            signalEl.textContent = "🟢 BUY";
-            signalEl.className = "signal buy";
-        } else {
-            signalEl.textContent = "🔴 SELL";
-            signalEl.className = "signal sell";
+        if (diff <= 0 && !finished) {
+            finished = true;
+            countdownEl.innerHTML = "🎉 It's 4/20! 🎉";
+            celebrationEl.style.display = "flex";
+            return;
         }
+
+        if (finished) return;
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / (1000 * 60)) % 60);
+        const seconds = Math.floor((diff / 1000) % 60);
+
+        countdownEl.innerHTML = `
+            <div class="time-box"><strong>${days}</strong> days</div>
+            <div class="time-box"><strong>${hours}</strong> hours</div>
+            <div class="time-box"><strong>${minutes}</strong> minutes</div>
+            <div class="time-box"><strong>${seconds}</strong> seconds</div>
+        `;
     }
 
-    drawChart(canvas, priceHistory[symbol]);
-};
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
 
-socket.onclose = () => {
-    console.log("WebSocket disconnected");
-};
+    function openModal() {
+        document.getElementById("historyModal").style.display = "flex";
+    }
+
+    function closeModal() {
+        document.getElementById("historyModal").style.display = "none";
+    }
+
+    function closeCelebration() {
+        celebrationEl.style.display = "none";
+    }
 </script>
-
-  <header>Tapfone</header>
 </body>
 </html>
