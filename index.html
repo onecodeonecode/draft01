@@ -1,61 +1,80 @@
-'; // <--- PUT YOUR KEY HERE
-        const TICKERS = ['NVDA', 'TSLA', 'AAPL', 'AMD', 'MSFT', 'META', 'AMZN', 'GOOGL', 'NFLX', 'COIN'];
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1Code Links</title>
 
-        async function getStockData(ticker) {
-            try {
-                const res = await fetch(`https://finnhub.io/api/v1/quote?symbol=${ticker}&token=${API_KEY}`);
-                const data = await res.json();
-                
-                // Return structured data
-                return {
-                    symbol: ticker,
-                    price: data.c,
-                    changePercent: ((data.c - data.pc) / data.pc * 100).toFixed(2)
-                };
-            } catch (err) {
-                console.error("Error fetching " + ticker, err);
-                return null;
-            }
-        }
+<style>
+  body {
+    margin: 0;
+    padding: 10px;
+    font-family: Arial, sans-serif;
+    background: #fff;
+    text-align: center;
+  }
 
-        async function renderApp() {
-            const listContainer = document.getElementById('stock-list');
-            
-            // Fetch all stocks in parallel
-            const results = await Promise.all(TICKERS.map(t => getStockData(t)));
-            
-            // Filter and Sort by best daily performance
-            const sorted = results
-                .filter(item => item && item.price !== 0)
-                .sort((a, b) => b.changePercent - a.changePercent);
+  .container {
+    max-width: 500px;
+    margin: auto;
+  }
 
-            listContainer.innerHTML = '';
+  figure {
+    margin: 10px 0;
+  }
 
-            sorted.forEach(stock => {
-                const isPos = stock.changePercent >= 0;
-                const card = document.createElement('div');
-                card.className = 'stock-card';
-                card.innerHTML = `
-                    <div>
-                        <span class="symbol">${stock.symbol}</span>
-                        <span class="rank">High Volatility Pick</span>
-                    </div>
-                    <div class="price-info">
-                        <div class="price">$${stock.price.toLocaleString(undefined, {minimumFractionDigits: 2})}</div>
-                        <div class="change ${isPos ? 'pos' : 'neg'}">
-                            ${isPos ? '▲' : '▼'} ${Math.abs(stock.changePercent)}%
-                        </div>
-                    </div>
-                `;
-                listContainer.appendChild(card);
-            });
-        }
+  img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    display: block;
+  }
 
-        // Initial Load
-        renderApp();
+  .logo img {
+    max-width: 150px;
+    margin: 0 auto;
+  }
 
-        // Auto-refresh every 60 seconds
-        setInterval(renderApp, 60000);
-    </script>
+  .footer img {
+    max-width: 200px;
+    margin: 20px auto 0;
+  }
+
+  a {
+    display: block;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- Top Logo -->
+  <figure class="logo">
+    <a href="https://1code.ca/" target="_blank">
+      <img src="https://uploads.onecompiler.io/43a28xmes/3wxcpbe5b/01.1code.cir.44.jpg" alt="1Code Logo">
+    </a>
+  </figure>
+
+  <!-- Social Links -->
+  <figure><a href="https://socialmedia.1code.ca/" target="_blank"><img src="https://uploads.onecompiler.io/43a28xmes/3wxcpbe5b/sm.4565656565.jpg"></a></figure>
+  <figure><a href="https://www.facebook.com/" target="_blank"><img src="https://uploads.onecompiler.io/43a28xmes/3wxcpbe5b/facebook.34567654355454.jpg"></a></figure>
+  <figure><a href="https://www.instagram.com/" target="_blank"><img src="https://uploads.onecompiler.io/43a28xmes/3wxcpbe5b/instagram.345655678989.jpg"></a></figure>
+  <figure><a href="https://linkedin.com/" target="_blank"><img src="https://uploads.onecompiler.io/43a28xmes/3wxcpbe5b/linkedin.436454654.jpg"></a></figure>
+  <figure><a href="https://pinterest.com/" target="_blank"><img src="https://uploads.onecompiler.io/43a28xmes/3wxcpbe5b/PINTEREST.345454544.jpg"></a></figure>
+  <figure><a href="https://www.reddit.com/" target="_blank"><img src="https://uploads.onecompiler.io/43a28xmes/3wxcpbe5b/reddit.456789o9767.jpg"></a></figure>
+  <figure><a href="https://www.snapchat.com/" target="_blank"><img src="https://uploads.onecompiler.io/43a28xmes/3wxcpbe5b/SNAPCHAT.456786543567.jpg"></a></figure>
+  <figure><a href="https://www.tiktok.com/" target="_blank"><img src="https://uploads.onecompiler.io/43a28xmes/3wxcpbe5b/tiktok.3456786543343.jpg"></a></figure>
+  <figure><a href="https://x.com/" target="_blank"><img src="https://uploads.onecompiler.io/43a28xmes/3wxcpbe5b/x.5678y5454545454.jpg"></a></figure>
+  <figure><a href="https://www.youtube.com/" target="_blank"><img src="https://uploads.onecompiler.io/43a28xmes/3wxcpbe5b/youtube.345675454656.jpg"></a></figure>
+
+  <!-- Footer -->
+  <figure class="footer">
+    <img src="https://uploads.onecompiler.io/43a28xmes/3wxcpbe5b/1code@2025.jpg" alt="Footer">
+  </figure>
+
+</div>
+
 </body>
 </html>
