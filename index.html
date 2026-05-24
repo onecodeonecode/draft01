@@ -1,113 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alphabet Slideshow</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alphabet</title>
+
     <style>
-        body {
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: black;
+            color: white;
             font-family: Arial, sans-serif;
-            background-color: black;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            color: white;
+            padding: 20px;
+            overflow: hidden;
         }
 
-        #title {
-            font-size: 2rem;
-            margin-bottom: 20px;
+        .app {
+            width: 100%;
+            max-width: 500px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+        }
+
+        #main-title {
+            font-size: 2.2rem;
+            font-weight: bold;
+            margin-bottom: 15px;
             text-align: center;
+            letter-spacing: 2px;
+        }
+
+        #subtitle {
+            font-size: 1rem;
+            margin-bottom: 40px;
+            text-align: center;
+            opacity: 0.9;
         }
 
         #letter {
-            font-size: 10rem;
+            font-size: clamp(6rem, 28vw, 12rem);
             font-weight: bold;
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 40px;
+            line-height: 1;
         }
 
         .controls {
+            width: 100%;
             display: flex;
-            gap: 10px;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
         }
 
         button {
-            padding: 10px 20px;
+            flex: 1;
+            min-width: 90px;
+            max-width: 140px;
+            padding: 14px 18px;
+            border: none;
+            border-radius: 12px;
             font-size: 1rem;
             font-weight: bold;
-            border: none;
-            border-radius: 5px;
             cursor: pointer;
+            transition: 0.2s ease;
         }
 
-        #start {
-            background-color: white;
-            color: black;
+        button:active {
+            transform: scale(0.96);
         }
 
-        #pause {
-            background-color: black;
-            color: white;
-            border: 2px solid white;
-        }
-
+        #start,
+        #pause,
         #reset {
-            background-color: white;
+            background: white;
             color: black;
         }
 
-        button:hover {
+        footer {
+            width: 100%;
+            text-align: center;
+            color: white;
+            font-size: 0.9rem;
+            padding-top: 20px;
             opacity: 0.8;
+        }
+
+        @media (max-width: 480px) {
+            #main-title {
+                font-size: 1.8rem;
+            }
+
+            #subtitle {
+                font-size: 0.95rem;
+                margin-bottom: 30px;
+            }
+
+            .controls {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            button {
+                width: 100%;
+                max-width: 250px;
+            }
         }
     </style>
 </head>
 <body>
-    <div id="title">PRESS START TO BEGIN</div>
-    <div id="letter">A</div>
-    <div class="controls">
-        <button id="start">Start</button>
-        <button id="pause">Pause</button>
-        <button id="reset">Reset</button>
+    <div class="app">
+        <div id="main-title">Alphabet</div>
+        <div id="subtitle">PRESS START TO BEGIN</div>
+
+        <div id="letter">A</div>
+
+        <div class="controls">
+            <button id="start">Start</button>
+            <button id="pause">Pause</button>
+            <button id="reset">Reset</button>
+        </div>
     </div>
 
+    <footer>
+        1Code © 2026
+    </footer>
+
     <script>
-        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+        const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
         let currentIndex = 0;
         let interval = null;
 
-        const letterDiv = document.getElementById("letter");
-        const startButton = document.getElementById("start");
-        const pauseButton = document.getElementById("pause");
-        const resetButton = document.getElementById("reset");
+        const letterDiv = document.getElementById('letter');
+        const startButton = document.getElementById('start');
+        const pauseButton = document.getElementById('pause');
+        const resetButton = document.getElementById('reset');
 
         function showNextLetter() {
             letterDiv.textContent = letters[currentIndex];
             currentIndex = (currentIndex + 1) % letters.length;
         }
 
-        startButton.addEventListener("click", () => {
+        startButton.addEventListener('click', () => {
             if (!interval) {
                 interval = setInterval(showNextLetter, 1000);
             }
         });
 
-        pauseButton.addEventListener("click", () => {
+        pauseButton.addEventListener('click', () => {
             clearInterval(interval);
             interval = null;
         });
 
-        resetButton.addEventListener("click", () => {
+        resetButton.addEventListener('click', () => {
             clearInterval(interval);
             interval = null;
             currentIndex = 0;
             letterDiv.textContent = letters[currentIndex];
         });
 
-        // Initialize with the first letter
         letterDiv.textContent = letters[currentIndex];
     </script>
 </body>
