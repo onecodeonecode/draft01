@@ -1,80 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>1Code Links</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alphabet Slideshow</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: black;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+        }
 
-<style>
-  body {
-    margin: 0;
-    padding: 10px;
-    font-family: Arial, sans-serif;
-    background: #fff;
-    text-align: center;
-  }
+        #title {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
 
-  .container {
-    max-width: 500px;
-    margin: auto;
-  }
+        #letter {
+            font-size: 10rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+        }
 
-  figure {
-    margin: 10px 0;
-  }
+        .controls {
+            display: flex;
+            gap: 10px;
+        }
 
-  img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-    display: block;
-  }
+        button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
 
-  .logo img {
-    max-width: 150px;
-    margin: 0 auto;
-  }
+        #start {
+            background-color: white;
+            color: black;
+        }
 
-  .footer img {
-    max-width: 200px;
-    margin: 20px auto 0;
-  }
+        #pause {
+            background-color: black;
+            color: white;
+            border: 2px solid white;
+        }
 
-  a {
-    display: block;
-  }
-</style>
+        #reset {
+            background-color: white;
+            color: black;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+    </style>
 </head>
-
 <body>
+    <div id="title">PRESS START TO BEGIN</div>
+    <div id="letter">A</div>
+    <div class="controls">
+        <button id="start">Start</button>
+        <button id="pause">Pause</button>
+        <button id="reset">Reset</button>
+    </div>
 
-<div class="container">
+    <script>
+        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+        let currentIndex = 0;
+        let interval = null;
 
-  <!-- Top Logo -->
-  <figure class="logo">
-    <a href="https://1code.ca/" target="_blank">
-      <img src="https://uploads.onecompiler.io/43a28xmes/3wxcpbe5b/01.1code.cir.44.jpg" alt="1Code Logo">
-    </a>
-  </figure>
+        const letterDiv = document.getElementById("letter");
+        const startButton = document.getElementById("start");
+        const pauseButton = document.getElementById("pause");
+        const resetButton = document.getElementById("reset");
 
-  <!-- Social Links -->
-  <figure><a href="https://socialmedia.1code.ca/" target="_blank"><img src="https://uploads.onecompiler.io/43a28xmes/3wxcpbe5b/sm.4565656565.jpg"></a></figure>
-  <figure><a href="https://www.facebook.com/" target="_blank"><img src="https://uploads.onecompiler.io/43a28xmes/3wxcpbe5b/facebook.34567654355454.jpg"></a></figure>
-  <figure><a href="https://www.instagram.com/" target="_blank"><img src="https://uploads.onecompiler.io/43a28xmes/3wxcpbe5b/instagram.345655678989.jpg"></a></figure>
-  <figure><a href="https://linkedin.com/" target="_blank"><img src="https://uploads.onecompiler.io/43a28xmes/3wxcpbe5b/linkedin.436454654.jpg"></a></figure>
-  <figure><a href="https://pinterest.com/" target="_blank"><img src="https://uploads.onecompiler.io/43a28xmes/3wxcpbe5b/PINTEREST.345454544.jpg"></a></figure>
-  <figure><a href="https://www.reddit.com/" target="_blank"><img src="https://uploads.onecompiler.io/43a28xmes/3wxcpbe5b/reddit.456789o9767.jpg"></a></figure>
-  <figure><a href="https://www.snapchat.com/" target="_blank"><img src="https://uploads.onecompiler.io/43a28xmes/3wxcpbe5b/SNAPCHAT.456786543567.jpg"></a></figure>
-  <figure><a href="https://www.tiktok.com/" target="_blank"><img src="https://uploads.onecompiler.io/43a28xmes/3wxcpbe5b/tiktok.3456786543343.jpg"></a></figure>
-  <figure><a href="https://x.com/" target="_blank"><img src="https://uploads.onecompiler.io/43a28xmes/3wxcpbe5b/x.5678y5454545454.jpg"></a></figure>
-  <figure><a href="https://www.youtube.com/" target="_blank"><img src="https://uploads.onecompiler.io/43a28xmes/3wxcpbe5b/youtube.345675454656.jpg"></a></figure>
+        function showNextLetter() {
+            letterDiv.textContent = letters[currentIndex];
+            currentIndex = (currentIndex + 1) % letters.length;
+        }
 
-  <!-- Footer -->
-  <figure class="footer">
-    <img src="https://uploads.onecompiler.io/43a28xmes/3wxcpbe5b/1code@2025.jpg" alt="Footer">
-  </figure>
+        startButton.addEventListener("click", () => {
+            if (!interval) {
+                interval = setInterval(showNextLetter, 1000);
+            }
+        });
 
-</div>
+        pauseButton.addEventListener("click", () => {
+            clearInterval(interval);
+            interval = null;
+        });
 
+        resetButton.addEventListener("click", () => {
+            clearInterval(interval);
+            interval = null;
+            currentIndex = 0;
+            letterDiv.textContent = letters[currentIndex];
+        });
+
+        // Initialize with the first letter
+        letterDiv.textContent = letters[currentIndex];
+    </script>
 </body>
 </html>
