@@ -7,148 +7,118 @@
 <title>50-Year Stock Market Projection</title>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1/dist/chartjs-plugin-zoom.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.2.0/dist/chartjs-plugin-zoom.min.js"></script>
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
 
 body{
-    background:#111;
-    color:white;
-    font-family:Arial,Helvetica,sans-serif;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    min-height:100vh;
-}
-
-.container{
-    width:95%;
-    max-width:1100px;
+margin:0;
+background:#111;
+font-family:Arial,Helvetica,sans-serif;
+color:white;
+text-align:center;
 }
 
 h1{
-    text-align:center;
-    margin-bottom:10px;
+margin-top:20px;
 }
 
-p{
-    text-align:center;
-    color:#bbbbbb;
-    margin-bottom:25px;
+.container{
+width:95%;
+max-width:1200px;
+margin:auto;
 }
 
 canvas{
-    background:#1b1b1b;
-    border-radius:15px;
-    padding:15px;
-}
-
-.controls{
-    margin-top:20px;
-    display:flex;
-    justify-content:center;
-    gap:15px;
-    flex-wrap:wrap;
+background:#fff;
+border-radius:12px;
+margin-top:20px;
 }
 
 button{
-    background:#0d6efd;
-    color:white;
-    border:none;
-    padding:12px 20px;
-    border-radius:8px;
-    cursor:pointer;
-    font-size:15px;
+
+padding:12px 22px;
+margin:15px 8px;
+font-size:16px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+background:#2196F3;
+color:white;
 }
 
 button:hover{
-    background:#0b5ed7;
+background:#0b7dda;
 }
-</style>
 
+.footer{
+margin:20px;
+color:#aaa;
+}
+
+</style>
 </head>
+
 <body>
+
+<h1>50-Year Stock Market Projection</h1>
 
 <div class="container">
 
-<h1>Illustrative 50-Year Stock Market Projection</h1>
-
-<p>
-Educational example based on historical market behavior.
-Not a financial prediction or investment advice.
-</p>
-
 <canvas id="marketChart"></canvas>
 
-<div class="controls">
+<br>
+
 <button onclick="resetZoom()">Reset Zoom</button>
+
+<button onclick="downloadChart()">Download PNG</button>
+
 </div>
 
+<div class="footer">
+Illustrative scenario based on historical market cycles • Not financial advice
 </div>
 
 <script>
 
 const years=[
-2026,
-2028,
-2030,
-2032,
-2035,
-2038,
-2041,
-2045,
-2048,
-2051,
-2055,
-2060,
-2064,
-2068,
-2072,
+2026,2027,2028,2029,2030,
+2032,2035,2037,2038,
+2040,2043,2045,2047,
+2048,2050,2052,2055,
+2058,2060,2062,2065,
+2068,2070,2072,2074,
 2076
 ];
 
 const values=[
-100,
-118,
-132,
-101,
-150,
-185,
-135,
-225,
-270,
-175,
-310,
-395,
-285,
-470,
-620,
-540
+100,112,105,85,72,
+95,145,132,110,
+150,195,240,225,
+175,145,185,260,
+330,250,220,320,
+420,500,455,360,
+430
 ];
 
-const ctx=document.getElementById("marketChart");
+const ctx=document.getElementById('marketChart');
 
 const chart=new Chart(ctx,{
-type:"line",
+
+type:'line',
 
 data:{
 labels:years,
 
 datasets:[{
-label:"Illustrative Market Index",
+
+label:'Projected Market Index',
 
 data:values,
 
-borderColor:"#00ff88",
+borderColor:'#00cc66',
 
-backgroundColor:"rgba(0,255,136,.15)",
-
-fill:true,
+backgroundColor:'rgba(0,200,100,.15)',
 
 borderWidth:3,
 
@@ -156,43 +126,47 @@ pointRadius:5,
 
 pointHoverRadius:8,
 
+fill:true,
+
 tension:.35
+
 }]
+
 },
 
 options:{
 
 responsive:true,
 
-maintainAspectRatio:false,
+maintainAspectRatio:true,
+
+interaction:{
+mode:'nearest',
+intersect:false
+},
 
 plugins:{
 
 legend:{
 labels:{
-color:"white"
-}
-},
-
-title:{
-display:true,
-text:"2026–2076 Example Market Trend",
-color:"white",
-font:{
-size:20
+color:'black'
 }
 },
 
 tooltip:{
-mode:"index",
-intersect:false
+enabled:true,
+callbacks:{
+label:function(context){
+return " Index: "+context.parsed.y;
+}
+}
 },
 
 zoom:{
 
 pan:{
 enabled:true,
-mode:"x"
+mode:'x'
 },
 
 zoom:{
@@ -209,63 +183,64 @@ drag:{
 enabled:true
 },
 
-mode:"x"
+mode:'x'
 
 }
 
 }
 
-},
-
-interaction:{
-mode:"nearest",
-intersect:false
 },
 
 scales:{
 
 x:{
-ticks:{
-color:"white"
-},
-grid:{
-color:"#333"
-},
+
 title:{
 display:true,
-text:"Year",
-color:"white"
+text:'Year',
+color:'black'
+},
+
+ticks:{
+color:'black'
 }
+
 },
 
 y:{
-ticks:{
-color:"white"
-},
-grid:{
-color:"#333"
-},
+
 title:{
 display:true,
-text:"Illustrative Index Value",
-color:"white"
-}
-}
-
+text:'Market Index',
+color:'black'
 },
 
-animation:{
-duration:2000
+ticks:{
+color:'black'
+}
+
+}
+
 }
 
 }
 
 });
 
-ctx.style.height="550px";
-
 function resetZoom(){
 chart.resetZoom();
+}
+
+function downloadChart(){
+
+const link=document.createElement("a");
+
+link.download="50-Year-Stock-Market-Projection.png";
+
+link.href=chart.toBase64Image();
+
+link.click();
+
 }
 
 </script>
