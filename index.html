@@ -3,168 +3,272 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Movie Search</title>
+
+<title>50-Year Stock Market Projection</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1/dist/chartjs-plugin-zoom.min.js"></script>
 
 <style>
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Arial,sans-serif;
 }
 
 body{
     background:#111;
-    color:#fff;
+    color:white;
+    font-family:Arial,Helvetica,sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
     min-height:100vh;
-    display:flex;
-    flex-direction:column;
 }
 
-header{
-    padding:20px;
+.container{
+    width:95%;
+    max-width:1100px;
+}
+
+h1{
     text-align:center;
-    background:#000;
-    border-bottom:1px solid #333;
+    margin-bottom:10px;
 }
 
-header h1{
-    font-size:28px;
+p{
+    text-align:center;
+    color:#bbbbbb;
+    margin-bottom:25px;
 }
 
-.search-box{
-    padding:20px;
+canvas{
+    background:#1b1b1b;
+    border-radius:15px;
+    padding:15px;
+}
+
+.controls{
+    margin-top:20px;
     display:flex;
-    gap:10px;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
 }
 
-.search-box input{
-    flex:1;
-    padding:14px;
+button{
+    background:#0d6efd;
+    color:white;
     border:none;
-    border-radius:12px;
-    font-size:16px;
-    outline:none;
-}
-
-.search-box button{
-    padding:14px 20px;
-    border:none;
-    border-radius:12px;
-    background:#e50914;
-    color:#fff;
-    font-size:16px;
+    padding:12px 20px;
+    border-radius:8px;
     cursor:pointer;
+    font-size:15px;
 }
 
-.search-box button:hover{
-    background:#ff1f2d;
-}
-
-.results{
-    flex:1;
-    padding:15px;
-    display:grid;
-    gap:15px;
-}
-
-.movie-card{
-    background:#1c1c1c;
-    border-radius:16px;
-    overflow:hidden;
-    display:flex;
-    gap:15px;
-    padding:15px;
-}
-
-.poster{
-    width:100px;
-    height:150px;
-    object-fit:cover;
-    border-radius:10px;
-    background:#333;
-}
-
-.info{
-    flex:1;
-}
-
-.info h2{
-    font-size:18px;
-    margin-bottom:8px;
-}
-
-.info p{
-    color:#ccc;
-    margin-bottom:6px;
-    font-size:14px;
-    line-height:1.4;
-}
-
-.loading,
-.error{
-    text-align:center;
-    padding:40px;
-    color:#bbb;
-}
-
-footer{
-    padding:15px;
-    text-align:center;
-    background:#000;
-    border-top:1px solid #333;
-    font-size:14px;
-}
-
-@media (max-width:480px){
-
-    header h1{
-        font-size:24px;
-    }
-
-    .search-box{
-        flex-direction:column;
-    }
-
-    .search-box button{
-        width:100%;
-    }
-
-    .movie-card{
-        flex-direction:column;
-        align-items:center;
-        text-align:center;
-    }
-
-    .poster{
-        width:150px;
-        height:225px;
-    }
+button:hover{
+    background:#0b5ed7;
 }
 </style>
+
 </head>
 <body>
 
-<header>
-    <h1>🎬 Movie Search</h1>
-</header>
+<div class="container">
 
-<div class="search-box">
-    <input
-        type="text"
-        id="searchInput"
-        placeholder="Search for a movie..."
-    >
-    <button id="searchBtn">
-        Search
-    </button>
+<h1>Illustrative 50-Year Stock Market Projection</h1>
+
+<p>
+Educational example based on historical market behavior.
+Not a financial prediction or investment advice.
+</p>
+
+<canvas id="marketChart"></canvas>
+
+<div class="controls">
+<button onclick="resetZoom()">Reset Zoom</button>
 </div>
 
-<div class="results" id="results">
-    <div class="loading">
-        Search for a movie above.
-    </div>
 </div>
 
-<footer>
-    
+<script>
+
+const years=[
+2026,
+2028,
+2030,
+2032,
+2035,
+2038,
+2041,
+2045,
+2048,
+2051,
+2055,
+2060,
+2064,
+2068,
+2072,
+2076
+];
+
+const values=[
+100,
+118,
+132,
+101,
+150,
+185,
+135,
+225,
+270,
+175,
+310,
+395,
+285,
+470,
+620,
+540
+];
+
+const ctx=document.getElementById("marketChart");
+
+const chart=new Chart(ctx,{
+type:"line",
+
+data:{
+labels:years,
+
+datasets:[{
+label:"Illustrative Market Index",
+
+data:values,
+
+borderColor:"#00ff88",
+
+backgroundColor:"rgba(0,255,136,.15)",
+
+fill:true,
+
+borderWidth:3,
+
+pointRadius:5,
+
+pointHoverRadius:8,
+
+tension:.35
+}]
+},
+
+options:{
+
+responsive:true,
+
+maintainAspectRatio:false,
+
+plugins:{
+
+legend:{
+labels:{
+color:"white"
+}
+},
+
+title:{
+display:true,
+text:"2026–2076 Example Market Trend",
+color:"white",
+font:{
+size:20
+}
+},
+
+tooltip:{
+mode:"index",
+intersect:false
+},
+
+zoom:{
+
+pan:{
+enabled:true,
+mode:"x"
+},
+
+zoom:{
+
+wheel:{
+enabled:true
+},
+
+pinch:{
+enabled:true
+},
+
+drag:{
+enabled:true
+},
+
+mode:"x"
+
+}
+
+}
+
+},
+
+interaction:{
+mode:"nearest",
+intersect:false
+},
+
+scales:{
+
+x:{
+ticks:{
+color:"white"
+},
+grid:{
+color:"#333"
+},
+title:{
+display:true,
+text:"Year",
+color:"white"
+}
+},
+
+y:{
+ticks:{
+color:"white"
+},
+grid:{
+color:"#333"
+},
+title:{
+display:true,
+text:"Illustrative Index Value",
+color:"white"
+}
+}
+
+},
+
+animation:{
+duration:2000
+}
+
+}
+
+});
+
+ctx.style.height="550px";
+
+function resetZoom(){
+chart.resetZoom();
+}
+
+</script>
+
+</body>
+</html>
