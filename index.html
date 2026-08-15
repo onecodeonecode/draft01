@@ -1,548 +1,654 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Signs of ADHD - Infographic</title>
+<title>Understanding the Signs of ADHD</title>
 
 <style>
-* {
+  * {
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+    -webkit-tap-highlight-color: transparent;
+  }
 
-body {
+  :root {
+    --bg: #080b12;
+    --card: #111827;
+    --card2: #172033;
+    --text: #f8fafc;
+    --muted: #a8b3c7;
+    --accent: #7c5cff;
+    --accent2: #00d4ff;
+    --warning: #ffb020;
+    --danger: #ff5c7a;
+    --success: #35d07f;
+  }
+
+  body {
+    margin: 0;
     min-height: 100vh;
-    background: #222;
+    background:
+      radial-gradient(circle at 50% 0%, #202052 0%, transparent 40%),
+      var(--bg);
+    color: var(--text);
     font-family: Arial, Helvetica, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px;
-}
+    overflow-x: hidden;
+  }
 
-/* 9:16 Poster */
-.poster {
-    width: min(100%, 540px);
+  /* 9:16 poster */
+  .poster {
+    width: min(100vw, 430px);
+    min-height: min(100vh, 765px);
     aspect-ratio: 9 / 16;
-    background: linear-gradient(160deg, #10182b, #17284a 55%, #101827);
-    color: white;
-    border-radius: 24px;
-    overflow: hidden;
+    max-height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 18px;
     position: relative;
-    box-shadow: 0 20px 60px rgba(0,0,0,.45);
-    display: flex;
-    flex-direction: column;
-}
+    background:
+      linear-gradient(180deg, rgba(124,92,255,.12), transparent 25%),
+      #0b0f19;
+    scrollbar-width: thin;
+  }
 
-/* Decorative circles */
-.poster::before {
-    content: "";
-    position: absolute;
-    width: 220px;
-    height: 220px;
-    border-radius: 50%;
-    background: rgba(0, 220, 255, .12);
-    top: -90px;
-    right: -70px;
-}
-
-.poster::after {
-    content: "";
-    position: absolute;
-    width: 180px;
-    height: 180px;
-    border-radius: 50%;
-    background: rgba(255, 193, 7, .09);
-    bottom: -70px;
-    left: -60px;
-}
-
-/* Header */
-.header {
-    position: relative;
-    z-index: 2;
-    padding: 6% 7% 3%;
-}
-
-.badge {
-    display: inline-block;
-    background: #00d9ff;
-    color: #071421;
-    font-size: clamp(9px, 1.8vw, 13px);
-    font-weight: 800;
-    letter-spacing: 1.5px;
-    padding: 7px 12px;
-    border-radius: 30px;
-    margin-bottom: 10px;
-}
-
-h1 {
-    font-size: clamp(30px, 7vw, 48px);
-    line-height: .95;
-    letter-spacing: -1.5px;
-}
-
-h1 span {
-    color: #00d9ff;
-}
-
-.subtitle {
-    color: #b9c6da;
-    font-size: clamp(10px, 2.2vw, 14px);
-    margin-top: 9px;
-    line-height: 1.4;
-}
-
-/* Main */
-.content {
-    position: relative;
-    z-index: 2;
-    flex: 1;
-    padding: 2% 6%;
-    display: flex;
-    flex-direction: column;
-    gap: 2.2%;
-}
-
-.section {
-    background: rgba(255,255,255,.075);
-    border: 1px solid rgba(255,255,255,.1);
-    border-radius: 15px;
-    padding: 3.5% 4%;
-    display: flex;
-    align-items: center;
-    gap: 4%;
-    backdrop-filter: blur(5px);
-}
-
-.icon {
-    min-width: 48px;
-    width: 48px;
-    height: 48px;
-    border-radius: 14px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 25px;
-    background: #00d9ff;
-    color: #071421;
-    box-shadow: 0 6px 18px rgba(0,217,255,.18);
-}
-
-.section:nth-child(2) .icon {
-    background: #ffc107;
-}
-
-.section:nth-child(3) .icon {
-    background: #ff6688;
-}
-
-.section:nth-child(4) .icon {
-    background: #8cff66;
-}
-
-.section:nth-child(5) .icon {
-    background: #b77cff;
-}
-
-.section-text {
-    min-width: 0;
-}
-
-.section h2 {
-    font-size: clamp(13px, 2.7vw, 19px);
-    margin-bottom: 4px;
-}
-
-.section p {
-    color: #c1ccdd;
-    font-size: clamp(9px, 2vw, 13px);
-    line-height: 1.35;
-}
-
-/* Signs list */
-.signs {
-    margin-top: 5px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-}
-
-.sign {
-    font-size: clamp(7px, 1.5vw, 10px);
-    background: rgba(0,0,0,.22);
-    color: #e7edf7;
-    padding: 4px 7px;
-    border-radius: 8px;
-}
-
-/* Bottom information */
-.bottom {
-    position: relative;
-    z-index: 2;
-    padding: 2% 6% 5%;
-}
-
-.note {
-    background: rgba(0,217,255,.09);
-    border-left: 3px solid #00d9ff;
-    padding: 3% 4%;
-    border-radius: 8px;
-    font-size: clamp(8px, 1.7vw, 11px);
-    line-height: 1.4;
-    color: #c9d6e8;
-}
-
-.note strong {
-    color: #00d9ff;
-}
-
-.footer {
+  .header {
     text-align: center;
-    margin-top: 7px;
-    color: #71829c;
-    font-size: clamp(7px, 1.5vw, 10px);
-}
+    padding: 8px 4px 16px;
+  }
 
-/* Download button */
-.controls {
-    margin-top: 15px;
+  .brain {
+    width: 58px;
+    height: 58px;
+    margin: 0 auto 8px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 30px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    box-shadow: 0 0 30px rgba(124,92,255,.4);
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(27px, 7vw, 36px);
+    line-height: 1;
+    letter-spacing: -1px;
+  }
+
+  .subtitle {
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 8px;
+    line-height: 1.4;
+  }
+
+  .live {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 10px;
+    padding: 5px 9px;
+    border-radius: 20px;
+    background: rgba(53,208,127,.1);
+    color: var(--success);
+    font-size: 11px;
+    font-weight: bold;
+  }
+
+  .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--success);
+    animation: pulse 1.4s infinite;
+  }
+
+  @keyframes pulse {
+    50% { opacity: .3; transform: scale(.7); }
+  }
+
+  .intro {
+    background: linear-gradient(135deg, #151d31, #101622);
+    border: 1px solid #273149;
+    border-radius: 18px;
+    padding: 14px;
+    text-align: center;
+    margin-bottom: 12px;
+  }
+
+  .intro strong {
+    color: var(--accent2);
+  }
+
+  .section-title {
     display: flex;
-    justify-content: center;
-}
+    align-items: center;
+    justify-content: space-between;
+    margin: 15px 2px 8px;
+  }
 
-button {
-    border: none;
-    background: #00d9ff;
-    color: #071421;
-    font-weight: 800;
-    padding: 12px 20px;
-    border-radius: 30px;
+  .section-title h2 {
+    margin: 0;
+    font-size: 16px;
+  }
+
+  .section-title span {
+    color: var(--muted);
+    font-size: 10px;
+  }
+
+  .signs {
+    display: grid;
+    gap: 8px;
+  }
+
+  .sign {
+    background: var(--card);
+    border: 1px solid #222c40;
+    border-radius: 14px;
+    padding: 12px;
     cursor: pointer;
-    font-size: 14px;
-    transition: .2s;
-}
+    transition: .2s ease;
+    position: relative;
+    overflow: hidden;
+  }
 
-button:hover {
+  .sign:hover,
+  .sign.active {
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(0,217,255,.3);
-}
+    border-color: var(--accent);
+    background: var(--card2);
+  }
 
-button:active {
-    transform: scale(.97);
-}
+  .sign-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
 
-/* Very small screens */
-@media(max-width: 400px) {
-    body {
-        padding: 8px;
-    }
+  .icon {
+    width: 36px;
+    height: 36px;
+    flex: 0 0 36px;
+    border-radius: 10px;
+    display: grid;
+    place-items: center;
+    font-size: 19px;
+    background: rgba(124,92,255,.15);
+  }
 
+  .sign h3 {
+    margin: 0;
+    font-size: 13px;
+  }
+
+  .sign p {
+    margin: 3px 0 0;
+    color: var(--muted);
+    font-size: 10px;
+    line-height: 1.35;
+  }
+
+  .details {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .3s ease, margin-top .3s ease;
+    color: #d7deeb;
+    font-size: 11px;
+    line-height: 1.5;
+  }
+
+  .sign.active .details {
+    max-height: 100px;
+    margin-top: 8px;
+  }
+
+  .tracker {
+    background: linear-gradient(135deg, #161d30, #111827);
+    border: 1px solid #29334a;
+    border-radius: 18px;
+    padding: 14px;
+    margin-top: 12px;
+  }
+
+  .tracker-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .tracker h2 {
+    margin: 0;
+    font-size: 15px;
+  }
+
+  .score {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--accent2);
+  }
+
+  .bar {
+    height: 9px;
+    background: #252d3e;
+    border-radius: 20px;
+    margin: 12px 0;
+    overflow: hidden;
+  }
+
+  .fill {
+    height: 100%;
+    width: 0%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    transition: width .3s ease;
+  }
+
+  .check-row {
+    display: flex;
+    gap: 7px;
+    flex-wrap: wrap;
+  }
+
+  .check {
+    flex: 1 1 45%;
+    border: 1px solid #303b52;
+    background: #101621;
+    color: #dce3ef;
+    border-radius: 10px;
+    padding: 8px;
+    font-size: 10px;
+    cursor: pointer;
+    text-align: left;
+  }
+
+  .check.selected {
+    background: rgba(124,92,255,.2);
+    border-color: var(--accent);
+  }
+
+  .check span {
+    float: right;
+    font-weight: bold;
+  }
+
+  .buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 10px;
+  }
+
+  button {
+    border: 0;
+    border-radius: 11px;
+    padding: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+  }
+
+  .primary {
+    background: linear-gradient(135deg, var(--accent), #5b45d8);
+  }
+
+  .secondary {
+    background: #252e40;
+  }
+
+  .info {
+    margin-top: 12px;
+    padding: 12px;
+    border-radius: 15px;
+    background: rgba(255,176,32,.08);
+    border: 1px solid rgba(255,176,32,.25);
+    font-size: 10px;
+    color: #d9deea;
+    line-height: 1.45;
+  }
+
+  .info strong {
+    color: var(--warning);
+  }
+
+  .footer {
+    text-align: center;
+    padding: 15px 4px 6px;
+    color: #69758a;
+    font-size: 9px;
+    line-height: 1.5;
+  }
+
+  .modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.75);
+    display: none;
+    place-items: center;
+    padding: 20px;
+    z-index: 20;
+  }
+
+  .modal.show {
+    display: grid;
+  }
+
+  .modal-box {
+    width: min(390px, 100%);
+    background: #111827;
+    border: 1px solid #35415b;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 20px 60px #000;
+  }
+
+  .modal-box h2 {
+    margin-top: 0;
+  }
+
+  .modal-box p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .close {
+    width: 100%;
+    margin-top: 8px;
+  }
+
+  @media (min-width: 700px) {
     .poster {
-        border-radius: 16px;
+      border-radius: 24px;
+      box-shadow: 0 30px 100px rgba(0,0,0,.6);
     }
-
-    .section {
-        padding: 3% 3%;
-    }
-
-    .icon {
-        min-width: 40px;
-        width: 40px;
-        height: 40px;
-        font-size: 20px;
-    }
-}
+  }
 </style>
 </head>
 
 <body>
 
-<div>
-    <div class="poster" id="poster">
+<main class="poster">
 
-        <div class="header">
-            <div class="badge">UNDERSTANDING ADHD</div>
+  <header class="header">
+    <div class="brain">🧠</div>
+    <h1>Understanding<br>the Signs of ADHD</h1>
+    <div class="subtitle">
+      ADHD can affect attention, activity level,<br>
+      organization and impulse control.
+    </div>
 
-            <h1>Signs of <span>ADHD</span></h1>
+    <div class="live">
+      <span class="dot"></span>
+      INTERACTIVE INFOGRAPHIC
+    </div>
+  </header>
 
-            <p class="subtitle">
-                Attention-deficit/hyperactivity disorder can affect
-                attention, activity level and impulse control.
-            </p>
+  <section class="intro">
+    <strong>ADHD looks different in everyone.</strong><br>
+    Tap each category to explore common signs.
+  </section>
+
+  <div class="section-title">
+    <h2>🔎 Common Signs</h2>
+    <span>TAP TO EXPAND</span>
+  </div>
+
+  <section class="signs">
+
+    <article class="sign">
+      <div class="sign-top">
+        <div class="icon">🎯</div>
+        <div>
+          <h3>Inattention</h3>
+          <p>Difficulty maintaining focus or following details.</p>
         </div>
+      </div>
+      <div class="details">
+        Examples can include being easily distracted, losing things,
+        forgetting tasks, struggling to organize activities, or having
+        difficulty finishing things that have been started.
+      </div>
+    </article>
 
-        <div class="content">
-
-            <!-- Attention -->
-            <div class="section">
-                <div class="icon">🎯</div>
-
-                <div class="section-text">
-                    <h2>Difficulty Paying Attention</h2>
-
-                    <p>
-                        Staying focused can be challenging, especially
-                        during tasks that feel repetitive or uninteresting.
-                    </p>
-
-                    <div class="signs">
-                        <span class="sign">Easily distracted</span>
-                        <span class="sign">Forgetful</span>
-                        <span class="sign">Loses things</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Hyperactivity -->
-            <div class="section">
-                <div class="icon">⚡</div>
-
-                <div class="section-text">
-                    <h2>Hyperactivity</h2>
-
-                    <p>
-                        Some people experience a strong need for movement
-                        or difficulty remaining still.
-                    </p>
-
-                    <div class="signs">
-                        <span class="sign">Restlessness</span>
-                        <span class="sign">Fidgeting</span>
-                        <span class="sign">Always moving</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Impulsivity -->
-            <div class="section">
-                <div class="icon">💥</div>
-
-                <div class="section-text">
-                    <h2>Impulsivity</h2>
-
-                    <p>
-                        Acting or speaking quickly without always having
-                        time to consider the consequences.
-                    </p>
-
-                    <div class="signs">
-                        <span class="sign">Interrupting</span>
-                        <span class="sign">Impatient</span>
-                        <span class="sign">Acts quickly</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Organization -->
-            <div class="section">
-                <div class="icon">📋</div>
-
-                <div class="section-text">
-                    <h2>Organization Challenges</h2>
-
-                    <p>
-                        Managing time, tasks and everyday responsibilities
-                        may require extra effort.
-                    </p>
-
-                    <div class="signs">
-                        <span class="sign">Time management</span>
-                        <span class="sign">Procrastination</span>
-                        <span class="sign">Missed deadlines</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Emotional -->
-            <div class="section">
-                <div class="icon">🧠</div>
-
-                <div class="section-text">
-                    <h2>Other Possible Signs</h2>
-
-                    <p>
-                        ADHD can look different from person to person and
-                        may affect everyday life in many ways.
-                    </p>
-
-                    <div class="signs">
-                        <span class="sign">Forgetfulness</span>
-                        <span class="sign">Task switching</span>
-                        <span class="sign">Difficulty starting tasks</span>
-                    </div>
-                </div>
-            </div>
-
+    <article class="sign">
+      <div class="sign-top">
+        <div class="icon">⚡</div>
+        <div>
+          <h3>Hyperactivity</h3>
+          <p>Restlessness or difficulty staying still.</p>
         </div>
+      </div>
+      <div class="details">
+        Someone may fidget, feel internally restless, talk frequently,
+        have difficulty sitting for long periods, or feel driven to stay active.
+      </div>
+    </article>
 
-        <div class="bottom">
-
-            <div class="note">
-                <strong>Important:</strong>
-                Having some of these signs does not necessarily mean
-                someone has ADHD. A qualified healthcare professional
-                can provide an appropriate assessment and diagnosis.
-            </div>
-
-            <div class="footer">
-                ADHD AWARENESS • INFOGRAPHIC
-            </div>
-
+    <article class="sign">
+      <div class="sign-top">
+        <div class="icon">💭</div>
+        <div>
+          <h3>Impulsivity</h3>
+          <p>Acting or responding before fully thinking things through.</p>
         </div>
+      </div>
+      <div class="details">
+        Signs may include interrupting conversations, difficulty waiting,
+        making quick decisions, or responding before a question is finished.
+      </div>
+    </article>
+
+    <article class="sign">
+      <div class="sign-top">
+        <div class="icon">📋</div>
+        <div>
+          <h3>Organization</h3>
+          <p>Challenges with planning, priorities and time.</p>
+        </div>
+      </div>
+      <div class="details">
+        A person may underestimate how long tasks take, miss deadlines,
+        forget appointments, or have difficulty managing multiple tasks.
+      </div>
+    </article>
+
+    <article class="sign">
+      <div class="sign-top">
+        <div class="icon">⏰</div>
+        <div>
+          <h3>Time Management</h3>
+          <p>Difficulty estimating and tracking time.</p>
+        </div>
+      </div>
+      <div class="details">
+        Time blindness can make it harder to judge how long something
+        will take or notice how much time has passed.
+      </div>
+    </article>
+
+    <article class="sign">
+      <div class="sign-top">
+        <div class="icon">🌪️</div>
+        <div>
+          <h3>Emotional Regulation</h3>
+          <p>Strong or rapidly changing emotional responses.</p>
+        </div>
+      </div>
+      <div class="details">
+        Some people with ADHD experience frustration, impatience,
+        emotional intensity or difficulty shifting attention after becoming upset.
+      </div>
+    </article>
+
+  </section>
+
+  <section class="tracker">
+
+    <div class="tracker-head">
+      <h2>📊 Quick Self-Reflection</h2>
+      <div class="score"><span id="score">0</span>/6</div>
+    </div>
+
+    <div class="bar">
+      <div class="fill" id="fill"></div>
+    </div>
+
+    <div class="check-row">
+
+      <button class="check">
+        Trouble focusing
+        <span>+</span>
+      </button>
+
+      <button class="check">
+        Frequently distracted
+        <span>+</span>
+      </button>
+
+      <button class="check">
+        Often forgetful
+        <span>+</span>
+      </button>
+
+      <button class="check">
+        Restless/fidgety
+        <span>+</span>
+      </button>
+
+      <button class="check">
+        Acts impulsively
+        <span>+</span>
+      </button>
+
+      <button class="check">
+        Organization struggles
+        <span>+</span>
+      </button>
 
     </div>
 
-    <div class="controls">
-        <button onclick="downloadPoster()">
-            ⬇ Download Poster
-        </button>
+    <div class="buttons">
+      <button class="primary" id="learnBtn">
+        Learn More
+      </button>
+
+      <button class="secondary" id="resetBtn">
+        Reset
+      </button>
     </div>
+
+  </section>
+
+  <div class="info">
+    <strong>Important:</strong> This infographic is for education and
+    self-reflection, not diagnosis. ADHD diagnosis requires an assessment
+    by a qualified healthcare professional. Similar symptoms can also occur
+    with sleep problems, stress, anxiety, depression and other conditions.
+  </div>
+
+  <footer class="footer">
+    Understanding ADHD • Educational Infographic<br>
+    Symptoms and experiences vary from person to person.
+  </footer>
+
+</main>
+
+<div class="modal" id="modal">
+  <div class="modal-box">
+    <h2>🧠 ADHD & Diagnosis</h2>
+
+    <p>
+      ADHD is a neurodevelopmental condition. A diagnosis is based on a
+      pattern of symptoms, their impact on everyday life, and information
+      gathered through a professional assessment.
+    </p>
+
+    <p>
+      Having one or more of these signs does not automatically mean someone
+      has ADHD.
+    </p>
+
+    <p>
+      If symptoms are interfering with school, work, relationships or daily
+      activities, consider speaking with a qualified healthcare professional.
+    </p>
+
+    <button class="primary close" id="closeBtn">Got It</button>
+  </div>
 </div>
 
 <script>
-function downloadPoster() {
+  // Expand/collapse infographic cards
+  document.querySelectorAll(".sign").forEach(card => {
+    card.addEventListener("click", () => {
+      card.classList.toggle("active");
+    });
+  });
 
-    const poster = document.getElementById("poster");
+  // Interactive self-reflection tracker
+  const checks = document.querySelectorAll(".check");
+  const scoreDisplay = document.getElementById("score");
+  const fill = document.getElementById("fill");
 
-    const width = 1080;
-    const height = 1920;
+  function updateScore() {
+    const selected = document.querySelectorAll(".check.selected").length;
 
-    const canvas = document.createElement("canvas");
-    canvas.width = width;
-    canvas.height = height;
+    scoreDisplay.textContent = selected;
+    fill.style.width = ((selected / checks.length) * 100) + "%";
+  }
 
-    const ctx = canvas.getContext("2d");
+  checks.forEach(check => {
+    check.addEventListener("click", () => {
+      check.classList.toggle("selected");
 
-    // Background
-    const gradient = ctx.createLinearGradient(
-        0, 0, width, height
-    );
+      const symbol = check.querySelector("span");
+      symbol.textContent = check.classList.contains("selected") ? "✓" : "+";
 
-    gradient.addColorStop(0, "#10182b");
-    gradient.addColorStop(.55, "#17284a");
-    gradient.addColorStop(1, "#101827");
+      updateScore();
+    });
+  });
 
-    ctx.fillStyle = gradient;
-    ctx.fillRect(0, 0, width, height);
-
-    /*
-        For best-quality poster exports, use browser screenshot/
-        print-to-PDF tools or an SVG/canvas implementation.
-        This fallback creates a clean downloadable image.
-    */
-
-    ctx.fillStyle = "#00d9ff";
-    ctx.font = "bold 32px Arial";
-    ctx.fillText("UNDERSTANDING ADHD", 80, 100);
-
-    ctx.fillStyle = "#ffffff";
-    ctx.font = "bold 82px Arial";
-    ctx.fillText("Signs of", 80, 195);
-
-    ctx.fillStyle = "#00d9ff";
-    ctx.fillText("ADHD", 80, 285);
-
-    ctx.fillStyle = "#b9c6da";
-    ctx.font = "24px Arial";
-    ctx.fillText(
-        "Common signs can involve attention,",
-        80, 335
-    );
-    ctx.fillText(
-        "activity level and impulse control.",
-        80, 370
-    );
-
-    const cards = [
-        ["🎯", "Difficulty Paying Attention",
-         "Easily distracted • Forgetful • Loses things"],
-
-        ["⚡", "Hyperactivity",
-         "Restlessness • Fidgeting • Always moving"],
-
-        ["💥", "Impulsivity",
-         "Interrupting • Impatient • Acts quickly"],
-
-        ["📋", "Organization Challenges",
-         "Time management • Procrastination • Missed deadlines"],
-
-        ["🧠", "Other Possible Signs",
-         "Task switching • Forgetfulness • Difficulty starting tasks"]
-    ];
-
-    let y = 430;
-
-    cards.forEach((card, index) => {
-
-        ctx.fillStyle = "rgba(255,255,255,.08)";
-        roundRect(ctx, 60, y, 960, 190, 28);
-        ctx.fill();
-
-        ctx.fillStyle = index === 0 ? "#00d9ff" :
-                        index === 1 ? "#ffc107" :
-                        index === 2 ? "#ff6688" :
-                        index === 3 ? "#8cff66" :
-                        "#b77cff";
-
-        ctx.font = "50px Arial";
-        ctx.fillText(card[0], 95, y + 72);
-
-        ctx.fillStyle = "#ffffff";
-        ctx.font = "bold 30px Arial";
-        ctx.fillText(card[1], 175, y + 58);
-
-        ctx.fillStyle = "#c1ccdd";
-        ctx.font = "20px Arial";
-        ctx.fillText(card[2], 175, y + 100);
-
-        y += 215;
+  // Reset
+  document.getElementById("resetBtn").addEventListener("click", () => {
+    checks.forEach(check => {
+      check.classList.remove("selected");
+      check.querySelector("span").textContent = "+";
     });
 
-    ctx.fillStyle = "rgba(0,217,255,.09)";
-    roundRect(ctx, 60, 1510, 960, 170, 20);
-    ctx.fill();
+    updateScore();
+  });
 
-    ctx.fillStyle = "#00d9ff";
-    ctx.font = "bold 22px Arial";
-    ctx.fillText("IMPORTANT", 85, 1550);
+  // Modal
+  const modal = document.getElementById("modal");
 
-    ctx.fillStyle = "#c9d6e8";
-    ctx.font = "18px Arial";
-    ctx.fillText(
-        "Having some of these signs does not necessarily",
-        85, 1590
-    );
-    ctx.fillText(
-        "mean someone has ADHD. A qualified professional",
-        85, 1620
-    );
-    ctx.fillText(
-        "can provide an appropriate assessment.",
-        85, 1650
-    );
+  document.getElementById("learnBtn").addEventListener("click", () => {
+    modal.classList.add("show");
+  });
 
-    ctx.fillStyle = "#71829c";
-    ctx.font = "16px Arial";
-    ctx.fillText(
-        "ADHD AWARENESS • INFOGRAPHIC",
-        390, 1760
-    );
+  document.getElementById("closeBtn").addEventListener("click", () => {
+    modal.classList.remove("show");
+  });
 
-    const link = document.createElement("a");
-    link.download = "signs-of-adhd-infographic.png";
-    link.href = canvas.toDataURL("image/png");
-    link.click();
-}
+  modal.addEventListener("click", event => {
+    if (event.target === modal) {
+      modal.classList.remove("show");
+    }
+  });
 
-function roundRect(ctx, x, y, width, height, radius) {
-    ctx.beginPath();
-    ctx.roundRect(x, y, width, height, radius);
-    ctx.closePath();
-}
+  // Keyboard accessibility
+  document.addEventListener("keydown", event => {
+    if (event.key === "Escape") {
+      modal.classList.remove("show");
+    }
+  });
 </script>
 
 </body>
 </html>
+```
+
