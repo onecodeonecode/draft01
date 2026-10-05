@@ -5,389 +5,474 @@
 <meta name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-<title>StepFit Pedometer</title>
+<title>Andy — Name Origin</title>
 
 <style>
-:root {
-    --bg: #eef3f8;
-    --card: #ffffff;
-    --text: #172033;
-    --muted: #718096;
-    --primary: #2563eb;
-    --secondary: #06b6d4;
-    --success: #22c55e;
-    --danger: #ef4444;
-    --border: #e5eaf0;
-}
-
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
+:root {
+    --purple: #6c3cff;
+    --blue: #168cff;
+    --pink: #ff3d81;
+    --orange: #ff8a00;
+    --yellow: #ffd83d;
+    --green: #20c997;
+    --dark: #17142b;
+    --light: #f7f8ff;
+}
+
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background: #dbe4ee;
-    color: var(--text);
+    background:
+        radial-gradient(circle at 20% 10%, #ffdc73 0 8%, transparent 25%),
+        radial-gradient(circle at 90% 20%, #ff6da8 0 8%, transparent 25%),
+        linear-gradient(135deg, #5d32ff, #168cff 55%, #20c997);
     min-height: 100vh;
     display: flex;
     justify-content: center;
+    color: var(--dark);
 }
 
+/* 9:16 APP FRAME */
 .app {
-    width: min(100vw, 480px);
+    width: min(100vw, 430px);
     min-height: 100vh;
-    background: var(--bg);
-    overflow-x: hidden;
+    background: var(--light);
     position: relative;
+    overflow-x: hidden;
+    padding-bottom: 90px;
 }
 
 /* HEADER */
-
-.header {
-    padding: 22px 20px 18px;
-    background: linear-gradient(135deg, #2563eb, #06b6d4);
+.hero {
+    min-height: 330px;
+    padding: 35px 22px 30px;
     color: white;
-    border-radius: 0 0 28px 28px;
-    box-shadow: 0 8px 25px rgba(37, 99, 235, .22);
+    position: relative;
+    overflow: hidden;
+    background:
+        linear-gradient(145deg, #643cff, #157df5 65%, #19c99a);
+    border-radius: 0 0 38px 38px;
 }
 
-.header-row {
+.hero::before,
+.hero::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    opacity: .22;
+}
+
+.hero::before {
+    width: 180px;
+    height: 180px;
+    background: #fff;
+    right: -65px;
+    top: -50px;
+}
+
+.hero::after {
+    width: 130px;
+    height: 130px;
+    background: #ffd83d;
+    left: -50px;
+    bottom: -40px;
+}
+
+.topbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
+    z-index: 2;
 }
 
-.brand {
-    font-size: 23px;
-    font-weight: 800;
+.logo {
+    width: 48px;
+    height: 48px;
+    border-radius: 16px;
+    background: rgba(255,255,255,.2);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    font-weight: 900;
 }
 
-.date {
-    margin-top: 6px;
-    font-size: 13px;
-    opacity: .88;
-}
-
-.icon-btn {
-    width: 42px;
-    height: 42px;
-    border: none;
+.sound-btn {
+    border: 0;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
-    background: rgba(255,255,255,.18);
+    background: rgba(255,255,255,.2);
     color: white;
     font-size: 20px;
     cursor: pointer;
 }
 
-/* MAIN */
-
-.main {
-    padding: 18px;
-    padding-bottom: 110px;
-}
-
-/* STEP CARD */
-
-.step-card {
-    background: var(--card);
-    border-radius: 26px;
-    padding: 22px 18px;
-    box-shadow: 0 8px 25px rgba(20, 40, 70, .08);
+.hero-content {
     text-align: center;
-}
-
-.progress {
-    width: 205px;
-    height: 205px;
-    border-radius: 50%;
-    margin: 0 auto 16px;
-    background:
-        conic-gradient(
-            var(--primary) var(--progress, 0%),
-            #e8eef5 var(--progress, 0%)
-        );
-    display: flex;
-    align-items: center;
-    justify-content: center;
     position: relative;
+    z-index: 2;
+    margin-top: 25px;
 }
 
-.progress::after {
-    content: "";
+.hero h1 {
+    font-size: 54px;
+    line-height: .95;
+    letter-spacing: -3px;
+    margin-bottom: 12px;
+}
+
+.hero .subtitle {
+    font-size: 17px;
+    opacity: .9;
+}
+
+.name-badge {
+    display: inline-block;
+    margin-top: 20px;
+    background: white;
+    color: var(--purple);
+    padding: 10px 18px;
+    border-radius: 30px;
+    font-weight: 800;
+    box-shadow: 0 10px 30px rgba(0,0,0,.15);
+}
+
+/* CONTENT */
+.content {
+    padding: 22px 17px;
+}
+
+.section-title {
+    font-size: 22px;
+    font-weight: 900;
+    margin: 8px 4px 14px;
+}
+
+/* MAIN MEANING CARD */
+.meaning-card {
+    background: white;
+    border-radius: 25px;
+    padding: 23px;
+    box-shadow: 0 10px 30px rgba(31, 39, 76, .09);
+    position: relative;
+    overflow: hidden;
+}
+
+.meaning-card::after {
+    content: "Α";
     position: absolute;
-    width: 167px;
-    height: 167px;
-    border-radius: 50%;
-    background: var(--card);
+    right: 10px;
+    top: -20px;
+    font-size: 110px;
+    font-weight: 900;
+    color: #eeeaff;
 }
 
-.step-content {
+.label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #7c7c91;
+    font-weight: 800;
+}
+
+.meaning {
+    font-size: 31px;
+    font-weight: 900;
+    color: var(--purple);
+    margin: 7px 0;
     position: relative;
     z-index: 2;
 }
 
-.step-icon {
-    font-size: 30px;
+.meaning-description {
+    color: #66677a;
+    line-height: 1.55;
+    position: relative;
+    z-index: 2;
 }
 
-.steps {
-    font-size: 42px;
-    font-weight: 900;
-    line-height: 1;
-    margin-top: 5px;
-}
-
-.step-label {
-    color: var(--muted);
-    font-size: 14px;
-    margin-top: 7px;
-}
-
-.goal-text {
-    font-size: 13px;
-    color: var(--muted);
-    margin-top: 14px;
-}
-
-.goal-text strong {
-    color: var(--text);
-}
-
-/* CONTROLS */
-
-.controls {
-    display: flex;
-    gap: 10px;
-    margin-top: 17px;
-}
-
-.btn {
-    flex: 1;
-    padding: 14px 10px;
-    border: none;
-    border-radius: 15px;
-    font-size: 14px;
-    font-weight: 700;
-    cursor: pointer;
-}
-
-.start {
-    background: var(--primary);
-    color: white;
-}
-
-.test {
-    background: #e9f1ff;
-    color: var(--primary);
-}
-
-.reset {
-    background: #fff0f0;
-    color: var(--danger);
-}
-
-/* STATS */
-
-.stats {
+/* INFO GRID */
+.info-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr 1fr;
     gap: 12px;
-    margin-top: 16px;
+    margin-top: 15px;
 }
 
-.stat {
-    background: var(--card);
-    border-radius: 18px;
-    padding: 17px;
-    box-shadow: 0 5px 18px rgba(20, 40, 70, .06);
+.info-card {
+    background: white;
+    padding: 18px 15px;
+    border-radius: 20px;
+    box-shadow: 0 8px 22px rgba(31,39,76,.07);
 }
 
-.stat-icon {
-    font-size: 23px;
+.info-icon {
+    font-size: 27px;
+    margin-bottom: 8px;
 }
 
-.stat-value {
-    margin-top: 8px;
-    font-size: 21px;
-    font-weight: 800;
-}
-
-.stat-label {
-    margin-top: 3px;
-    color: var(--muted);
+.info-title {
+    color: #77778a;
     font-size: 12px;
-}
-
-/* GOAL */
-
-.section-title {
-    margin: 24px 3px 10px;
-    font-size: 18px;
+    text-transform: uppercase;
     font-weight: 800;
 }
 
-.goal-card {
-    background: var(--card);
-    border-radius: 18px;
-    padding: 17px;
-    box-shadow: 0 5px 18px rgba(20, 40, 70, .06);
+.info-value {
+    font-size: 17px;
+    font-weight: 900;
+    margin-top: 4px;
 }
 
-.goal-row {
+/* TIMELINE */
+.timeline {
+    background: white;
+    border-radius: 24px;
+    padding: 20px;
+    box-shadow: 0 8px 25px rgba(31,39,76,.07);
+}
+
+.timeline-item {
     display: flex;
-    gap: 10px;
+    gap: 14px;
+    padding: 12px 0;
+    border-bottom: 1px solid #eeeeF6;
 }
 
-.goal-input {
-    flex: 1;
-    border: 1px solid var(--border);
+.timeline-item:last-child {
+    border-bottom: 0;
+}
+
+.year {
+    min-width: 65px;
+    height: 35px;
     border-radius: 12px;
-    padding: 12px;
-    font-size: 16px;
-    background: var(--bg);
-    color: var(--text);
-}
-
-.save-goal {
-    border: none;
-    border-radius: 12px;
-    padding: 0 18px;
-    background: var(--primary);
-    color: white;
-    font-weight: 700;
-    cursor: pointer;
-}
-
-/* HISTORY */
-
-.history-card {
-    background: var(--card);
-    border-radius: 18px;
-    padding: 17px;
-    box-shadow: 0 5px 18px rgba(20, 40, 70, .06);
-}
-
-.history-row {
+    background: #eee9ff;
+    color: var(--purple);
     display: flex;
     align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 12px;
+}
+
+.timeline-text {
+    font-size: 14px;
+    line-height: 1.45;
+    color: #606174;
+}
+
+/* VARIANTS */
+.variant-container {
+    display: flex;
+    gap: 9px;
+    flex-wrap: wrap;
+}
+
+.variant {
+    padding: 10px 15px;
+    border-radius: 30px;
+    background: linear-gradient(135deg, #ffecf4, #f0eaff);
+    color: #663bda;
+    font-weight: 800;
+    font-size: 14px;
+}
+
+/* TRAITS */
+.traits {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 10px;
-    margin-bottom: 13px;
 }
 
-.history-row:last-child {
-    margin-bottom: 0;
+.trait {
+    border-radius: 18px;
+    padding: 15px;
+    color: white;
+    font-weight: 800;
+    min-height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
-.history-day {
+.trait:nth-child(1) { background: #ff4d8d; }
+.trait:nth-child(2) { background: #7145ff; }
+.trait:nth-child(3) { background: #ff9418; }
+.trait:nth-child(4) { background: #17b98b; }
+
+.trait span {
+    font-size: 25px;
+}
+
+/* FAMOUS PEOPLE */
+.person {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: white;
+    border-radius: 20px;
+    padding: 14px;
+    margin-bottom: 10px;
+    box-shadow: 0 6px 20px rgba(31,39,76,.06);
+}
+
+.person-icon {
     width: 48px;
-    font-size: 12px;
-    font-weight: 700;
+    height: 48px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    background: #eeeaff;
 }
 
-.history-bar-bg {
-    flex: 1;
-    height: 10px;
-    background: #e9eef4;
-    border-radius: 20px;
-    overflow: hidden;
+.person strong {
+    display: block;
+    font-size: 16px;
 }
 
-.history-bar {
-    height: 100%;
-    background: linear-gradient(90deg, var(--primary), var(--secondary));
-    border-radius: 20px;
+.person small {
+    color: #77778a;
+    display: block;
+    margin-top: 3px;
 }
 
-.history-value {
-    width: 55px;
-    text-align: right;
-    font-size: 11px;
-    font-weight: 700;
+/* RANDOM FACT */
+.fact-box {
+    background: linear-gradient(135deg, #ffcf35, #ff7a18);
+    color: white;
+    border-radius: 25px;
+    padding: 22px;
+    margin-top: 10px;
+    box-shadow: 0 10px 25px rgba(255,122,24,.2);
 }
 
-/* STATUS */
+.fact-box h3 {
+    font-size: 19px;
+    margin-bottom: 8px;
+}
 
-.status {
+#fact {
+    line-height: 1.5;
+    font-size: 14px;
+}
+
+.fact-button {
+    border: 0;
+    background: white;
+    color: #ed7010;
+    padding: 11px 16px;
+    border-radius: 30px;
+    font-weight: 900;
     margin-top: 15px;
-    padding: 12px;
-    border-radius: 14px;
-    background: #eaf7ef;
-    color: #15803d;
-    font-size: 12px;
-    text-align: center;
-    font-weight: 700;
+    cursor: pointer;
+}
+
+/* PRONUNCIATION */
+.pronunciation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #17142b;
+    color: white;
+    padding: 20px;
+    border-radius: 23px;
+}
+
+.phonetic {
+    font-size: 25px;
+    font-weight: 900;
+}
+
+.play {
+    border: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--yellow);
+    font-size: 20px;
+    cursor: pointer;
 }
 
 /* BOTTOM NAV */
-
 .bottom-nav {
     position: fixed;
     bottom: 0;
-    width: min(100vw, 480px);
-    background: var(--card);
-    border-top: 1px solid var(--border);
+    width: min(100vw, 430px);
+    height: 74px;
+    background: rgba(255,255,255,.94);
+    backdrop-filter: blur(15px);
+    border-top: 1px solid #e7e7f1;
     display: flex;
     justify-content: space-around;
-    padding: 10px 5px calc(10px + env(safe-area-inset-bottom));
-    z-index: 20;
+    align-items: center;
+    z-index: 100;
 }
 
-.nav-item {
-    text-align: center;
-    color: var(--muted);
+.nav-btn {
+    border: 0;
+    background: transparent;
+    color: #8c8c9f;
     font-size: 11px;
+    font-weight: 800;
     cursor: pointer;
 }
 
-.nav-item.active {
-    color: var(--primary);
-    font-weight: 800;
-}
-
-.nav-icon {
+.nav-btn div {
     font-size: 21px;
-    margin-bottom: 2px;
+    margin-bottom: 3px;
 }
 
-/* DARK MODE */
-
-.dark {
-    --bg: #101827;
-    --card: #182234;
-    --text: #f1f5f9;
-    --muted: #9aa8bb;
-    --border: #26344a;
+.nav-btn.active {
+    color: var(--purple);
 }
 
-.dark .test {
-    background: #203452;
+/* SECTIONS */
+.page-section {
+    display: none;
 }
 
-.dark .reset {
-    background: #3a2226;
+.page-section.active {
+    display: block;
+    animation: fade .25s ease;
 }
 
-.dark .history-bar-bg {
-    background: #263449;
+@keyframes fade {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-/* RESPONSIVE */
-
-@media (max-height: 700px) {
-    .progress {
-        width: 175px;
-        height: 175px;
+@media (min-width: 600px) {
+    body {
+        padding: 20px 0;
     }
 
-    .progress::after {
-        width: 143px;
-        height: 143px;
+    .app {
+        min-height: 760px;
+        border-radius: 35px;
+        box-shadow: 0 30px 80px rgba(0,0,0,.25);
     }
 
-    .steps {
-        font-size: 35px;
+    .bottom-nav {
+        position: absolute;
+        border-radius: 0 0 35px 35px;
     }
 }
 </style>
@@ -397,129 +482,383 @@ body {
 
 <div class="app">
 
-    <header class="header">
-        <div class="header-row">
-            <div>
-                <div class="brand">👟 StepFit</div>
-                <div class="date" id="todayDate"></div>
+    <!-- HOME -->
+    <section id="home" class="page-section active">
+
+        <header class="hero">
+
+            <div class="topbar">
+                <div class="logo">A</div>
+
+                <button class="sound-btn" onclick="speakName()">
+                    🔊
+                </button>
             </div>
 
-            <button class="icon-btn" id="themeBtn">🌙</button>
-        </div>
-    </header>
+            <div class="hero-content">
+                <h1>Andy</h1>
+                <div class="subtitle">
+                    Discover the story behind the name
+                </div>
 
-    <main class="main">
-
-        <section class="step-card">
-
-            <div class="progress" id="progressCircle">
-                <div class="step-content">
-                    <div class="step-icon">👣</div>
-                    <div class="steps" id="stepCount">0</div>
-                    <div class="step-label">STEPS TODAY</div>
+                <div class="name-badge">
+                    ✨ Strong • Classic • Friendly
                 </div>
             </div>
 
-            <div class="goal-text">
-                Daily Goal:
-                <strong id="goalDisplay">10,000</strong>
-                steps
+        </header>
+
+        <main class="content">
+
+            <div class="section-title">
+                The Meaning
             </div>
 
-            <div class="controls">
-                <button class="btn start" id="startBtn">
-                    ▶ Start
+            <div class="meaning-card">
+                <div class="label">Meaning</div>
+
+                <div class="meaning">
+                    Brave & Strong
+                </div>
+
+                <p class="meaning-description">
+                    Andy is traditionally a short form of Andrew,
+                    a name with ancient Greek roots. It is associated
+                    with strength, courage and bravery.
+                </p>
+            </div>
+
+            <div class="info-grid">
+
+                <div class="info-card">
+                    <div class="info-icon">🏛️</div>
+                    <div class="info-title">Origin</div>
+                    <div class="info-value">Greek</div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-icon">🔤</div>
+                    <div class="info-title">From</div>
+                    <div class="info-value">Andrew</div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-icon">🗣️</div>
+                    <div class="info-title">Pronounced</div>
+                    <div class="info-value">AN-dee</div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-icon">⭐</div>
+                    <div class="info-title">Style</div>
+                    <div class="info-value">Classic</div>
+                </div>
+
+            </div>
+
+            <div class="section-title">
+                Name Journey
+            </div>
+
+            <div class="timeline">
+
+                <div class="timeline-item">
+                    <div class="year">Greek</div>
+                    <div class="timeline-text">
+                        Andy ultimately comes from the Greek name
+                        <strong>Andreas</strong>, connected with the idea
+                        of being strong or manly.
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="year">Latin</div>
+                    <div class="timeline-text">
+                        Andreas became widely used in Latin and Christian
+                        naming traditions.
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="year">Andrew</div>
+                    <div class="timeline-text">
+                        The name developed into Andrew in English and
+                        related European languages.
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="year">Andy</div>
+                    <div class="timeline-text">
+                        Andy became a familiar nickname and standalone
+                        given name.
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="section-title">
+                Other Forms
+            </div>
+
+            <div class="variant-container">
+                <div class="variant">Andrew</div>
+                <div class="variant">Andreas</div>
+                <div class="variant">André</div>
+                <div class="variant">Anders</div>
+                <div class="variant">Drew</div>
+                <div class="variant">Andi</div>
+            </div>
+
+        </main>
+    </section>
+
+
+    <!-- PERSONALITY -->
+    <section id="traits" class="page-section">
+
+        <header class="hero">
+            <div class="hero-content" style="margin-top:50px;">
+                <h1>Andy</h1>
+                <div class="subtitle">The name personality</div>
+            </div>
+        </header>
+
+        <main class="content">
+
+            <div class="section-title">
+                Common Name Associations
+            </div>
+
+            <div class="traits">
+
+                <div class="trait">
+                    <span>💪</span>
+                    Strength
+                </div>
+
+                <div class="trait">
+                    <span>🧠</span>
+                    Confidence
+                </div>
+
+                <div class="trait">
+                    <span>😄</span>
+                    Friendliness
+                </div>
+
+                <div class="trait">
+                    <span>❤️</span>
+                    Loyalty
+                </div>
+
+            </div>
+
+            <div class="section-title">
+                Fun Facts
+            </div>
+
+            <div class="fact-box">
+                <h3>🎲 Did You Know?</h3>
+
+                <p id="fact">
+                    Andy can be used as a nickname for Andrew,
+                    but it is also used as a given name on its own.
+                </p>
+
+                <button class="fact-button" onclick="newFact()">
+                    ✨ New Fact
+                </button>
+            </div>
+
+            <div class="section-title">
+                Say It
+            </div>
+
+            <div class="pronunciation">
+
+                <div>
+                    <div class="label" style="color:#aaa;">
+                        Pronunciation
+                    </div>
+
+                    <div class="phonetic">
+                        AN-dee
+                    </div>
+                </div>
+
+                <button class="play" onclick="speakName()">
+                    ▶
                 </button>
 
-                <button class="btn test" id="addBtn">
-                    +1 Step
-                </button>
-
-                <button class="btn reset" id="resetBtn">
-                    Reset
-                </button>
             </div>
 
-            <div class="status" id="status">
-                Ready to track your steps
+        </main>
+    </section>
+
+
+    <!-- FAMOUS -->
+    <section id="famous" class="page-section">
+
+        <header class="hero">
+            <div class="hero-content" style="margin-top:50px;">
+                <h1>Famous<br>Andys</h1>
+                <div class="subtitle">
+                    People who share the name
+                </div>
+            </div>
+        </header>
+
+        <main class="content">
+
+            <div class="section-title">
+                Famous People Named Andy
             </div>
 
-        </section>
-
-
-        <section class="stats">
-
-            <div class="stat">
-                <div class="stat-icon">🔥</div>
-                <div class="stat-value" id="calories">0</div>
-                <div class="stat-label">Calories</div>
+            <div class="person">
+                <div class="person-icon">🎬</div>
+                <div>
+                    <strong>Andy Griffith</strong>
+                    <small>Actor & entertainer</small>
+                </div>
             </div>
 
-            <div class="stat">
-                <div class="stat-icon">📏</div>
-                <div class="stat-value" id="distance">0.00 km</div>
-                <div class="stat-label">Distance</div>
+            <div class="person">
+                <div class="person-icon">🎨</div>
+                <div>
+                    <strong>Andy Warhol</strong>
+                    <small>Artist & cultural icon</small>
+                </div>
             </div>
 
-            <div class="stat">
-                <div class="stat-icon">⏱️</div>
-                <div class="stat-value" id="activeTime">0 min</div>
-                <div class="stat-label">Active Time</div>
+            <div class="person">
+                <div class="person-icon">🎭</div>
+                <div>
+                    <strong>Andy Serkis</strong>
+                    <small>Actor & filmmaker</small>
+                </div>
             </div>
 
-            <div class="stat">
-                <div class="stat-icon">🎯</div>
-                <div class="stat-value" id="percentage">0%</div>
-                <div class="stat-label">Goal Complete</div>
+            <div class="person">
+                <div class="person-icon">🎸</div>
+                <div>
+                    <strong>Andy Summers</strong>
+                    <small>Musician & guitarist</small>
+                </div>
             </div>
 
-        </section>
-
-
-        <div class="section-title">🎯 Daily Goal</div>
-
-        <section class="goal-card">
-            <div class="goal-row">
-                <input
-                    class="goal-input"
-                    id="goalInput"
-                    type="number"
-                    min="100"
-                    step="100"
-                    value="10000"
-                >
-
-                <button class="save-goal" id="saveGoal">
-                    Save
-                </button>
+            <div class="person">
+                <div class="person-icon">🏒</div>
+                <div>
+                    <strong>Andy Bathgate</strong>
+                    <small>Hockey legend</small>
+                </div>
             </div>
-        </section>
+
+            <div class="fact-box">
+                <h3>⭐ The Name Andy</h3>
+                <p>
+                    From artists and actors to musicians and athletes,
+                    Andy has been used by people in many different fields.
+                </p>
+            </div>
+
+        </main>
+    </section>
 
 
-        <div class="section-title">📊 7-Day History</div>
+    <!-- ABOUT -->
+    <section id="about" class="page-section">
 
-        <section class="history-card" id="history">
-        </section>
+        <header class="hero">
+            <div class="hero-content" style="margin-top:50px;">
+                <h1>About<br>Andy</h1>
+                <div class="subtitle">
+                    A little name with a long history
+                </div>
+            </div>
+        </header>
 
-    </main>
+        <main class="content">
+
+            <div class="meaning-card">
+
+                <div class="label">Name Family</div>
+
+                <div class="meaning">
+                    Andreas → Andrew → Andy
+                </div>
+
+                <p class="meaning-description">
+                    The modern name Andy is commonly used as a friendly
+                    short form of Andrew. Andrew traces its history back
+                    to the ancient Greek name Andreas.
+                </p>
+
+            </div>
+
+            <div class="section-title">
+                Quick Summary
+            </div>
+
+            <div class="timeline">
+
+                <div class="timeline-item">
+                    <div class="year">1</div>
+                    <div class="timeline-text">
+                        <strong>Origin:</strong> Greek
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="year">2</div>
+                    <div class="timeline-text">
+                        <strong>Root:</strong> Andreas
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="year">3</div>
+                    <div class="timeline-text">
+                        <strong>English form:</strong> Andrew
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="year">4</div>
+                    <div class="timeline-text">
+                        <strong>Nickname:</strong> Andy
+                    </div>
+                </div>
+
+            </div>
+
+        </main>
+    </section>
 
 
+    <!-- NAVIGATION -->
     <nav class="bottom-nav">
 
-        <div class="nav-item active">
-            <div class="nav-icon">👟</div>
-            Today
-        </div>
+        <button class="nav-btn active" onclick="showPage('home', this)">
+            <div>🏠</div>
+            Origin
+        </button>
 
-        <div class="nav-item" id="historyNav">
-            <div class="nav-icon">📊</div>
-            History
-        </div>
+        <button class="nav-btn" onclick="showPage('traits', this)">
+            <div>✨</div>
+            Traits
+        </button>
 
-        <div class="nav-item" id="goalNav">
-            <div class="nav-icon">🎯</div>
-            Goal
-        </div>
+        <button class="nav-btn" onclick="showPage('famous', this)">
+            <div>⭐</div>
+            Famous
+        </button>
+
+        <button class="nav-btn" onclick="showPage('about', this)">
+            <div>📖</div>
+            About
+        </button>
 
     </nav>
 
@@ -528,583 +867,101 @@ body {
 
 <script>
 
-/* ==========================================
-   STEP FIT PEDOMETER
-   ========================================== */
-
-const STORAGE_KEY = "stepfit_pedometer_data";
-
-let data = JSON.parse(
-    localStorage.getItem(STORAGE_KEY)
-) || {
-    goal: 10000,
-    days: {},
-    theme: "light"
-};
-
-let running = false;
-let motionHandler = null;
-
-let lastMagnitude = null;
-let lastStepTime = 0;
-
-let activeSeconds = 0;
-let activeTimer = null;
-
-
-/* ---------- DATE ---------- */
-
-function getDateKey(date = new Date()) {
-
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-    const day = String(date.getDate()).padStart(2, "0");
-
-    return `${year}-${month}-${day}`;
-}
-
-
-function getToday() {
-
-    const key = getDateKey();
-
-    if (!data.days[key]) {
-        data.days[key] = {
-            steps: 0,
-            activeSeconds: 0
-        };
-    }
-
-    return data.days[key];
-}
-
-
-/* ---------- SAVE ---------- */
-
-function saveData() {
-
-    localStorage.setItem(
-        STORAGE_KEY,
-        JSON.stringify(data)
-    );
-}
-
-
-/* ---------- UI ---------- */
-
-function updateUI() {
-
-    const today = getToday();
-
-    const steps = today.steps;
-    const goal = data.goal;
-
-    const percent = Math.min(
-        100,
-        Math.round((steps / goal) * 100)
-    );
-
-    document.getElementById("stepCount").textContent =
-        steps.toLocaleString();
-
-    document.getElementById("goalDisplay").textContent =
-        goal.toLocaleString();
-
-    document.getElementById("goalInput").value =
-        goal;
-
-    document.getElementById("percentage").textContent =
-        percent + "%";
-
-    document.getElementById("progressCircle")
-        .style.setProperty(
-            "--progress",
-            percent + "%"
-        );
-
-    /* Approximate calculations */
-
-    const calories =
-        Math.round(steps * 0.04);
-
-    const distance =
-        steps * 0.00075;
-
-    document.getElementById("calories").textContent =
-        calories.toLocaleString();
-
-    document.getElementById("distance").textContent =
-        distance.toFixed(2) + " km";
-
-    const minutes =
-        Math.floor(activeSeconds / 60);
-
-    document.getElementById("activeTime").textContent =
-        minutes + " min";
-
-    updateHistory();
-}
-
-
-/* ---------- ADD STEP ---------- */
-
-function addStep(amount = 1) {
-
-    const today = getToday();
-
-    today.steps += amount;
-
-    saveData();
-    updateUI();
-
-    if (today.steps >= data.goal) {
-
-        document.getElementById("status").textContent =
-            "🎉 Daily goal reached! Great job!";
-
-    } else if (running) {
-
-        document.getElementById("status").textContent =
-            "👟 Walking detected — keep going!";
-    }
-}
-
-
-/* ---------- MOTION DETECTION ---------- */
-
-function handleMotion(event) {
-
-    if (!running) return;
-
-    const acc = event.accelerationIncludingGravity;
-
-    if (!acc) return;
-
-    const x = acc.x || 0;
-    const y = acc.y || 0;
-    const z = acc.z || 0;
-
-    const magnitude =
-        Math.sqrt(
-            x*x +
-            y*y +
-            z*z
-        );
-
-    if (lastMagnitude === null) {
-        lastMagnitude = magnitude;
-        return;
-    }
-
-    const difference =
-        Math.abs(
-            magnitude -
-            lastMagnitude
-        );
-
-    const now = Date.now();
-
-    /*
-       Basic step algorithm.
-
-       A significant change in acceleration
-       followed by a cooldown is counted as
-       one step.
-    */
-
-    if (
-        difference > 1.15 &&
-        now - lastStepTime > 350
-    ) {
-
-        addStep(1);
-
-        lastStepTime = now;
-    }
-
-    lastMagnitude = magnitude;
-}
-
-
-/* ---------- START / STOP ---------- */
-
-async function startTracking() {
-
-    if (running) {
-
-        stopTracking();
-        return;
-    }
-
-    /*
-       iOS requires permission for motion sensors.
-    */
-
-    if (
-        typeof DeviceMotionEvent !== "undefined" &&
-        typeof DeviceMotionEvent.requestPermission === "function"
-    ) {
-
-        try {
-
-            const permission =
-                await DeviceMotionEvent.requestPermission();
-
-            if (permission !== "granted") {
-
-                document.getElementById("status").textContent =
-                    "⚠️ Motion permission was not granted.";
-
-                return;
-            }
-
-        } catch (error) {
-
-            document.getElementById("status").textContent =
-                "⚠️ Motion sensor permission failed.";
-
-            return;
-        }
-    }
-
-    running = true;
-
-    lastMagnitude = null;
-    lastStepTime = 0;
-
-    motionHandler = handleMotion;
-
-    window.addEventListener(
-        "devicemotion",
-        motionHandler
-    );
-
-    startActiveTimer();
-
-    document.getElementById("startBtn").textContent =
-        "⏸ Pause";
-
-    document.getElementById("status").textContent =
-        "🟢 Tracking steps...";
-
-}
-
-
-function stopTracking() {
-
-    running = false;
-
-    if (motionHandler) {
-
-        window.removeEventListener(
-            "devicemotion",
-            motionHandler
-        );
-
-        motionHandler = null;
-    }
-
-    stopActiveTimer();
-
-    document.getElementById("startBtn").textContent =
-        "▶ Start";
-
-    document.getElementById("status").textContent =
-        "⏸ Tracking paused";
-}
-
-
-/* ---------- ACTIVE TIME ---------- */
-
-function startActiveTimer() {
-
-    if (activeTimer) return;
-
-    activeTimer = setInterval(() => {
-
-        if (!running) return;
-
-        activeSeconds++;
-
-        const today = getToday();
-
-        today.activeSeconds =
-            activeSeconds;
-
-        saveData();
-
-        updateUI();
-
-    }, 1000);
-}
-
-
-function stopActiveTimer() {
-
-    if (activeTimer) {
-
-        clearInterval(activeTimer);
-        activeTimer = null;
-    }
-}
-
-
-/* ---------- RESET ---------- */
-
-function resetToday() {
-
-    const confirmReset =
-        confirm(
-            "Reset today's step count?"
-        );
-
-    if (!confirmReset) return;
-
-    data.days[getDateKey()] = {
-        steps: 0,
-        activeSeconds: 0
-    };
-
-    activeSeconds = 0;
-
-    saveData();
-    updateUI();
-
-    document.getElementById("status").textContent =
-        "Today's steps have been reset.";
-}
-
-
-/* ---------- GOAL ---------- */
-
-function saveGoal() {
-
-    let newGoal =
-        parseInt(
-            document.getElementById("goalInput").value
-        );
-
-    if (
-        isNaN(newGoal) ||
-        newGoal < 100
-    ) {
-
-        alert(
-            "Please enter a goal of at least 100 steps."
-        );
-
-        return;
-    }
-
-    data.goal = newGoal;
-
-    saveData();
-    updateUI();
-
-    document.getElementById("status").textContent =
-        "🎯 Daily goal updated!";
-}
-
-
-/* ---------- HISTORY ---------- */
-
-function updateHistory() {
-
-    const container =
-        document.getElementById("history");
-
-    container.innerHTML = "";
-
-    const today = new Date();
-
-    let records = [];
-
-    for (let i = 6; i >= 0; i--) {
-
-        const date = new Date(today);
-
-        date.setDate(
-            today.getDate() - i
-        );
-
-        const key =
-            getDateKey(date);
-
-        const record =
-            data.days[key] || {
-                steps: 0
-            };
-
-        records.push({
-            date,
-            steps: record.steps
+const facts = [
+    "Andy is commonly used as a short form of Andrew.",
+    "Andrew comes from the ancient Greek name Andreas.",
+    "The Greek root associated with Andreas relates to strength and bravery.",
+    "Andy is also used as a standalone given name.",
+    "Andrew is traditionally associated with Saint Andrew.",
+    "Andy is used in many English-speaking countries.",
+    "Andreas, Andrew and Andy belong to the same name family.",
+    "Andy has a friendly, informal sound while retaining a classic history."
+];
+
+function showPage(pageId, button) {
+
+    document.querySelectorAll(".page-section")
+        .forEach(section => {
+            section.classList.remove("active");
         });
+
+    document.getElementById(pageId)
+        .classList.add("active");
+
+    document.querySelectorAll(".nav-btn")
+        .forEach(btn => {
+            btn.classList.remove("active");
+        });
+
+    button.classList.add("active");
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+
+function newFact() {
+
+    const factElement = document.getElementById("fact");
+
+    const randomIndex =
+        Math.floor(Math.random() * facts.length);
+
+    factElement.style.opacity = "0";
+
+    setTimeout(() => {
+
+        factElement.textContent =
+            facts[randomIndex];
+
+        factElement.style.opacity = "1";
+
+    }, 180);
+}
+
+
+function speakName() {
+
+    if (!("speechSynthesis" in window)) {
+        alert("Text-to-speech is not supported on this device.");
+        return;
     }
 
-    const maxSteps =
-        Math.max(
-            data.goal,
-            ...records.map(r => r.steps)
-        );
+    window.speechSynthesis.cancel();
 
-    records.forEach(record => {
+    const speech =
+        new SpeechSynthesisUtterance("Andy");
 
-        const row =
-            document.createElement("div");
+    speech.lang = "en-US";
+    speech.rate = 0.8;
+    speech.pitch = 1;
 
-        row.className =
-            "history-row";
-
-        const day =
-            record.date.toLocaleDateString(
-                undefined,
-                { weekday: "short" }
-            );
-
-        const width =
-            Math.min(
-                100,
-                (record.steps / maxSteps) * 100
-            );
-
-        row.innerHTML = `
-            <div class="history-day">
-                ${day}
-            </div>
-
-            <div class="history-bar-bg">
-                <div
-                    class="history-bar"
-                    style="width:${width}%">
-                </div>
-            </div>
-
-            <div class="history-value">
-                ${record.steps.toLocaleString()}
-            </div>
-        `;
-
-        container.appendChild(row);
-    });
+    window.speechSynthesis.speak(speech);
 }
 
 
-/* ---------- THEME ---------- */
+// Keyboard shortcuts
+document.addEventListener("keydown", event => {
 
-function applyTheme() {
-
-    if (data.theme === "dark") {
-
-        document.body.classList.add("dark");
-
-        document.getElementById("themeBtn")
-            .textContent = "☀️";
-
-    } else {
-
-        document.body.classList.remove("dark");
-
-        document.getElementById("themeBtn")
-            .textContent = "🌙";
+    if (event.key === "1") {
+        document.querySelectorAll(".nav-btn")[0].click();
     }
-}
 
+    if (event.key === "2") {
+        document.querySelectorAll(".nav-btn")[1].click();
+    }
 
-function toggleTheme() {
+    if (event.key === "3") {
+        document.querySelectorAll(".nav-btn")[2].click();
+    }
 
-    data.theme =
-        data.theme === "dark"
-            ? "light"
-            : "dark";
+    if (event.key === "4") {
+        document.querySelectorAll(".nav-btn")[3].click();
+    }
 
-    saveData();
-    applyTheme();
-}
-
-
-/* ---------- DATE ---------- */
-
-function updateDate() {
-
-    document.getElementById("todayDate")
-        .textContent =
-        new Date().toLocaleDateString(
-            undefined,
-            {
-                weekday: "long",
-                month: "long",
-                day: "numeric",
-                year: "numeric"
-            }
-        );
-}
-
-
-/* ---------- NAVIGATION ---------- */
-
-document.getElementById("historyNav")
-    .addEventListener("click", () => {
-
-        document.getElementById("history")
-            .scrollIntoView({
-                behavior: "smooth"
-            });
-    });
-
-
-document.getElementById("goalNav")
-    .addEventListener("click", () => {
-
-        document.getElementById("goalInput")
-            .scrollIntoView({
-                behavior: "smooth"
-            });
-    });
-
-
-/* ---------- EVENTS ---------- */
-
-document.getElementById("startBtn")
-    .addEventListener(
-        "click",
-        startTracking
-    );
-
-document.getElementById("addBtn")
-    .addEventListener(
-        "click",
-        () => addStep(1)
-    );
-
-document.getElementById("resetBtn")
-    .addEventListener(
-        "click",
-        resetToday
-    );
-
-document.getElementById("saveGoal")
-    .addEventListener(
-        "click",
-        saveGoal
-    );
-
-document.getElementById("themeBtn")
-    .addEventListener(
-        "click",
-        toggleTheme
-    );
-
-
-/* ---------- INITIALIZE ---------- */
-
-const todayRecord = getToday();
-
-activeSeconds =
-    todayRecord.activeSeconds || 0;
-
-applyTheme();
-updateDate();
-updateUI();
+});
 
 </script>
 
