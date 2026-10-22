@@ -2,968 +2,187 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-<title>Andy — Name Origin</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Explore the Chevrolet Chevelle SS Super Sport: history, engines, specifications, gallery and classic muscle-car resources.">
+<title>Chevrolet Chevelle SS | Super Sport</title>
 <style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-:root {
-    --purple: #6c3cff;
-    --blue: #168cff;
-    --pink: #ff3d81;
-    --orange: #ff8a00;
-    --yellow: #ffd83d;
-    --green: #20c997;
-    --dark: #17142b;
-    --light: #f7f8ff;
-}
-
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background:
-        radial-gradient(circle at 20% 10%, #ffdc73 0 8%, transparent 25%),
-        radial-gradient(circle at 90% 20%, #ff6da8 0 8%, transparent 25%),
-        linear-gradient(135deg, #5d32ff, #168cff 55%, #20c997);
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    color: var(--dark);
-}
-
-/* 9:16 APP FRAME */
-.app {
-    width: min(100vw, 430px);
-    min-height: 100vh;
-    background: var(--light);
-    position: relative;
-    overflow-x: hidden;
-    padding-bottom: 90px;
-}
-
-/* HEADER */
-.hero {
-    min-height: 330px;
-    padding: 35px 22px 30px;
-    color: white;
-    position: relative;
-    overflow: hidden;
-    background:
-        linear-gradient(145deg, #643cff, #157df5 65%, #19c99a);
-    border-radius: 0 0 38px 38px;
-}
-
-.hero::before,
-.hero::after {
-    content: "";
-    position: absolute;
-    border-radius: 50%;
-    opacity: .22;
-}
-
-.hero::before {
-    width: 180px;
-    height: 180px;
-    background: #fff;
-    right: -65px;
-    top: -50px;
-}
-
-.hero::after {
-    width: 130px;
-    height: 130px;
-    background: #ffd83d;
-    left: -50px;
-    bottom: -40px;
-}
-
-.topbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-    z-index: 2;
-}
-
-.logo {
-    width: 48px;
-    height: 48px;
-    border-radius: 16px;
-    background: rgba(255,255,255,.2);
-    backdrop-filter: blur(10px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 25px;
-    font-weight: 900;
-}
-
-.sound-btn {
-    border: 0;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background: rgba(255,255,255,.2);
-    color: white;
-    font-size: 20px;
-    cursor: pointer;
-}
-
-.hero-content {
-    text-align: center;
-    position: relative;
-    z-index: 2;
-    margin-top: 25px;
-}
-
-.hero h1 {
-    font-size: 54px;
-    line-height: .95;
-    letter-spacing: -3px;
-    margin-bottom: 12px;
-}
-
-.hero .subtitle {
-    font-size: 17px;
-    opacity: .9;
-}
-
-.name-badge {
-    display: inline-block;
-    margin-top: 20px;
-    background: white;
-    color: var(--purple);
-    padding: 10px 18px;
-    border-radius: 30px;
-    font-weight: 800;
-    box-shadow: 0 10px 30px rgba(0,0,0,.15);
-}
-
-/* CONTENT */
-.content {
-    padding: 22px 17px;
-}
-
-.section-title {
-    font-size: 22px;
-    font-weight: 900;
-    margin: 8px 4px 14px;
-}
-
-/* MAIN MEANING CARD */
-.meaning-card {
-    background: white;
-    border-radius: 25px;
-    padding: 23px;
-    box-shadow: 0 10px 30px rgba(31, 39, 76, .09);
-    position: relative;
-    overflow: hidden;
-}
-
-.meaning-card::after {
-    content: "Α";
-    position: absolute;
-    right: 10px;
-    top: -20px;
-    font-size: 110px;
-    font-weight: 900;
-    color: #eeeaff;
-}
-
-.label {
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: #7c7c91;
-    font-weight: 800;
-}
-
-.meaning {
-    font-size: 31px;
-    font-weight: 900;
-    color: var(--purple);
-    margin: 7px 0;
-    position: relative;
-    z-index: 2;
-}
-
-.meaning-description {
-    color: #66677a;
-    line-height: 1.55;
-    position: relative;
-    z-index: 2;
-}
-
-/* INFO GRID */
-.info-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin-top: 15px;
-}
-
-.info-card {
-    background: white;
-    padding: 18px 15px;
-    border-radius: 20px;
-    box-shadow: 0 8px 22px rgba(31,39,76,.07);
-}
-
-.info-icon {
-    font-size: 27px;
-    margin-bottom: 8px;
-}
-
-.info-title {
-    color: #77778a;
-    font-size: 12px;
-    text-transform: uppercase;
-    font-weight: 800;
-}
-
-.info-value {
-    font-size: 17px;
-    font-weight: 900;
-    margin-top: 4px;
-}
-
-/* TIMELINE */
-.timeline {
-    background: white;
-    border-radius: 24px;
-    padding: 20px;
-    box-shadow: 0 8px 25px rgba(31,39,76,.07);
-}
-
-.timeline-item {
-    display: flex;
-    gap: 14px;
-    padding: 12px 0;
-    border-bottom: 1px solid #eeeeF6;
-}
-
-.timeline-item:last-child {
-    border-bottom: 0;
-}
-
-.year {
-    min-width: 65px;
-    height: 35px;
-    border-radius: 12px;
-    background: #eee9ff;
-    color: var(--purple);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 900;
-    font-size: 12px;
-}
-
-.timeline-text {
-    font-size: 14px;
-    line-height: 1.45;
-    color: #606174;
-}
-
-/* VARIANTS */
-.variant-container {
-    display: flex;
-    gap: 9px;
-    flex-wrap: wrap;
-}
-
-.variant {
-    padding: 10px 15px;
-    border-radius: 30px;
-    background: linear-gradient(135deg, #ffecf4, #f0eaff);
-    color: #663bda;
-    font-weight: 800;
-    font-size: 14px;
-}
-
-/* TRAITS */
-.traits {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-}
-
-.trait {
-    border-radius: 18px;
-    padding: 15px;
-    color: white;
-    font-weight: 800;
-    min-height: 80px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.trait:nth-child(1) { background: #ff4d8d; }
-.trait:nth-child(2) { background: #7145ff; }
-.trait:nth-child(3) { background: #ff9418; }
-.trait:nth-child(4) { background: #17b98b; }
-
-.trait span {
-    font-size: 25px;
-}
-
-/* FAMOUS PEOPLE */
-.person {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    background: white;
-    border-radius: 20px;
-    padding: 14px;
-    margin-bottom: 10px;
-    box-shadow: 0 6px 20px rgba(31,39,76,.06);
-}
-
-.person-icon {
-    width: 48px;
-    height: 48px;
-    border-radius: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    background: #eeeaff;
-}
-
-.person strong {
-    display: block;
-    font-size: 16px;
-}
-
-.person small {
-    color: #77778a;
-    display: block;
-    margin-top: 3px;
-}
-
-/* RANDOM FACT */
-.fact-box {
-    background: linear-gradient(135deg, #ffcf35, #ff7a18);
-    color: white;
-    border-radius: 25px;
-    padding: 22px;
-    margin-top: 10px;
-    box-shadow: 0 10px 25px rgba(255,122,24,.2);
-}
-
-.fact-box h3 {
-    font-size: 19px;
-    margin-bottom: 8px;
-}
-
-#fact {
-    line-height: 1.5;
-    font-size: 14px;
-}
-
-.fact-button {
-    border: 0;
-    background: white;
-    color: #ed7010;
-    padding: 11px 16px;
-    border-radius: 30px;
-    font-weight: 900;
-    margin-top: 15px;
-    cursor: pointer;
-}
-
-/* PRONUNCIATION */
-.pronunciation {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: #17142b;
-    color: white;
-    padding: 20px;
-    border-radius: 23px;
-}
-
-.phonetic {
-    font-size: 25px;
-    font-weight: 900;
-}
-
-.play {
-    border: 0;
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    background: var(--yellow);
-    font-size: 20px;
-    cursor: pointer;
-}
-
-/* BOTTOM NAV */
-.bottom-nav {
-    position: fixed;
-    bottom: 0;
-    width: min(100vw, 430px);
-    height: 74px;
-    background: rgba(255,255,255,.94);
-    backdrop-filter: blur(15px);
-    border-top: 1px solid #e7e7f1;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    z-index: 100;
-}
-
-.nav-btn {
-    border: 0;
-    background: transparent;
-    color: #8c8c9f;
-    font-size: 11px;
-    font-weight: 800;
-    cursor: pointer;
-}
-
-.nav-btn div {
-    font-size: 21px;
-    margin-bottom: 3px;
-}
-
-.nav-btn.active {
-    color: var(--purple);
-}
-
-/* SECTIONS */
-.page-section {
-    display: none;
-}
-
-.page-section.active {
-    display: block;
-    animation: fade .25s ease;
-}
-
-@keyframes fade {
-    from {
-        opacity: 0;
-        transform: translateY(8px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@media (min-width: 600px) {
-    body {
-        padding: 20px 0;
-    }
-
-    .app {
-        min-height: 760px;
-        border-radius: 35px;
-        box-shadow: 0 30px 80px rgba(0,0,0,.25);
-    }
-
-    .bottom-nav {
-        position: absolute;
-        border-radius: 0 0 35px 35px;
-    }
-}
+:root{--red:#e21b2d;--red2:#ff3042;--ink:#07131b;--panel:#10232e;--paper:#f3f6f8;--muted:#a9bac5;--line:#29414e;--blue:#dff1ff}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:78px}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--paper);color:#10202a;line-height:1.55}a{color:inherit}button,input{font:inherit}.topbar{position:sticky;top:0;z-index:20;background:#06121a;color:white;border-bottom:1px solid #263b47;display:flex;align-items:center;gap:20px;padding:12px clamp(14px,4vw,42px)}.brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:.05em;white-space:nowrap}.bowtie{display:inline-grid;place-items:center;width:48px;height:25px;color:#f5c542;font-size:24px;text-shadow:1px 1px #8d5c00,-1px -1px #fff}.brand span:last-child{font-size:18px}.nav{display:flex;align-items:center;gap:4px;margin-left:auto}.nav a{padding:10px 11px;text-decoration:none;border-radius:6px;font-size:14px}.nav a:hover,.nav a.active{background:var(--red)}.search{display:flex;align-items:center;background:#fff;border-radius:30px;padding:4px 6px 4px 12px;min-width:190px}.search input{width:100%;min-width:0;border:0;outline:0;font-size:13px;color:#172b36}.search button{border:0;border-radius:50%;background:var(--red);color:#fff;width:30px;height:30px;cursor:pointer}.hero{color:white;min-height:440px;display:grid;grid-template-columns:1fr 1.15fr;align-items:center;gap:28px;padding:50px clamp(22px,5vw,70px);background:linear-gradient(90deg,rgba(3,13,20,.97),rgba(3,13,20,.85) 42%,rgba(3,13,20,.12)),url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1800&q=85') center/cover}.eyebrow{font-size:14px;letter-spacing:.22em;font-weight:800;color:#d8e6ed}.hero h1{font-size:clamp(42px,6vw,78px);line-height:.94;letter-spacing:-.04em;margin:12px 0}.hero h1 span{color:var(--red2)}.rule{height:4px;width:150px;background:var(--red);margin:22px 0}.hero p{max-width:560px;color:#e2ebef}.hero .lead{font-weight:800;font-size:18px}.btn{display:inline-flex;align-items:center;gap:12px;background:var(--red);color:white;border:0;border-radius:999px;padding:12px 20px;font-weight:800;text-decoration:none;cursor:pointer;transition:.2s}.btn:hover{background:#b80f20;transform:translateY(-1px)}.hero-art{min-height:250px;display:flex;align-items:center;justify-content:center}.hero-art img{width:100%;max-width:690px;filter:drop-shadow(0 22px 20px #0008);border-radius:12px;object-fit:cover;aspect-ratio:16/9}.section{padding:38px clamp(18px,4vw,44px)}.section h2{font-size:clamp(28px,3vw,40px);line-height:1.1;margin:0 0 8px;letter-spacing:-.03em}.sub{color:#536975;margin:0 0 22px}.overview-grid{display:grid;grid-template-columns:1.2fr 1fr .95fr;gap:18px}.card{background:#fff;border:1px solid #dbe4e9;border-radius:12px;padding:22px;box-shadow:0 6px 20px #1226330b}.card h3{margin:0 0 12px;font-size:20px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:24px}.stat{text-align:center;padding:14px 7px;border-right:1px solid #d4dde2}.stat:last-child{border:0}.stat .symbol{font-size:29px;color:var(--red);font-weight:900}.stat strong{display:block}.stat small{color:#607581}.specs{background:linear-gradient(135deg,#e1f2ff,#f4faff)}.spec{display:grid;grid-template-columns:40px 1fr;gap:10px;padding:10px 0;border-bottom:1px solid #c9dce7}.spec:last-child{border:0}.spec .ico{font-size:24px}.spec strong{display:block;font-size:14px}.spec span{font-size:14px;color:#3b5665}.quick{background:var(--ink);color:#fff}.quick .fact{display:grid;grid-template-columns:40px 1fr;gap:12px;align-items:center;border-top:1px solid #344955;padding:12px 0}.fact .ico{color:var(--red2);font-size:24px}.fact span{display:block;color:#cbd9df;font-size:13px}.dark{background:#08151d;color:#fff}.dark .sub{color:#b6c8d2}.gallery-head{display:flex;justify-content:space-between;align-items:center;gap:14px}.gallery-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}.photo{border:1px solid #30434d;border-radius:9px;overflow:hidden;background:#13252f;cursor:pointer;text-align:left;color:#fff;padding:0}.photo img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;transition:transform .25s}.photo:hover img{transform:scale(1.04)}.photo span{display:block;padding:9px 10px;font-size:13px}.history-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px}.timeline{list-style:none;margin:18px 0 0;padding:0 0 0 22px;border-left:2px solid var(--red)}.timeline li{position:relative;padding:0 0 20px 10px}.timeline li:before{content:"";position:absolute;left:-29px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--red);border:2px solid white}.timeline strong{display:inline-block;min-width:52px}.feature{display:grid;grid-template-columns:38px 1fr;gap:12px;padding:10px 0}.feature .ico{font-size:24px;color:var(--red)}.feature strong{display:block}.feature span{color:#536975;font-size:14px}.video-card{border-radius:10px;overflow:hidden;background:#07131b;color:white}.video-card img{width:100%;display:block;aspect-ratio:16/9;object-fit:cover}.video-card .video-info{padding:14px}.video-card a{color:white}.links{background:#e7f2f9}.link-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.resource{display:flex;gap:12px;align-items:center;background:#fff;border:1px solid #c9dce7;border-radius:9px;padding:13px;text-decoration:none;transition:.2s}.resource:hover{border-color:var(--red);transform:translateY(-2px)}.resource .ico{font-size:25px;color:#154a69}.resource strong{display:block;font-size:13px}.resource small{color:#1475bb;overflow-wrap:anywhere}.footer{background:#06121a;color:#d7e2e8;padding:25px clamp(18px,4vw,44px);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}.footer nav{display:flex;gap:14px;flex-wrap:wrap}.footer a{font-size:13px;text-decoration:none}.footer a:hover{color:#ff5361}.notice{font-size:12px;color:#70848e;margin-top:14px}.toast{position:fixed;bottom:20px;left:50%;transform:translate(-50%,20px);opacity:0;background:#07131b;color:#fff;padding:12px 18px;border-radius:9px;z-index:50;transition:.2s;pointer-events:none}.toast.show{opacity:1;transform:translate(-50%,0)}.modal{display:none;position:fixed;inset:0;z-index:40;background:#000d;align-items:center;justify-content:center;padding:20px}.modal.open{display:flex}.modal-box{max-width:900px;width:100%;background:#07131b;color:white;border-radius:12px;overflow:hidden;position:relative}.modal-box img{display:block;width:100%;max-height:70vh;object-fit:contain;background:#000}.modal-caption{padding:14px 18px;display:flex;justify-content:space-between;gap:10px}.close{position:absolute;top:10px;right:10px;border:0;background:#000b;color:white;border-radius:50%;width:38px;height:38px;font-size:22px;cursor:pointer}.empty{display:none;padding:20px;color:#fff;background:#172d38;border-radius:8px}
+@media(max-width:1050px){.topbar{flex-wrap:wrap}.nav{order:3;width:100%;overflow-x:auto;margin:0}.nav a{white-space:nowrap}.search{margin-left:auto}.hero{grid-template-columns:1fr}.hero-art{min-height:0}.hero-art img{max-width:650px}.overview-grid{grid-template-columns:1fr 1fr}.overview-grid .quick{grid-column:1/-1}.gallery-grid{grid-template-columns:repeat(3,1fr)}.history-grid{grid-template-columns:1fr 1fr}.video-col{grid-column:1/-1}.link-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.topbar{gap:10px;padding:10px 12px}.brand span:last-child{font-size:14px}.bowtie{width:34px}.search{min-width:0;width:100%;order:2}.nav{order:3}.hero{padding:38px 20px;min-height:0}.hero h1{font-size:48px}.hero-art img{aspect-ratio:4/3}.section{padding:28px 15px}.overview-grid,.history-grid{grid-template-columns:1fr}.overview-grid .quick,.video-col{grid-column:auto}.stats{gap:0}.stat{padding:10px 3px}.gallery-grid{grid-template-columns:repeat(2,1fr);gap:8px}.gallery-head{align-items:flex-start;flex-direction:column}.link-grid{grid-template-columns:1fr}.footer{display:block}.footer nav{margin-top:15px}.card{padding:18px}}
 </style>
 </head>
-
 <body>
-
-<div class="app">
-
-    <!-- HOME -->
-    <section id="home" class="page-section active">
-
-        <header class="hero">
-
-            <div class="topbar">
-                <div class="logo">A</div>
-
-                <button class="sound-btn" onclick="speakName()">
-                    🔊
-                </button>
-            </div>
-
-            <div class="hero-content">
-                <h1>Andy</h1>
-                <div class="subtitle">
-                    Discover the story behind the name
-                </div>
-
-                <div class="name-badge">
-                    ✨ Strong • Classic • Friendly
-                </div>
-            </div>
-
-        </header>
-
-        <main class="content">
-
-            <div class="section-title">
-                The Meaning
-            </div>
-
-            <div class="meaning-card">
-                <div class="label">Meaning</div>
-
-                <div class="meaning">
-                    Brave & Strong
-                </div>
-
-                <p class="meaning-description">
-                    Andy is traditionally a short form of Andrew,
-                    a name with ancient Greek roots. It is associated
-                    with strength, courage and bravery.
-                </p>
-            </div>
-
-            <div class="info-grid">
-
-                <div class="info-card">
-                    <div class="info-icon">🏛️</div>
-                    <div class="info-title">Origin</div>
-                    <div class="info-value">Greek</div>
-                </div>
-
-                <div class="info-card">
-                    <div class="info-icon">🔤</div>
-                    <div class="info-title">From</div>
-                    <div class="info-value">Andrew</div>
-                </div>
-
-                <div class="info-card">
-                    <div class="info-icon">🗣️</div>
-                    <div class="info-title">Pronounced</div>
-                    <div class="info-value">AN-dee</div>
-                </div>
-
-                <div class="info-card">
-                    <div class="info-icon">⭐</div>
-                    <div class="info-title">Style</div>
-                    <div class="info-value">Classic</div>
-                </div>
-
-            </div>
-
-            <div class="section-title">
-                Name Journey
-            </div>
-
-            <div class="timeline">
-
-                <div class="timeline-item">
-                    <div class="year">Greek</div>
-                    <div class="timeline-text">
-                        Andy ultimately comes from the Greek name
-                        <strong>Andreas</strong>, connected with the idea
-                        of being strong or manly.
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="year">Latin</div>
-                    <div class="timeline-text">
-                        Andreas became widely used in Latin and Christian
-                        naming traditions.
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="year">Andrew</div>
-                    <div class="timeline-text">
-                        The name developed into Andrew in English and
-                        related European languages.
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="year">Andy</div>
-                    <div class="timeline-text">
-                        Andy became a familiar nickname and standalone
-                        given name.
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="section-title">
-                Other Forms
-            </div>
-
-            <div class="variant-container">
-                <div class="variant">Andrew</div>
-                <div class="variant">Andreas</div>
-                <div class="variant">André</div>
-                <div class="variant">Anders</div>
-                <div class="variant">Drew</div>
-                <div class="variant">Andi</div>
-            </div>
-
-        </main>
-    </section>
-
-
-    <!-- PERSONALITY -->
-    <section id="traits" class="page-section">
-
-        <header class="hero">
-            <div class="hero-content" style="margin-top:50px;">
-                <h1>Andy</h1>
-                <div class="subtitle">The name personality</div>
-            </div>
-        </header>
-
-        <main class="content">
-
-            <div class="section-title">
-                Common Name Associations
-            </div>
-
-            <div class="traits">
-
-                <div class="trait">
-                    <span>💪</span>
-                    Strength
-                </div>
-
-                <div class="trait">
-                    <span>🧠</span>
-                    Confidence
-                </div>
-
-                <div class="trait">
-                    <span>😄</span>
-                    Friendliness
-                </div>
-
-                <div class="trait">
-                    <span>❤️</span>
-                    Loyalty
-                </div>
-
-            </div>
-
-            <div class="section-title">
-                Fun Facts
-            </div>
-
-            <div class="fact-box">
-                <h3>🎲 Did You Know?</h3>
-
-                <p id="fact">
-                    Andy can be used as a nickname for Andrew,
-                    but it is also used as a given name on its own.
-                </p>
-
-                <button class="fact-button" onclick="newFact()">
-                    ✨ New Fact
-                </button>
-            </div>
-
-            <div class="section-title">
-                Say It
-            </div>
-
-            <div class="pronunciation">
-
-                <div>
-                    <div class="label" style="color:#aaa;">
-                        Pronunciation
-                    </div>
-
-                    <div class="phonetic">
-                        AN-dee
-                    </div>
-                </div>
-
-                <button class="play" onclick="speakName()">
-                    ▶
-                </button>
-
-            </div>
-
-        </main>
-    </section>
-
-
-    <!-- FAMOUS -->
-    <section id="famous" class="page-section">
-
-        <header class="hero">
-            <div class="hero-content" style="margin-top:50px;">
-                <h1>Famous<br>Andys</h1>
-                <div class="subtitle">
-                    People who share the name
-                </div>
-            </div>
-        </header>
-
-        <main class="content">
-
-            <div class="section-title">
-                Famous People Named Andy
-            </div>
-
-            <div class="person">
-                <div class="person-icon">🎬</div>
-                <div>
-                    <strong>Andy Griffith</strong>
-                    <small>Actor & entertainer</small>
-                </div>
-            </div>
-
-            <div class="person">
-                <div class="person-icon">🎨</div>
-                <div>
-                    <strong>Andy Warhol</strong>
-                    <small>Artist & cultural icon</small>
-                </div>
-            </div>
-
-            <div class="person">
-                <div class="person-icon">🎭</div>
-                <div>
-                    <strong>Andy Serkis</strong>
-                    <small>Actor & filmmaker</small>
-                </div>
-            </div>
-
-            <div class="person">
-                <div class="person-icon">🎸</div>
-                <div>
-                    <strong>Andy Summers</strong>
-                    <small>Musician & guitarist</small>
-                </div>
-            </div>
-
-            <div class="person">
-                <div class="person-icon">🏒</div>
-                <div>
-                    <strong>Andy Bathgate</strong>
-                    <small>Hockey legend</small>
-                </div>
-            </div>
-
-            <div class="fact-box">
-                <h3>⭐ The Name Andy</h3>
-                <p>
-                    From artists and actors to musicians and athletes,
-                    Andy has been used by people in many different fields.
-                </p>
-            </div>
-
-        </main>
-    </section>
-
-
-    <!-- ABOUT -->
-    <section id="about" class="page-section">
-
-        <header class="hero">
-            <div class="hero-content" style="margin-top:50px;">
-                <h1>About<br>Andy</h1>
-                <div class="subtitle">
-                    A little name with a long history
-                </div>
-            </div>
-        </header>
-
-        <main class="content">
-
-            <div class="meaning-card">
-
-                <div class="label">Name Family</div>
-
-                <div class="meaning">
-                    Andreas → Andrew → Andy
-                </div>
-
-                <p class="meaning-description">
-                    The modern name Andy is commonly used as a friendly
-                    short form of Andrew. Andrew traces its history back
-                    to the ancient Greek name Andreas.
-                </p>
-
-            </div>
-
-            <div class="section-title">
-                Quick Summary
-            </div>
-
-            <div class="timeline">
-
-                <div class="timeline-item">
-                    <div class="year">1</div>
-                    <div class="timeline-text">
-                        <strong>Origin:</strong> Greek
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="year">2</div>
-                    <div class="timeline-text">
-                        <strong>Root:</strong> Andreas
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="year">3</div>
-                    <div class="timeline-text">
-                        <strong>English form:</strong> Andrew
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="year">4</div>
-                    <div class="timeline-text">
-                        <strong>Nickname:</strong> Andy
-                    </div>
-                </div>
-
-            </div>
-
-        </main>
-    </section>
-
-
-    <!-- NAVIGATION -->
-    <nav class="bottom-nav">
-
-        <button class="nav-btn active" onclick="showPage('home', this)">
-            <div>🏠</div>
-            Origin
-        </button>
-
-        <button class="nav-btn" onclick="showPage('traits', this)">
-            <div>✨</div>
-            Traits
-        </button>
-
-        <button class="nav-btn" onclick="showPage('famous', this)">
-            <div>⭐</div>
-            Famous
-        </button>
-
-        <button class="nav-btn" onclick="showPage('about', this)">
-            <div>📖</div>
-            About
-        </button>
-
-    </nav>
-
-</div>
-
-
+<header class="topbar">
+  <a class="brand" href="#home" aria-label="Chevrolet Chevelle SS home"><span class="bowtie">✦</span><span>CHEVROLET</span></a>
+  <nav class="nav" aria-label="Main navigation">
+    <a class="active" href="#home">Home</a><a href="#overview">Overview</a><a href="#specs">Specs</a><a href="#gallery">Gallery</a><a href="#history">History</a><a href="#features">Features</a><a href="#videos">Videos</a><a href="#links">Links</a>
+  </nav>
+  <form class="search" id="searchForm" role="search"><input id="siteSearch" type="search" placeholder="Search Chevelle SS..." aria-label="Search this page"><button aria-label="Search" type="submit">⌕</button></form>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div>
+    <div class="eyebrow">CHEVROLET CLASSIC MUSCLE</div>
+    <h1>CHEVELLE <span>SS</span></h1>
+    <div class="rule"></div>
+    <p class="lead">AN AMERICAN ICON. A LEGEND ON WHEELS.</p>
+    <p>The Chevrolet Chevelle SS (Super Sport) became one of the most celebrated American muscle cars. With bold styling, powerful V8 options and a unmistakable road presence, it remains a favorite among classic-car fans.</p>
+    <a class="btn" href="#overview">Explore the Chevelle SS <span>›</span></a>
+  </div>
+  <div class="hero-art"><img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=85" alt="Classic-style performance coupe on a scenic road" onerror="this.style.display='none'"></div>
+</section>
+
+<section class="section" id="overview">
+  <div class="overview-grid">
+    <article class="card searchable">
+      <h2>Overview</h2>
+      <p>The Chevelle was introduced for the 1964 model year. The SS package added performance-oriented styling and equipment, and the name became especially famous during the late-1960s and early-1970s muscle-car era.</p>
+      <p>Exact equipment and performance depend on model year, engine, transmission, and whether a car is factory-original or modified.</p>
+      <div class="stats">
+        <div class="stat"><div class="symbol">⚙</div><strong>V8 Power</strong><small>Multiple engine options</small></div>
+        <div class="stat"><div class="symbol">◉</div><strong>Performance</strong><small>Muscle-car character</small></div>
+        <div class="stat"><div class="symbol">★</div><strong>Legacy</strong><small>Classic collector icon</small></div>
+      </div>
+    </article>
+    <article class="card specs searchable" id="specs">
+      <h3>Key Specifications</h3>
+      <div class="spec"><div class="ico">⚙️</div><div><strong>Engine options</strong><span>Inline-six and V8s, depending on year and trim</span></div></div>
+      <div class="spec"><div class="ico">🏁</div><div><strong>Notable V8s</strong><span>327, 350, 396, 402 and 454 cu in across selected years</span></div></div>
+      <div class="spec"><div class="ico">🔧</div><div><strong>Transmission</strong><span>Manual and automatic options varied by model</span></div></div>
+      <div class="spec"><div class="ico">🚘</div><div><strong>Body styles</strong><span>Hardtop coupe, convertible and other Chevelle variants</span></div></div>
+      <div class="spec"><div class="ico">📅</div><div><strong>Chevelle era</strong><span>1964–1977 (SS availability varied by year)</span></div></div>
+      <p class="notice">Specifications are general historical context. Verify individual vehicle details by VIN, build documentation and model year.</p>
+    </article>
+    <article class="card quick searchable">
+      <h3>Quick Facts</h3>
+      <div class="fact"><div class="ico">▦</div><div><strong>Introduced</strong><span>1964 model year</span></div></div>
+      <div class="fact"><div class="ico">🚗</div><div><strong>Best-known era</strong><span>Late 1960s to early 1970s</span></div></div>
+      <div class="fact"><div class="ico">⚙</div><div><strong>Performance models</strong><span>SS 396 and SS 454 are especially famous</span></div></div>
+      <div class="fact"><div class="ico">★</div><div><strong>SS means</strong><span>Super Sport</span></div></div>
+    </article>
+  </div>
+</section>
+
+<section class="section dark" id="gallery">
+  <div class="gallery-head"><div><h2>Gallery</h2><p class="sub">A visual tour of classic American performance-car styling.</p></div><button class="btn" id="viewAll">View All Photos ↗</button></div>
+  <div class="gallery-grid" id="galleryGrid">
+    <button class="photo" data-caption="Classic muscle-car front styling"><img loading="lazy" src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=700&q=80" alt="Classic performance car front view"><span>Front styling</span></button>
+    <button class="photo" data-caption="Red performance coupe"><img loading="lazy" src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=700&q=80" alt="Red sports coupe"><span>Red coupe</span></button>
+    <button class="photo" data-caption="Powerful coupe on the road"><img loading="lazy" src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=700&q=80" alt="Performance coupe on road"><span>Road presence</span></button>
+    <button class="photo" data-caption="Performance car details"><img loading="lazy" src="https://images.unsplash.com/photo-1489824904134-891ab64532f1?auto=format&fit=crop&w=700&q=80" alt="Automotive detail"><span>Design details</span></button>
+    <button class="photo" data-caption="Classic car in a scenic setting"><img loading="lazy" src="https://images.unsplash.com/photo-1507136566006-cfc505b114fc?auto=format&fit=crop&w=700&q=80" alt="Classic car outdoors"><span>Classic appeal</span></button>
+  </div>
+  <p class="notice">Gallery images are illustrative automotive photography and may not depict an authentic Chevrolet Chevelle SS. Use the links below for model-specific references.</p>
+</section>
+
+<section class="section" id="history">
+ <div class="history-grid">
+  <article class="searchable">
+   <h2>History Timeline</h2>
+   <p class="sub">Milestones in the Chevelle story</p>
+   <ol class="timeline">
+    <li><strong>1964</strong> The Chevelle debuts as Chevrolet's mid-size car line.</li>
+    <li><strong>1966</strong> A redesigned body arrives; SS models become increasingly performance-focused.</li>
+    <li><strong>1968</strong> A new generation brings a shorter wheelbase and distinctive fastback-inspired styling.</li>
+    <li><strong>1970</strong> The SS 454 becomes a standout high-performance option.</li>
+    <li><strong>1973+</strong> Styling and regulations evolve; the classic muscle-car era changes.</li>
+   </ol>
+  </article>
+  <article class="searchable" id="features">
+   <h2>Performance &amp; Features</h2>
+   <p class="sub">What made the SS special?</p>
+   <div class="feature"><div class="ico">⚙️</div><div><strong>V8 engine choices</strong><span>Big-block and small-block engines were available in selected years.</span></div></div>
+   <div class="feature"><div class="ico">🏁</div><div><strong>Sporty styling</strong><span>Distinctive SS badges, bold proportions and period-correct trim.</span></div></div>
+   <div class="feature"><div class="ico">🛠️</div><div><strong>Performance hardware</strong><span>Suspension, brakes and driveline equipment varied by configuration.</span></div></div>
+   <div class="feature"><div class="ico">🪑</div><div><strong>Classic interior</strong><span>Period dashboard design and available comfort features.</span></div></div>
+   <div class="feature"><div class="ico">🚘</div><div><strong>Collector appeal</strong><span>Condition, originality, documentation and rarity influence value.</span></div></div>
+   <a class="btn" href="https://www.hemmings.com/" target="_blank" rel="noopener noreferrer">Explore Classic Cars ↗</a>
+  </article>
+  <article class="video-col searchable" id="videos">
+   <h2>Watch &amp; Learn</h2><p class="sub">Explore walkarounds, restorations and engine sounds.</p>
+   <div class="video-card"><a href="https://www.youtube.com/results?search_query=Chevrolet+Chevelle+SS+walkaround+review" target="_blank" rel="noopener noreferrer" aria-label="Find Chevelle SS videos on YouTube"><img loading="lazy" src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=900&q=80" alt="Performance car video preview"></a><div class="video-info"><strong>Chevelle SS video collection</strong><p>Open YouTube search results for reviews, restoration stories and driving videos.</p><a class="btn" href="https://www.youtube.com/results?search_query=Chevrolet+Chevelle+SS+walkaround+review" target="_blank" rel="noopener noreferrer">Watch Videos ↗</a></div></div>
+  </article>
+ </div>
+</section>
+
+<section class="section links" id="links">
+ <h2>Helpful Links</h2><p class="sub">Explore trusted resources for history, specifications, parts and classic-car listings.</p>
+ <div class="link-grid">
+  <a class="resource" href="https://www.chevrolet.com/" target="_blank" rel="noopener noreferrer"><span class="ico">✦</span><span><strong>Chevrolet Official Site</strong><small>chevrolet.com</small></span></a>
+  <a class="resource" href="https://www.classic.com/m/chevrolet/chevelle/" target="_blank" rel="noopener noreferrer"><span class="ico">🚘</span><span><strong>CLASSIC.COM</strong><small>Market data and listings</small></span></a>
+  <a class="resource" href="https://www.hemmings.com/" target="_blank" rel="noopener noreferrer"><span class="ico">🏁</span><span><strong>Hemmings</strong><small>Classic cars and classifieds</small></span></a>
+  <a class="resource" href="https://www.musclecarclub.com/" target="_blank" rel="noopener noreferrer"><span class="ico">⚙️</span><span><strong>Muscle Car Club</strong><small>Muscle-car reference</small></span></a>
+  <a class="resource" href="https://www.nadaguides.com/Cars" target="_blank" rel="noopener noreferrer"><span class="ico">💵</span><span><strong>J.D. Power Values</strong><small>Vehicle valuation resources</small></span></a>
+  <a class="resource" href="https://www.youtube.com/results?search_query=Chevelle+SS+restoration" target="_blank" rel="noopener noreferrer"><span class="ico">▶</span><span><strong>Restoration Videos</strong><small>YouTube search</small></span></a>
+  <a class="resource" href="https://en.wikipedia.org/wiki/Chevrolet_Chevelle" target="_blank" rel="noopener noreferrer"><span class="ico">ⓘ</span><span><strong>Chevelle History</strong><small>Wikipedia overview</small></span></a>
+  <a class="resource" href="https://www.google.com/search?q=Chevrolet+Chevelle+SS+VIN+decoder" target="_blank" rel="noopener noreferrer"><span class="ico">🔎</span><span><strong>VIN &amp; Authenticity</strong><small>Research identification guides</small></span></a>
+ </div>
+ <p class="notice">This is an independent fan information page and is not affiliated with or endorsed by Chevrolet or General Motors. Historical figures and equipment can vary by year and configuration; confirm details with reliable model-specific documentation.</p>
+</section>
+</main>
+
+<footer class="footer">
+ <div><div class="brand"><span class="bowtie">✦</span><span>CHEVELLE SS</span></div><p>Super Sport · An American classic</p></div>
+ <nav aria-label="Footer navigation"><a href="#home">Home</a><a href="#overview">Overview</a><a href="#specs">Specs</a><a href="#gallery">Gallery</a><a href="#history">History</a><a href="#features">Features</a><a href="#links">Links</a></nav>
+ <div>1Code © <span id="year"></span> </div>
+</footer>
+
+<div class="modal" id="photoModal" role="dialog" aria-modal="true" aria-label="Gallery image viewer"><div class="modal-box"><button class="close" id="closeModal" aria-label="Close image viewer">×</button><img id="modalImage" alt=""><div class="modal-caption"><strong id="modalCaption">Gallery image</strong><span id="modalCount"></span></div></div></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>
+(() => {
+ const $ = s => document.querySelector(s);
+ const $$ = s => [...document.querySelectorAll(s)];
+ $('#year').textContent = new Date().getFullYear();
+ const toast = message => { const el=$('#toast'); el.textContent=message; el.classList.add('show'); clearTimeout(toast.timer); toast.timer=setTimeout(()=>el.classList.remove('show'),2400); };
 
-const facts = [
-    "Andy is commonly used as a short form of Andrew.",
-    "Andrew comes from the ancient Greek name Andreas.",
-    "The Greek root associated with Andreas relates to strength and bravery.",
-    "Andy is also used as a standalone given name.",
-    "Andrew is traditionally associated with Saint Andrew.",
-    "Andy is used in many English-speaking countries.",
-    "Andreas, Andrew and Andy belong to the same name family.",
-    "Andy has a friendly, informal sound while retaining a classic history."
-];
+ // Smooth section navigation and active link indication
+ $$('.nav a').forEach(link => link.addEventListener('click', () => {
+   $$('.nav a').forEach(a=>a.classList.remove('active')); link.classList.add('active');
+ }));
+ const sections = $$('.hero[id], main section[id]');
+ if ('IntersectionObserver' in window) {
+   const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+     if(entry.isIntersecting){ const id=entry.target.id; $$('.nav a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+id)); }
+   }), {rootMargin:'-25% 0px -65% 0px'});
+   sections.forEach(s=>observer.observe(s));
+ }
 
-function showPage(pageId, button) {
+ // Search within the website; show matched sections and jump to the first match.
+ $('#searchForm').addEventListener('submit', e => {
+   e.preventDefault();
+   const query=$('#siteSearch').value.trim().toLowerCase();
+   if(!query){toast('Enter a topic to search.');return;}
+   const candidates=$$('.searchable, #gallery, #history, #features, #videos, #links');
+   const match=candidates.find(el=>el.innerText.toLowerCase().includes(query));
+   if(match){match.scrollIntoView({behavior:'smooth',block:'start'});toast('Found information matching “'+$('#siteSearch').value.trim()+'”.');}
+   else toast('No match found. Try “engine”, “history”, “454” or “gallery”.');
+ });
 
-    document.querySelectorAll(".page-section")
-        .forEach(section => {
-            section.classList.remove("active");
-        });
-
-    document.getElementById(pageId)
-        .classList.add("active");
-
-    document.querySelectorAll(".nav-btn")
-        .forEach(btn => {
-            btn.classList.remove("active");
-        });
-
-    button.classList.add("active");
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-}
-
-
-function newFact() {
-
-    const factElement = document.getElementById("fact");
-
-    const randomIndex =
-        Math.floor(Math.random() * facts.length);
-
-    factElement.style.opacity = "0";
-
-    setTimeout(() => {
-
-        factElement.textContent =
-            facts[randomIndex];
-
-        factElement.style.opacity = "1";
-
-    }, 180);
-}
-
-
-function speakName() {
-
-    if (!("speechSynthesis" in window)) {
-        alert("Text-to-speech is not supported on this device.");
-        return;
-    }
-
-    window.speechSynthesis.cancel();
-
-    const speech =
-        new SpeechSynthesisUtterance("Andy");
-
-    speech.lang = "en-US";
-    speech.rate = 0.8;
-    speech.pitch = 1;
-
-    window.speechSynthesis.speak(speech);
-}
-
-
-// Keyboard shortcuts
-document.addEventListener("keydown", event => {
-
-    if (event.key === "1") {
-        document.querySelectorAll(".nav-btn")[0].click();
-    }
-
-    if (event.key === "2") {
-        document.querySelectorAll(".nav-btn")[1].click();
-    }
-
-    if (event.key === "3") {
-        document.querySelectorAll(".nav-btn")[2].click();
-    }
-
-    if (event.key === "4") {
-        document.querySelectorAll(".nav-btn")[3].click();
-    }
-
-});
-
+ // Clickable gallery modal with next/previous image cycling.
+ const photos=$$('.photo'); let current=0;
+ function openPhoto(index){
+   current=(index+photos.length)%photos.length;
+   const button=photos[current], image=button.querySelector('img');
+   $('#modalImage').src=image.src; $('#modalImage').alt=image.alt;
+   $('#modalCaption').textContent=button.dataset.caption || image.alt;
+   $('#modalCount').textContent=(current+1)+' / '+photos.length;
+   $('#photoModal').classList.add('open'); document.body.style.overflow='hidden';
+ }
+ function closePhoto(){ $('#photoModal').classList.remove('open'); document.body.style.overflow=''; }
+ photos.forEach((p,i)=>p.addEventListener('click',()=>openPhoto(i)));
+ $('#viewAll').addEventListener('click',()=>openPhoto(0));
+ $('#closeModal').addEventListener('click',closePhoto);
+ $('#photoModal').addEventListener('click',e=>{if(e.target===$('#photoModal'))closePhoto();});
+ document.addEventListener('keydown',e=>{
+   if(!$('#photoModal').classList.contains('open'))return;
+   if(e.key==='Escape')closePhoto();
+   if(e.key==='ArrowRight')openPhoto(current+1);
+   if(e.key==='ArrowLeft')openPhoto(current-1);
+ });
+})();
 </script>
-
 </body>
 </html>
