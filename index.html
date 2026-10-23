@@ -1,188 +1,925 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Explore the Chevrolet Chevelle SS Super Sport: history, engines, specifications, gallery and classic muscle-car resources.">
-<title>Chevrolet Chevelle SS | Super Sport</title>
-<style>
-:root{--red:#e21b2d;--red2:#ff3042;--ink:#07131b;--panel:#10232e;--paper:#f3f6f8;--muted:#a9bac5;--line:#29414e;--blue:#dff1ff}
-*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:78px}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--paper);color:#10202a;line-height:1.55}a{color:inherit}button,input{font:inherit}.topbar{position:sticky;top:0;z-index:20;background:#06121a;color:white;border-bottom:1px solid #263b47;display:flex;align-items:center;gap:20px;padding:12px clamp(14px,4vw,42px)}.brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:.05em;white-space:nowrap}.bowtie{display:inline-grid;place-items:center;width:48px;height:25px;color:#f5c542;font-size:24px;text-shadow:1px 1px #8d5c00,-1px -1px #fff}.brand span:last-child{font-size:18px}.nav{display:flex;align-items:center;gap:4px;margin-left:auto}.nav a{padding:10px 11px;text-decoration:none;border-radius:6px;font-size:14px}.nav a:hover,.nav a.active{background:var(--red)}.search{display:flex;align-items:center;background:#fff;border-radius:30px;padding:4px 6px 4px 12px;min-width:190px}.search input{width:100%;min-width:0;border:0;outline:0;font-size:13px;color:#172b36}.search button{border:0;border-radius:50%;background:var(--red);color:#fff;width:30px;height:30px;cursor:pointer}.hero{color:white;min-height:440px;display:grid;grid-template-columns:1fr 1.15fr;align-items:center;gap:28px;padding:50px clamp(22px,5vw,70px);background:linear-gradient(90deg,rgba(3,13,20,.97),rgba(3,13,20,.85) 42%,rgba(3,13,20,.12)),url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1800&q=85') center/cover}.eyebrow{font-size:14px;letter-spacing:.22em;font-weight:800;color:#d8e6ed}.hero h1{font-size:clamp(42px,6vw,78px);line-height:.94;letter-spacing:-.04em;margin:12px 0}.hero h1 span{color:var(--red2)}.rule{height:4px;width:150px;background:var(--red);margin:22px 0}.hero p{max-width:560px;color:#e2ebef}.hero .lead{font-weight:800;font-size:18px}.btn{display:inline-flex;align-items:center;gap:12px;background:var(--red);color:white;border:0;border-radius:999px;padding:12px 20px;font-weight:800;text-decoration:none;cursor:pointer;transition:.2s}.btn:hover{background:#b80f20;transform:translateY(-1px)}.hero-art{min-height:250px;display:flex;align-items:center;justify-content:center}.hero-art img{width:100%;max-width:690px;filter:drop-shadow(0 22px 20px #0008);border-radius:12px;object-fit:cover;aspect-ratio:16/9}.section{padding:38px clamp(18px,4vw,44px)}.section h2{font-size:clamp(28px,3vw,40px);line-height:1.1;margin:0 0 8px;letter-spacing:-.03em}.sub{color:#536975;margin:0 0 22px}.overview-grid{display:grid;grid-template-columns:1.2fr 1fr .95fr;gap:18px}.card{background:#fff;border:1px solid #dbe4e9;border-radius:12px;padding:22px;box-shadow:0 6px 20px #1226330b}.card h3{margin:0 0 12px;font-size:20px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:24px}.stat{text-align:center;padding:14px 7px;border-right:1px solid #d4dde2}.stat:last-child{border:0}.stat .symbol{font-size:29px;color:var(--red);font-weight:900}.stat strong{display:block}.stat small{color:#607581}.specs{background:linear-gradient(135deg,#e1f2ff,#f4faff)}.spec{display:grid;grid-template-columns:40px 1fr;gap:10px;padding:10px 0;border-bottom:1px solid #c9dce7}.spec:last-child{border:0}.spec .ico{font-size:24px}.spec strong{display:block;font-size:14px}.spec span{font-size:14px;color:#3b5665}.quick{background:var(--ink);color:#fff}.quick .fact{display:grid;grid-template-columns:40px 1fr;gap:12px;align-items:center;border-top:1px solid #344955;padding:12px 0}.fact .ico{color:var(--red2);font-size:24px}.fact span{display:block;color:#cbd9df;font-size:13px}.dark{background:#08151d;color:#fff}.dark .sub{color:#b6c8d2}.gallery-head{display:flex;justify-content:space-between;align-items:center;gap:14px}.gallery-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}.photo{border:1px solid #30434d;border-radius:9px;overflow:hidden;background:#13252f;cursor:pointer;text-align:left;color:#fff;padding:0}.photo img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;transition:transform .25s}.photo:hover img{transform:scale(1.04)}.photo span{display:block;padding:9px 10px;font-size:13px}.history-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px}.timeline{list-style:none;margin:18px 0 0;padding:0 0 0 22px;border-left:2px solid var(--red)}.timeline li{position:relative;padding:0 0 20px 10px}.timeline li:before{content:"";position:absolute;left:-29px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--red);border:2px solid white}.timeline strong{display:inline-block;min-width:52px}.feature{display:grid;grid-template-columns:38px 1fr;gap:12px;padding:10px 0}.feature .ico{font-size:24px;color:var(--red)}.feature strong{display:block}.feature span{color:#536975;font-size:14px}.video-card{border-radius:10px;overflow:hidden;background:#07131b;color:white}.video-card img{width:100%;display:block;aspect-ratio:16/9;object-fit:cover}.video-card .video-info{padding:14px}.video-card a{color:white}.links{background:#e7f2f9}.link-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.resource{display:flex;gap:12px;align-items:center;background:#fff;border:1px solid #c9dce7;border-radius:9px;padding:13px;text-decoration:none;transition:.2s}.resource:hover{border-color:var(--red);transform:translateY(-2px)}.resource .ico{font-size:25px;color:#154a69}.resource strong{display:block;font-size:13px}.resource small{color:#1475bb;overflow-wrap:anywhere}.footer{background:#06121a;color:#d7e2e8;padding:25px clamp(18px,4vw,44px);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}.footer nav{display:flex;gap:14px;flex-wrap:wrap}.footer a{font-size:13px;text-decoration:none}.footer a:hover{color:#ff5361}.notice{font-size:12px;color:#70848e;margin-top:14px}.toast{position:fixed;bottom:20px;left:50%;transform:translate(-50%,20px);opacity:0;background:#07131b;color:#fff;padding:12px 18px;border-radius:9px;z-index:50;transition:.2s;pointer-events:none}.toast.show{opacity:1;transform:translate(-50%,0)}.modal{display:none;position:fixed;inset:0;z-index:40;background:#000d;align-items:center;justify-content:center;padding:20px}.modal.open{display:flex}.modal-box{max-width:900px;width:100%;background:#07131b;color:white;border-radius:12px;overflow:hidden;position:relative}.modal-box img{display:block;width:100%;max-height:70vh;object-fit:contain;background:#000}.modal-caption{padding:14px 18px;display:flex;justify-content:space-between;gap:10px}.close{position:absolute;top:10px;right:10px;border:0;background:#000b;color:white;border-radius:50%;width:38px;height:38px;font-size:22px;cursor:pointer}.empty{display:none;padding:20px;color:#fff;background:#172d38;border-radius:8px}
-@media(max-width:1050px){.topbar{flex-wrap:wrap}.nav{order:3;width:100%;overflow-x:auto;margin:0}.nav a{white-space:nowrap}.search{margin-left:auto}.hero{grid-template-columns:1fr}.hero-art{min-height:0}.hero-art img{max-width:650px}.overview-grid{grid-template-columns:1fr 1fr}.overview-grid .quick{grid-column:1/-1}.gallery-grid{grid-template-columns:repeat(3,1fr)}.history-grid{grid-template-columns:1fr 1fr}.video-col{grid-column:1/-1}.link-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:600px){.topbar{gap:10px;padding:10px 12px}.brand span:last-child{font-size:14px}.bowtie{width:34px}.search{min-width:0;width:100%;order:2}.nav{order:3}.hero{padding:38px 20px;min-height:0}.hero h1{font-size:48px}.hero-art img{aspect-ratio:4/3}.section{padding:28px 15px}.overview-grid,.history-grid{grid-template-columns:1fr}.overview-grid .quick,.video-col{grid-column:auto}.stats{gap:0}.stat{padding:10px 3px}.gallery-grid{grid-template-columns:repeat(2,1fr);gap:8px}.gallery-head{align-items:flex-start;flex-direction:column}.link-grid{grid-template-columns:1fr}.footer{display:block}.footer nav{margin-top:15px}.card{padding:18px}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore the history, specifications, design and legacy of the legendary 1969 Ford Mustang Boss 429.">
+  <title>1969 Ford Mustang Boss 429 | American Muscle</title>
+
+  <style>
+    :root {
+      --red: #d92332;
+      --dark-red: #9d1420;
+      --black: #101113;
+      --panel: #191b1f;
+      --panel2: #22252a;
+      --white: #f5f5f5;
+      --muted: #a7abb2;
+      --gold: #d5b36a;
+      --border: #35383e;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; scroll-padding-top: 85px; }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--black);
+      color: var(--white);
+      line-height: 1.65;
+    }
+
+    a { color: inherit; }
+
+    button { font: inherit; }
+
+    .container {
+      width: min(1120px, 92%);
+      margin: auto;
+    }
+
+    /* Navigation */
+    header {
+      background: rgba(16,17,19,.96);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+    }
+
+    .navbar {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      text-decoration: none;
+      font-weight: 900;
+      font-size: 1.12rem;
+      letter-spacing: 1px;
+    }
+
+    .brand span { color: var(--red); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #d7d7d7;
+      font-size: .85rem;
+      font-weight: bold;
+      text-decoration: none;
+      transition: color .2s;
+    }
+
+    .nav-links a:hover { color: var(--red); }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      color: white;
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 590px;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at 82% 42%, rgba(217,35,50,.28), transparent 38%),
+        linear-gradient(120deg, #111214 10%, #242124 55%, #151416 100%);
+      border-bottom: 4px solid var(--red);
+    }
+
+    .hero::before {
+      content: "429";
+      position: absolute;
+      right: -15px;
+      top: 35px;
+      color: rgba(255,255,255,.035);
+      font-weight: 900;
+      font-size: clamp(9rem, 27vw, 24rem);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 730px;
+      padding: 75px 0;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      color: var(--gold);
+      font-size: .78rem;
+      font-weight: 900;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: clamp(2.7rem, 7vw, 5.5rem);
+      line-height: 1.02;
+      letter-spacing: -2px;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+
+    h1 span { color: var(--red); }
+
+    .hero p {
+      color: #d1d1d1;
+      max-width: 600px;
+      font-size: 1.06rem;
+      margin-bottom: 30px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 20px;
+      border-radius: 5px;
+      border: 1px solid var(--red);
+      background: var(--red);
+      color: white;
+      text-decoration: none;
+      font-weight: 800;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .btn:hover { background: var(--dark-red); transform: translateY(-2px); }
+
+    .btn-outline { background: transparent; border-color: #74777d; }
+    .btn-outline:hover { background: var(--panel2); border-color: white; }
+
+    /* Quick facts */
+    .quick-facts {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      background: var(--panel);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .fact {
+      text-align: center;
+      padding: 27px 12px;
+      border-right: 1px solid var(--border);
+    }
+
+    .fact:last-child { border: none; }
+
+    .fact strong {
+      display: block;
+      font-size: clamp(1.4rem, 3vw, 2.15rem);
+      color: var(--red);
+      line-height: 1.3;
+    }
+
+    .fact span {
+      color: var(--muted);
+      font-size: .77rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* General sections */
+    section { padding: 78px 0; }
+
+    .section-heading { margin-bottom: 32px; }
+
+    .section-heading .eyebrow { margin-bottom: 8px; }
+
+    h2 {
+      font-size: clamp(1.9rem, 4vw, 3rem);
+      line-height: 1.15;
+      margin-bottom: 14px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      max-width: 680px;
+    }
+
+    .accent-line {
+      height: 4px;
+      width: 60px;
+      background: var(--red);
+      margin: 17px 0;
+    }
+
+    .history-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 35px;
+      align-items: start;
+    }
+
+    .history-copy p {
+      color: #c4c6ca;
+      margin-bottom: 17px;
+    }
+
+    .history-card {
+      padding: 27px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--red);
+      border-radius: 8px;
+    }
+
+    .history-card h3 { margin-bottom: 15px; }
+
+    .history-card ul { padding-left: 20px; color: #c4c6ca; }
+    .history-card li { margin: 9px 0; }
+
+    /* Specs */
+    #specifications { background: #151619; }
+
+    .spec-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+
+    .spec-panel {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--panel);
+    }
+
+    .spec-panel h3 {
+      padding: 18px 20px;
+      background: var(--red);
+      font-size: 1.05rem;
+    }
+
+    .spec-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .spec-row:last-child { border-bottom: none; }
+
+    .spec-row span { color: var(--muted); }
+    .spec-row strong { text-align: right; }
+
+    .note {
+      color: var(--muted);
+      font-size: .85rem;
+      margin-top: 20px;
+    }
+
+    /* Features */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .feature {
+      padding: 25px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      transition: transform .2s, border-color .2s;
+    }
+
+    .feature:hover { transform: translateY(-4px); border-color: var(--red); }
+
+    .feature-icon {
+      font-size: 1.9rem;
+      margin-bottom: 13px;
+    }
+
+    .feature h3 { margin-bottom: 9px; }
+
+    .feature p { color: var(--muted); font-size: .93rem; }
+
+    /* Gallery */
+    #gallery { background: #151619; }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .gallery-item {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      min-height: 210px;
+      padding: 24px;
+      border: 1px solid #414149;
+      border-radius: 8px;
+      text-decoration: none;
+      overflow: hidden;
+      background:
+        linear-gradient(0deg, rgba(0,0,0,.9), rgba(0,0,0,.12)),
+        radial-gradient(ellipse at 70% 25%, #753039, #28252a 65%);
+      transition: border-color .2s, transform .2s;
+    }
+
+    .gallery-item:nth-child(2) {
+      background:
+        linear-gradient(0deg, rgba(0,0,0,.9), rgba(0,0,0,.1)),
+        radial-gradient(ellipse at 25% 25%, #776144, #29272a 65%);
+    }
+
+    .gallery-item:nth-child(3) {
+      background:
+        linear-gradient(0deg, rgba(0,0,0,.9), rgba(0,0,0,.1)),
+        radial-gradient(ellipse at 75% 25%, #3e5364, #25262a 65%);
+    }
+
+    .gallery-item:nth-child(4) {
+      background:
+        linear-gradient(0deg, rgba(0,0,0,.9), rgba(0,0,0,.1)),
+        radial-gradient(ellipse at 25% 25%, #615c50, #25252a 65%);
+    }
+
+    .gallery-item:hover { border-color: var(--red); transform: translateY(-3px); }
+
+    .gallery-item span {
+      color: var(--gold);
+      font-size: .72rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .gallery-item h3 { font-size: 1.3rem; margin-top: 5px; }
+    .gallery-item p { color: #d0d0d0; font-size: .88rem; margin-top: 5px; }
+
+    /* Legacy */
+    .legacy-banner {
+      padding: 35px;
+      background: linear-gradient(110deg, #8e101c, #d92332 70%, #a91723);
+      border-radius: 8px;
+    }
+
+    .legacy-banner h2 { margin-bottom: 12px; }
+    .legacy-banner p { max-width: 760px; color: #fff0f0; }
+
+    /* Resources */
+    .resource-list { display: grid; gap: 12px; }
+
+    .resource-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 18px 20px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      text-decoration: none;
+      transition: .2s;
+    }
+
+    .resource-link:hover { border-color: var(--red); background: var(--panel2); }
+
+    .resource-link small { display: block; color: var(--muted); margin-top: 3px; }
+    .resource-link .arrow { color: var(--red); font-size: 1.4rem; }
+
+    /* Footer */
+    footer {
+      padding: 32px 0;
+      background: #0b0c0e;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    footer p { color: var(--muted); font-size: .85rem; }
+
+    footer a { color: white; text-decoration: none; }
+    footer a:hover { color: var(--red); }
+
+    #backToTop {
+      position: fixed;
+      bottom: 22px;
+      right: 22px;
+      width: 45px;
+      height: 45px;
+      border: none;
+      border-radius: 50%;
+      color: white;
+      background: var(--red);
+      font-size: 1.3rem;
+      cursor: pointer;
+      box-shadow: 0 4px 18px #0008;
+      display: none;
+      z-index: 90;
+    }
+
+    #backToTop.visible { display: block; }
+
+    :focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
+
+    @media (max-width: 760px) {
+      .menu-toggle { display: block; }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 71px;
+        left: 0;
+        right: 0;
+        padding: 20px 5%;
+        background: #121315;
+        border-bottom: 1px solid var(--border);
+        align-items: stretch;
+        flex-direction: column;
+        gap: 0;
+      }
+
+      .nav-links.open { display: flex; }
+
+      .nav-links a { display: block; padding: 12px 0; }
+
+      .hero { min-height: 510px; }
+      .quick-facts { grid-template-columns: repeat(2, 1fr); }
+      .fact:nth-child(2) { border-right: none; }
+      .fact:nth-child(-n+2) { border-bottom: 1px solid var(--border); }
+      .history-grid, .spec-layout { grid-template-columns: 1fr; }
+      .features-grid { grid-template-columns: 1fr 1fr; }
+      section { padding: 58px 0; }
+    }
+
+    @media (max-width: 480px) {
+      h1 { letter-spacing: -1px; }
+      .features-grid, .gallery-grid { grid-template-columns: 1fr; }
+      .gallery-item { min-height: 180px; }
+      .hero-content { padding: 60px 0; }
+      .legacy-banner { padding: 25px; }
+      .spec-row { padding: 13px; font-size: .9rem; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<header class="topbar">
-  <a class="brand" href="#home" aria-label="Chevrolet Chevelle SS home"><span class="bowtie">✦</span><span>CHEVROLET</span></a>
-  <nav class="nav" aria-label="Main navigation">
-    <a class="active" href="#home">Home</a><a href="#overview">Overview</a><a href="#specs">Specs</a><a href="#gallery">Gallery</a><a href="#history">History</a><a href="#features">Features</a><a href="#videos">Videos</a><a href="#links">Links</a>
-  </nav>
-  <form class="search" id="searchForm" role="search"><input id="siteSearch" type="search" placeholder="Search Chevelle SS..." aria-label="Search this page"><button aria-label="Search" type="submit">⌕</button></form>
-</header>
+  <header>
+    <nav class="navbar container" aria-label="Main navigation">
+      <a class="brand" href="#home">BOSS <span>429</span></a>
 
-<main>
-<section class="hero" id="home">
-  <div>
-    <div class="eyebrow">CHEVROLET CLASSIC MUSCLE</div>
-    <h1>CHEVELLE <span>SS</span></h1>
-    <div class="rule"></div>
-    <p class="lead">AN AMERICAN ICON. A LEGEND ON WHEELS.</p>
-    <p>The Chevrolet Chevelle SS (Super Sport) became one of the most celebrated American muscle cars. With bold styling, powerful V8 options and a unmistakable road presence, it remains a favorite among classic-car fans.</p>
-    <a class="btn" href="#overview">Explore the Chevelle SS <span>›</span></a>
-  </div>
-  <div class="hero-art"><img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=85" alt="Classic-style performance coupe on a scenic road" onerror="this.style.display='none'"></div>
-</section>
+      <button class="menu-toggle" id="menuToggle"
+        aria-label="Open navigation menu" aria-expanded="false"
+        aria-controls="navLinks">☰ Menu</button>
 
-<section class="section" id="overview">
-  <div class="overview-grid">
-    <article class="card searchable">
-      <h2>Overview</h2>
-      <p>The Chevelle was introduced for the 1964 model year. The SS package added performance-oriented styling and equipment, and the name became especially famous during the late-1960s and early-1970s muscle-car era.</p>
-      <p>Exact equipment and performance depend on model year, engine, transmission, and whether a car is factory-original or modified.</p>
-      <div class="stats">
-        <div class="stat"><div class="symbol">⚙</div><strong>V8 Power</strong><small>Multiple engine options</small></div>
-        <div class="stat"><div class="symbol">◉</div><strong>Performance</strong><small>Muscle-car character</small></div>
-        <div class="stat"><div class="symbol">★</div><strong>Legacy</strong><small>Classic collector icon</small></div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#history">History</a></li>
+        <li><a href="#specifications">Specifications</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#resources">Resources</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container">
+        <div class="hero-content">
+          <span class="eyebrow">1969 • American Automotive Legend</span>
+          <h1>Ford Mustang<br><span>Boss 429</span></h1>
+          <div class="accent-line"></div>
+          <p>
+            Born from NASCAR ambitions and built for the streets, the
+            Boss 429 became one of the most distinctive and sought-after
+            muscle cars of the golden age of American performance.
+          </p>
+          <div class="actions">
+            <a class="btn" href="#specifications">Explore Specifications ↓</a>
+            <a class="btn btn-outline"
+              href="https://en.wikipedia.org/wiki/Ford_Mustang_Boss_429"
+              target="_blank" rel="noopener noreferrer">Read More ↗</a>
+          </div>
+        </div>
       </div>
-    </article>
-    <article class="card specs searchable" id="specs">
-      <h3>Key Specifications</h3>
-      <div class="spec"><div class="ico">⚙️</div><div><strong>Engine options</strong><span>Inline-six and V8s, depending on year and trim</span></div></div>
-      <div class="spec"><div class="ico">🏁</div><div><strong>Notable V8s</strong><span>327, 350, 396, 402 and 454 cu in across selected years</span></div></div>
-      <div class="spec"><div class="ico">🔧</div><div><strong>Transmission</strong><span>Manual and automatic options varied by model</span></div></div>
-      <div class="spec"><div class="ico">🚘</div><div><strong>Body styles</strong><span>Hardtop coupe, convertible and other Chevelle variants</span></div></div>
-      <div class="spec"><div class="ico">📅</div><div><strong>Chevelle era</strong><span>1964–1977 (SS availability varied by year)</span></div></div>
-      <p class="notice">Specifications are general historical context. Verify individual vehicle details by VIN, build documentation and model year.</p>
-    </article>
-    <article class="card quick searchable">
-      <h3>Quick Facts</h3>
-      <div class="fact"><div class="ico">▦</div><div><strong>Introduced</strong><span>1964 model year</span></div></div>
-      <div class="fact"><div class="ico">🚗</div><div><strong>Best-known era</strong><span>Late 1960s to early 1970s</span></div></div>
-      <div class="fact"><div class="ico">⚙</div><div><strong>Performance models</strong><span>SS 396 and SS 454 are especially famous</span></div></div>
-      <div class="fact"><div class="ico">★</div><div><strong>SS means</strong><span>Super Sport</span></div></div>
-    </article>
-  </div>
-</section>
+    </section>
 
-<section class="section dark" id="gallery">
-  <div class="gallery-head"><div><h2>Gallery</h2><p class="sub">A visual tour of classic American performance-car styling.</p></div><button class="btn" id="viewAll">View All Photos ↗</button></div>
-  <div class="gallery-grid" id="galleryGrid">
-    <button class="photo" data-caption="Classic muscle-car front styling"><img loading="lazy" src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=700&q=80" alt="Classic performance car front view"><span>Front styling</span></button>
-    <button class="photo" data-caption="Red performance coupe"><img loading="lazy" src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=700&q=80" alt="Red sports coupe"><span>Red coupe</span></button>
-    <button class="photo" data-caption="Powerful coupe on the road"><img loading="lazy" src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=700&q=80" alt="Performance coupe on road"><span>Road presence</span></button>
-    <button class="photo" data-caption="Performance car details"><img loading="lazy" src="https://images.unsplash.com/photo-1489824904134-891ab64532f1?auto=format&fit=crop&w=700&q=80" alt="Automotive detail"><span>Design details</span></button>
-    <button class="photo" data-caption="Classic car in a scenic setting"><img loading="lazy" src="https://images.unsplash.com/photo-1507136566006-cfc505b114fc?auto=format&fit=crop&w=700&q=80" alt="Classic car outdoors"><span>Classic appeal</span></button>
-  </div>
-  <p class="notice">Gallery images are illustrative automotive photography and may not depict an authentic Chevrolet Chevelle SS. Use the links below for model-specific references.</p>
-</section>
+    <div class="quick-facts" aria-label="Quick facts">
+      <div class="fact">
+        <strong>429</strong>
+        <span>Cubic-Inch V8</span>
+      </div>
+      <div class="fact">
+        <strong>375 hp</strong>
+        <span>Factory-Rated Power</span>
+      </div>
+      <div class="fact">
+        <strong>4-Speed</strong>
+        <span>Manual Transmission</span>
+      </div>
+      <div class="fact">
+        <strong>859</strong>
+        <span>1969 Production</span>
+      </div>
+    </div>
 
-<section class="section" id="history">
- <div class="history-grid">
-  <article class="searchable">
-   <h2>History Timeline</h2>
-   <p class="sub">Milestones in the Chevelle story</p>
-   <ol class="timeline">
-    <li><strong>1964</strong> The Chevelle debuts as Chevrolet's mid-size car line.</li>
-    <li><strong>1966</strong> A redesigned body arrives; SS models become increasingly performance-focused.</li>
-    <li><strong>1968</strong> A new generation brings a shorter wheelbase and distinctive fastback-inspired styling.</li>
-    <li><strong>1970</strong> The SS 454 becomes a standout high-performance option.</li>
-    <li><strong>1973+</strong> Styling and regulations evolve; the classic muscle-car era changes.</li>
-   </ol>
-  </article>
-  <article class="searchable" id="features">
-   <h2>Performance &amp; Features</h2>
-   <p class="sub">What made the SS special?</p>
-   <div class="feature"><div class="ico">⚙️</div><div><strong>V8 engine choices</strong><span>Big-block and small-block engines were available in selected years.</span></div></div>
-   <div class="feature"><div class="ico">🏁</div><div><strong>Sporty styling</strong><span>Distinctive SS badges, bold proportions and period-correct trim.</span></div></div>
-   <div class="feature"><div class="ico">🛠️</div><div><strong>Performance hardware</strong><span>Suspension, brakes and driveline equipment varied by configuration.</span></div></div>
-   <div class="feature"><div class="ico">🪑</div><div><strong>Classic interior</strong><span>Period dashboard design and available comfort features.</span></div></div>
-   <div class="feature"><div class="ico">🚘</div><div><strong>Collector appeal</strong><span>Condition, originality, documentation and rarity influence value.</span></div></div>
-   <a class="btn" href="https://www.hemmings.com/" target="_blank" rel="noopener noreferrer">Explore Classic Cars ↗</a>
-  </article>
-  <article class="video-col searchable" id="videos">
-   <h2>Watch &amp; Learn</h2><p class="sub">Explore walkarounds, restorations and engine sounds.</p>
-   <div class="video-card"><a href="https://www.youtube.com/results?search_query=Chevrolet+Chevelle+SS+walkaround+review" target="_blank" rel="noopener noreferrer" aria-label="Find Chevelle SS videos on YouTube"><img loading="lazy" src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=900&q=80" alt="Performance car video preview"></a><div class="video-info"><strong>Chevelle SS video collection</strong><p>Open YouTube search results for reviews, restoration stories and driving videos.</p><a class="btn" href="https://www.youtube.com/results?search_query=Chevrolet+Chevelle+SS+walkaround+review" target="_blank" rel="noopener noreferrer">Watch Videos ↗</a></div></div>
-  </article>
- </div>
-</section>
+    <section id="history">
+      <div class="container">
+        <div class="history-grid">
+          <div class="history-copy">
+            <div class="section-heading">
+              <span class="eyebrow">The Story</span>
+              <h2>A Mustang With a Mission</h2>
+              <div class="accent-line"></div>
+            </div>
 
-<section class="section links" id="links">
- <h2>Helpful Links</h2><p class="sub">Explore trusted resources for history, specifications, parts and classic-car listings.</p>
- <div class="link-grid">
-  <a class="resource" href="https://www.chevrolet.com/" target="_blank" rel="noopener noreferrer"><span class="ico">✦</span><span><strong>Chevrolet Official Site</strong><small>chevrolet.com</small></span></a>
-  <a class="resource" href="https://www.classic.com/m/chevrolet/chevelle/" target="_blank" rel="noopener noreferrer"><span class="ico">🚘</span><span><strong>CLASSIC.COM</strong><small>Market data and listings</small></span></a>
-  <a class="resource" href="https://www.hemmings.com/" target="_blank" rel="noopener noreferrer"><span class="ico">🏁</span><span><strong>Hemmings</strong><small>Classic cars and classifieds</small></span></a>
-  <a class="resource" href="https://www.musclecarclub.com/" target="_blank" rel="noopener noreferrer"><span class="ico">⚙️</span><span><strong>Muscle Car Club</strong><small>Muscle-car reference</small></span></a>
-  <a class="resource" href="https://www.nadaguides.com/Cars" target="_blank" rel="noopener noreferrer"><span class="ico">💵</span><span><strong>J.D. Power Values</strong><small>Vehicle valuation resources</small></span></a>
-  <a class="resource" href="https://www.youtube.com/results?search_query=Chevelle+SS+restoration" target="_blank" rel="noopener noreferrer"><span class="ico">▶</span><span><strong>Restoration Videos</strong><small>YouTube search</small></span></a>
-  <a class="resource" href="https://en.wikipedia.org/wiki/Chevrolet_Chevelle" target="_blank" rel="noopener noreferrer"><span class="ico">ⓘ</span><span><strong>Chevelle History</strong><small>Wikipedia overview</small></span></a>
-  <a class="resource" href="https://www.google.com/search?q=Chevrolet+Chevelle+SS+VIN+decoder" target="_blank" rel="noopener noreferrer"><span class="ico">🔎</span><span><strong>VIN &amp; Authenticity</strong><small>Research identification guides</small></span></a>
- </div>
- <p class="notice">This is an independent fan information page and is not affiliated with or endorsed by Chevrolet or General Motors. Historical figures and equipment can vary by year and configuration; confirm details with reliable model-specific documentation.</p>
-</section>
-</main>
+            <p>
+              Introduced for the 1969 model year, the Ford Mustang Boss 429
+              was created to homologate Ford's new 429-cubic-inch V8 for
+              NASCAR competition. Homologation rules required a production
+              version of the engine to be offered in road cars.
+            </p>
 
-<footer class="footer">
- <div><div class="brand"><span class="bowtie">✦</span><span>CHEVELLE SS</span></div><p>Super Sport · An American classic</p></div>
- <nav aria-label="Footer navigation"><a href="#home">Home</a><a href="#overview">Overview</a><a href="#specs">Specs</a><a href="#gallery">Gallery</a><a href="#history">History</a><a href="#features">Features</a><a href="#links">Links</a></nav>
- <div>1Code © <span id="year"></span> </div>
-</footer>
+            <p>
+              The enormous engine could not simply be dropped into a
+              standard Mustang. Ford contracted Kar Kraft, a specialist
+              engineering company in Brighton, Michigan, to modify the cars
+              and install the big-block powerplant.
+            </p>
 
-<div class="modal" id="photoModal" role="dialog" aria-modal="true" aria-label="Gallery image viewer"><div class="modal-box"><button class="close" id="closeModal" aria-label="Close image viewer">×</button><img id="modalImage" alt=""><div class="modal-caption"><strong id="modalCaption">Gallery image</strong><span id="modalCount"></span></div></div></div>
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script>
-(() => {
- const $ = s => document.querySelector(s);
- const $$ = s => [...document.querySelectorAll(s)];
- $('#year').textContent = new Date().getFullYear();
- const toast = message => { const el=$('#toast'); el.textContent=message; el.classList.add('show'); clearTimeout(toast.timer); toast.timer=setTimeout(()=>el.classList.remove('show'),2400); };
+            <p>
+              Each Mustang received substantial changes, including
+              modifications to the engine compartment and suspension.
+              The result was a specialized performance machine that was
+              expensive, unusual, and unlike an ordinary Mustang.
+            </p>
 
- // Smooth section navigation and active link indication
- $$('.nav a').forEach(link => link.addEventListener('click', () => {
-   $$('.nav a').forEach(a=>a.classList.remove('active')); link.classList.add('active');
- }));
- const sections = $$('.hero[id], main section[id]');
- if ('IntersectionObserver' in window) {
-   const observer = new IntersectionObserver(entries => entries.forEach(entry => {
-     if(entry.isIntersecting){ const id=entry.target.id; $$('.nav a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+id)); }
-   }), {rootMargin:'-25% 0px -65% 0px'});
-   sections.forEach(s=>observer.observe(s));
- }
+            <p>
+              The Boss 429 continued into 1970, after which the program
+              ended. Its limited production and racing heritage helped
+              establish its reputation among serious collectors.
+            </p>
+          </div>
 
- // Search within the website; show matched sections and jump to the first match.
- $('#searchForm').addEventListener('submit', e => {
-   e.preventDefault();
-   const query=$('#siteSearch').value.trim().toLowerCase();
-   if(!query){toast('Enter a topic to search.');return;}
-   const candidates=$$('.searchable, #gallery, #history, #features, #videos, #links');
-   const match=candidates.find(el=>el.innerText.toLowerCase().includes(query));
-   if(match){match.scrollIntoView({behavior:'smooth',block:'start'});toast('Found information matching “'+$('#siteSearch').value.trim()+'”.');}
-   else toast('No match found. Try “engine”, “history”, “454” or “gallery”.');
- });
+          <aside class="history-card">
+            <h3>At a Glance</h3>
+            <ul>
+              <li><strong>Manufacturer:</strong> Ford Motor Company</li>
+              <li><strong>Model:</strong> Mustang Boss 429</li>
+              <li><strong>Model years:</strong> 1969–1970</li>
+              <li><strong>Assembly modifications:</strong> Kar Kraft</li>
+              <li><strong>Engine:</strong> 429 cu in V8</li>
+              <li><strong>Drive layout:</strong> Front engine, rear-wheel drive</li>
+              <li><strong>Purpose:</strong> NASCAR homologation special</li>
+              <li><strong>Body style:</strong> Two-door sports roof coupe</li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </section>
 
- // Clickable gallery modal with next/previous image cycling.
- const photos=$$('.photo'); let current=0;
- function openPhoto(index){
-   current=(index+photos.length)%photos.length;
-   const button=photos[current], image=button.querySelector('img');
-   $('#modalImage').src=image.src; $('#modalImage').alt=image.alt;
-   $('#modalCaption').textContent=button.dataset.caption || image.alt;
-   $('#modalCount').textContent=(current+1)+' / '+photos.length;
-   $('#photoModal').classList.add('open'); document.body.style.overflow='hidden';
- }
- function closePhoto(){ $('#photoModal').classList.remove('open'); document.body.style.overflow=''; }
- photos.forEach((p,i)=>p.addEventListener('click',()=>openPhoto(i)));
- $('#viewAll').addEventListener('click',()=>openPhoto(0));
- $('#closeModal').addEventListener('click',closePhoto);
- $('#photoModal').addEventListener('click',e=>{if(e.target===$('#photoModal'))closePhoto();});
- document.addEventListener('keydown',e=>{
-   if(!$('#photoModal').classList.contains('open'))return;
-   if(e.key==='Escape')closePhoto();
-   if(e.key==='ArrowRight')openPhoto(current+1);
-   if(e.key==='ArrowLeft')openPhoto(current-1);
- });
-})();
-</script>
+    <section id="specifications">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Under the Hood</span>
+          <h2>Technical Specifications</h2>
+          <p>
+            The Boss 429 combined a specialized big-block engine with
+            performance hardware and chassis modifications.
+          </p>
+          <div class="accent-line"></div>
+        </div>
+
+        <div class="spec-layout">
+          <div class="spec-panel">
+            <h3>Engine & Performance</h3>
+            <div class="spec-row"><span>Engine family</span><strong>Ford 385 Series V8</strong></div>
+            <div class="spec-row"><span>Displacement</span><strong>429 cu in / 7.0 L</strong></div>
+            <div class="spec-row"><span>Rated horsepower</span><strong>375 hp at 5,200 rpm</strong></div>
+            <div class="spec-row"><span>Rated torque</span><strong>450 lb-ft at 3,400 rpm</strong></div>
+            <div class="spec-row"><span>Compression ratio</span><strong>Approx. 10.5:1</strong></div>
+            <div class="spec-row"><span>Induction</span><strong>Four-barrel carburetor</strong></div>
+            <div class="spec-row"><span>Drive</span><strong>Rear-wheel drive</strong></div>
+          </div>
+
+          <div class="spec-panel">
+            <h3>Transmission & Chassis</h3>
+            <div class="spec-row"><span>Transmission</span><strong>4-speed manual</strong></div>
+            <div class="spec-row"><span>Front suspension</span><strong>Independent</strong></div>
+            <div class="spec-row"><span>Rear suspension</span><strong>Live axle</strong></div>
+            <div class="spec-row"><span>Front brakes</span><strong>Disc brakes</strong></div>
+            <div class="spec-row"><span>Body</span><strong>2-door SportsRoof</strong></div>
+            <div class="spec-row"><span>Fuel system</span><strong>Carbureted</strong></div>
+            <div class="spec-row"><span>Engine construction</span><strong>Cast-iron block, aluminum heads</strong></div>
+          </div>
+        </div>
+
+        <p class="note">
+          Specifications reflect commonly published factory figures for
+          the 1969 model. Original equipment, production details and
+          individual vehicle specifications can vary. Factory-rated
+          horsepower is not directly comparable to modern SAE net ratings.
+        </p>
+      </div>
+    </section>
+
+    <section id="features">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Built Different</span>
+          <h2>What Made It Special?</h2>
+          <div class="accent-line"></div>
+          <p>Six reasons the Boss 429 stands apart from other classic Mustangs.</p>
+        </div>
+
+        <div class="features-grid">
+          <article class="feature">
+            <div class="feature-icon">⚙️</div>
+            <h3>The 429 V8</h3>
+            <p>
+              A large-displacement engine featuring hemispherical-style
+              combustion chambers and large valves in its specialized
+              cylinder heads.
+            </p>
+          </article>
+
+          <article class="feature">
+            <div class="feature-icon">🏁</div>
+            <h3>NASCAR Heritage</h3>
+            <p>
+              Developed to support Ford's racing ambitions and its
+              homologation requirements for the 429 engine.
+            </p>
+          </article>
+
+          <article class="feature">
+            <div class="feature-icon">🔧</div>
+            <h3>Kar Kraft Engineering</h3>
+            <p>
+              Specialized assembly and extensive modifications made room
+              for the large engine and its supporting hardware.
+            </p>
+          </article>
+
+          <article class="feature">
+            <div class="feature-icon">💨</div>
+            <h3>Distinctive Hood</h3>
+            <p>
+              A functional-looking hood scoop, aggressive proportions
+              and model-specific details gave the car its unmistakable stance.
+            </p>
+          </article>
+
+          <article class="feature">
+            <div class="feature-icon">🛞</div>
+            <h3>Performance Chassis</h3>
+            <p>
+              Revised suspension and steering-related components helped
+              accommodate the demands of the specialized powertrain.
+            </p>
+          </article>
+
+          <article class="feature">
+            <div class="feature-icon">🏆</div>
+            <h3>Collector Status</h3>
+            <p>
+              Limited production, unique engineering and racing history
+              make authentic examples especially desirable to enthusiasts.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Discover the Details</span>
+          <h2>Boss 429 Gallery & Reference Photos</h2>
+          <p>
+            Open the links below to explore photographs of the car,
+            its engine and its original styling. These links lead to
+            external image collections rather than displaying local photos.
+          </p>
+          <div class="accent-line"></div>
+        </div>
+
+        <div class="gallery-grid">
+          <a class="gallery-item"
+             href="https://commons.wikimedia.org/wiki/Category:Ford_Mustang_Boss_429"
+             target="_blank" rel="noopener noreferrer">
+            <span>Exterior</span>
+            <h3>Classic Mustang Styling ↗</h3>
+            <p>Explore exterior photographs and different paint colors.</p>
+          </a>
+
+          <a class="gallery-item"
+             href="https://www.google.com/search?tbm=isch&q=1969+Ford+Mustang+Boss+429+engine"
+             target="_blank" rel="noopener noreferrer">
+            <span>Engine Bay</span>
+            <h3>The 429 V8 ↗</h3>
+            <p>See engine bays, cylinder heads and under-hood details.</p>
+          </a>
+
+          <a class="gallery-item"
+             href="https://www.google.com/search?tbm=isch&q=1969+Ford+Mustang+Boss+429+interior"
+             target="_blank" rel="noopener noreferrer">
+            <span>Interior</span>
+            <h3>Inside the Boss ↗</h3>
+            <p>Explore the dashboard, steering wheel and cabin.</p>
+          </a>
+
+          <a class="gallery-item"
+             href="https://www.google.com/search?tbm=isch&q=1969+Ford+Mustang+Boss+429+rear+view"
+             target="_blank" rel="noopener noreferrer">
+            <span>Design Details</span>
+            <h3>Rear Styling & Badging ↗</h3>
+            <p>Discover the rear bodywork, badges and period details.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="legacy">
+      <div class="container">
+        <div class="legacy-banner">
+          <span class="eyebrow">The Legacy</span>
+          <h2>A Legend of the Muscle-Car Era</h2>
+          <p>
+            The 1969 Boss 429 represents a remarkable moment when racing
+            ambitions shaped a road-going automobile. Its unusual engine,
+            specialist assembly and relatively small production run have
+            secured its place among the most celebrated high-performance
+            Mustangs ever built.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="resources">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Keep Exploring</span>
+          <h2>Useful Resources</h2>
+          <p>
+            Learn more about Boss 429 history, original specifications,
+            classic Mustang ownership and collector-market information.
+          </p>
+          <div class="accent-line"></div>
+        </div>
+
+        <div class="resource-list">
+          <a class="resource-link"
+             href="https://en.wikipedia.org/wiki/Ford_Mustang_Boss_429"
+             target="_blank" rel="noopener noreferrer">
+            <div>
+              <strong>Ford Mustang Boss 429 — Overview</strong>
+              <small>Background, engineering and production history</small>
+            </div>
+            <span class="arrow">↗</span>
+          </a>
+
+          <a class="resource-link"
+             href="https://www.hagerty.com/"
+             target="_blank" rel="noopener noreferrer">
+            <div>
+              <strong>Hagerty</strong>
+              <small>Classic-car valuation tools and collector-car articles</small>
+            </div>
+            <span class="arrow">↗</span>
+          </a>
+
+          <a class="resource-link"
+             href="https://www.hemmings.com/"
+             target="_blank" rel="noopener noreferrer">
+            <div>
+              <strong>Hemmings</strong>
+              <small>Classic car listings, articles and restoration information</small>
+            </div>
+            <span class="arrow">↗</span>
+          </a>
+
+          <a class="resource-link"
+             href="https://www.mustangclubofamerica.com/"
+             target="_blank" rel="noopener noreferrer">
+            <div>
+              <strong>Mustang Club of America</strong>
+              <small>Mustang community, events and enthusiast resources</small>
+            </div>
+            <span class="arrow">↗</span>
+          </a>
+
+          <a class="resource-link"
+             href="https://commons.wikimedia.org/wiki/Category:Ford_Mustang_Boss_429"
+             target="_blank" rel="noopener noreferrer">
+            <div>
+              <strong>Wikimedia Commons Photo Collection</strong>
+              <small>Browse available Boss 429 photographs and image licensing</small>
+            </div>
+            <span class="arrow">↗</span>
+          </a>
+        </div>
+
+        <p class="note">
+          This is an independent enthusiast information website and is
+          not affiliated with or endorsed by Ford Motor Company.
+          Verify historical figures and vehicle authenticity against
+          original documentation when researching a specific car.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <a class="brand" href="#home">BOSS <span>429</span></a>
+      <p>Celebrating the 1969 Ford Mustang Boss 429.</p>
+      <p>© <span id="year">2026</span> Boss 429 History</p>
+      <a href="#home">Back to home ↑</a>
+    </div>
+  </footer>
+
+  <button id="backToTop" aria-label="Back to top" title="Back to top">↑</button>
+
+  <script>
+    // Mobile navigation menu
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    menuToggle.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+      menuToggle.setAttribute(
+        "aria-label",
+        isOpen ? "Close navigation menu" : "Open navigation menu"
+      );
+      menuToggle.innerHTML = isOpen ? "✕ Close" : "☰ Menu";
+    });
+
+    // Close mobile menu when a navigation link is selected
+    navLinks.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "Open navigation menu");
+        menuToggle.innerHTML = "☰ Menu";
+      });
+    });
+
+    // Back-to-top button
+    const backToTop = document.getElementById("backToTop");
+
+    window.addEventListener("scroll", () => {
+      backToTop.classList.toggle("visible", window.scrollY > 400);
+    }, { passive: true });
+
+    backToTop.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    // Automatically display the current year
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
+
