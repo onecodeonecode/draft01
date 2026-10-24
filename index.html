@@ -1,925 +1,138 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Explore the history, specifications, design and legacy of the legendary 1969 Ford Mustang Boss 429.">
-  <title>1969 Ford Mustang Boss 429 | American Muscle</title>
-
-  <style>
-    :root {
-      --red: #d92332;
-      --dark-red: #9d1420;
-      --black: #101113;
-      --panel: #191b1f;
-      --panel2: #22252a;
-      --white: #f5f5f5;
-      --muted: #a7abb2;
-      --gold: #d5b36a;
-      --border: #35383e;
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html { scroll-behavior: smooth; scroll-padding-top: 85px; }
-
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: var(--black);
-      color: var(--white);
-      line-height: 1.65;
-    }
-
-    a { color: inherit; }
-
-    button { font: inherit; }
-
-    .container {
-      width: min(1120px, 92%);
-      margin: auto;
-    }
-
-    /* Navigation */
-    header {
-      background: rgba(16,17,19,.96);
-      border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      backdrop-filter: blur(12px);
-    }
-
-    .navbar {
-      min-height: 72px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-    }
-
-    .brand {
-      text-decoration: none;
-      font-weight: 900;
-      font-size: 1.12rem;
-      letter-spacing: 1px;
-    }
-
-    .brand span { color: var(--red); }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 22px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      color: #d7d7d7;
-      font-size: .85rem;
-      font-weight: bold;
-      text-decoration: none;
-      transition: color .2s;
-    }
-
-    .nav-links a:hover { color: var(--red); }
-
-    .menu-toggle {
-      display: none;
-      background: none;
-      border: 1px solid var(--border);
-      border-radius: 7px;
-      color: white;
-      padding: 8px 12px;
-      cursor: pointer;
-    }
-
-    /* Hero */
-    .hero {
-      min-height: 590px;
-      display: flex;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
-      background:
-        radial-gradient(ellipse at 82% 42%, rgba(217,35,50,.28), transparent 38%),
-        linear-gradient(120deg, #111214 10%, #242124 55%, #151416 100%);
-      border-bottom: 4px solid var(--red);
-    }
-
-    .hero::before {
-      content: "429";
-      position: absolute;
-      right: -15px;
-      top: 35px;
-      color: rgba(255,255,255,.035);
-      font-weight: 900;
-      font-size: clamp(9rem, 27vw, 24rem);
-      line-height: 1;
-      pointer-events: none;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 730px;
-      padding: 75px 0;
-    }
-
-    .eyebrow {
-      display: inline-block;
-      color: var(--gold);
-      font-size: .78rem;
-      font-weight: 900;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-    }
-
-    h1 {
-      font-size: clamp(2.7rem, 7vw, 5.5rem);
-      line-height: 1.02;
-      letter-spacing: -2px;
-      text-transform: uppercase;
-      margin-bottom: 22px;
-    }
-
-    h1 span { color: var(--red); }
-
-    .hero p {
-      color: #d1d1d1;
-      max-width: 600px;
-      font-size: 1.06rem;
-      margin-bottom: 30px;
-    }
-
-    .actions {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 20px;
-      border-radius: 5px;
-      border: 1px solid var(--red);
-      background: var(--red);
-      color: white;
-      text-decoration: none;
-      font-weight: 800;
-      cursor: pointer;
-      transition: .2s;
-    }
-
-    .btn:hover { background: var(--dark-red); transform: translateY(-2px); }
-
-    .btn-outline { background: transparent; border-color: #74777d; }
-    .btn-outline:hover { background: var(--panel2); border-color: white; }
-
-    /* Quick facts */
-    .quick-facts {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      background: var(--panel);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .fact {
-      text-align: center;
-      padding: 27px 12px;
-      border-right: 1px solid var(--border);
-    }
-
-    .fact:last-child { border: none; }
-
-    .fact strong {
-      display: block;
-      font-size: clamp(1.4rem, 3vw, 2.15rem);
-      color: var(--red);
-      line-height: 1.3;
-    }
-
-    .fact span {
-      color: var(--muted);
-      font-size: .77rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    /* General sections */
-    section { padding: 78px 0; }
-
-    .section-heading { margin-bottom: 32px; }
-
-    .section-heading .eyebrow { margin-bottom: 8px; }
-
-    h2 {
-      font-size: clamp(1.9rem, 4vw, 3rem);
-      line-height: 1.15;
-      margin-bottom: 14px;
-    }
-
-    .section-heading p {
-      color: var(--muted);
-      max-width: 680px;
-    }
-
-    .accent-line {
-      height: 4px;
-      width: 60px;
-      background: var(--red);
-      margin: 17px 0;
-    }
-
-    .history-grid {
-      display: grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap: 35px;
-      align-items: start;
-    }
-
-    .history-copy p {
-      color: #c4c6ca;
-      margin-bottom: 17px;
-    }
-
-    .history-card {
-      padding: 27px;
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-top: 3px solid var(--red);
-      border-radius: 8px;
-    }
-
-    .history-card h3 { margin-bottom: 15px; }
-
-    .history-card ul { padding-left: 20px; color: #c4c6ca; }
-    .history-card li { margin: 9px 0; }
-
-    /* Specs */
-    #specifications { background: #151619; }
-
-    .spec-layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 30px;
-    }
-
-    .spec-panel {
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      overflow: hidden;
-      background: var(--panel);
-    }
-
-    .spec-panel h3 {
-      padding: 18px 20px;
-      background: var(--red);
-      font-size: 1.05rem;
-    }
-
-    .spec-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 15px;
-      padding: 14px 20px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .spec-row:last-child { border-bottom: none; }
-
-    .spec-row span { color: var(--muted); }
-    .spec-row strong { text-align: right; }
-
-    .note {
-      color: var(--muted);
-      font-size: .85rem;
-      margin-top: 20px;
-    }
-
-    /* Features */
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .feature {
-      padding: 25px;
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      transition: transform .2s, border-color .2s;
-    }
-
-    .feature:hover { transform: translateY(-4px); border-color: var(--red); }
-
-    .feature-icon {
-      font-size: 1.9rem;
-      margin-bottom: 13px;
-    }
-
-    .feature h3 { margin-bottom: 9px; }
-
-    .feature p { color: var(--muted); font-size: .93rem; }
-
-    /* Gallery */
-    #gallery { background: #151619; }
-
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
-    }
-
-    .gallery-item {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      min-height: 210px;
-      padding: 24px;
-      border: 1px solid #414149;
-      border-radius: 8px;
-      text-decoration: none;
-      overflow: hidden;
-      background:
-        linear-gradient(0deg, rgba(0,0,0,.9), rgba(0,0,0,.12)),
-        radial-gradient(ellipse at 70% 25%, #753039, #28252a 65%);
-      transition: border-color .2s, transform .2s;
-    }
-
-    .gallery-item:nth-child(2) {
-      background:
-        linear-gradient(0deg, rgba(0,0,0,.9), rgba(0,0,0,.1)),
-        radial-gradient(ellipse at 25% 25%, #776144, #29272a 65%);
-    }
-
-    .gallery-item:nth-child(3) {
-      background:
-        linear-gradient(0deg, rgba(0,0,0,.9), rgba(0,0,0,.1)),
-        radial-gradient(ellipse at 75% 25%, #3e5364, #25262a 65%);
-    }
-
-    .gallery-item:nth-child(4) {
-      background:
-        linear-gradient(0deg, rgba(0,0,0,.9), rgba(0,0,0,.1)),
-        radial-gradient(ellipse at 25% 25%, #615c50, #25252a 65%);
-    }
-
-    .gallery-item:hover { border-color: var(--red); transform: translateY(-3px); }
-
-    .gallery-item span {
-      color: var(--gold);
-      font-size: .72rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-
-    .gallery-item h3 { font-size: 1.3rem; margin-top: 5px; }
-    .gallery-item p { color: #d0d0d0; font-size: .88rem; margin-top: 5px; }
-
-    /* Legacy */
-    .legacy-banner {
-      padding: 35px;
-      background: linear-gradient(110deg, #8e101c, #d92332 70%, #a91723);
-      border-radius: 8px;
-    }
-
-    .legacy-banner h2 { margin-bottom: 12px; }
-    .legacy-banner p { max-width: 760px; color: #fff0f0; }
-
-    /* Resources */
-    .resource-list { display: grid; gap: 12px; }
-
-    .resource-link {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 15px;
-      padding: 18px 20px;
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 7px;
-      text-decoration: none;
-      transition: .2s;
-    }
-
-    .resource-link:hover { border-color: var(--red); background: var(--panel2); }
-
-    .resource-link small { display: block; color: var(--muted); margin-top: 3px; }
-    .resource-link .arrow { color: var(--red); font-size: 1.4rem; }
-
-    /* Footer */
-    footer {
-      padding: 32px 0;
-      background: #0b0c0e;
-      border-top: 1px solid var(--border);
-    }
-
-    .footer-inner {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 15px;
-    }
-
-    footer p { color: var(--muted); font-size: .85rem; }
-
-    footer a { color: white; text-decoration: none; }
-    footer a:hover { color: var(--red); }
-
-    #backToTop {
-      position: fixed;
-      bottom: 22px;
-      right: 22px;
-      width: 45px;
-      height: 45px;
-      border: none;
-      border-radius: 50%;
-      color: white;
-      background: var(--red);
-      font-size: 1.3rem;
-      cursor: pointer;
-      box-shadow: 0 4px 18px #0008;
-      display: none;
-      z-index: 90;
-    }
-
-    #backToTop.visible { display: block; }
-
-    :focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
-
-    @media (max-width: 760px) {
-      .menu-toggle { display: block; }
-
-      .nav-links {
-        display: none;
-        position: absolute;
-        top: 71px;
-        left: 0;
-        right: 0;
-        padding: 20px 5%;
-        background: #121315;
-        border-bottom: 1px solid var(--border);
-        align-items: stretch;
-        flex-direction: column;
-        gap: 0;
-      }
-
-      .nav-links.open { display: flex; }
-
-      .nav-links a { display: block; padding: 12px 0; }
-
-      .hero { min-height: 510px; }
-      .quick-facts { grid-template-columns: repeat(2, 1fr); }
-      .fact:nth-child(2) { border-right: none; }
-      .fact:nth-child(-n+2) { border-bottom: 1px solid var(--border); }
-      .history-grid, .spec-layout { grid-template-columns: 1fr; }
-      .features-grid { grid-template-columns: 1fr 1fr; }
-      section { padding: 58px 0; }
-    }
-
-    @media (max-width: 480px) {
-      h1 { letter-spacing: -1px; }
-      .features-grid, .gallery-grid { grid-template-columns: 1fr; }
-      .gallery-item { min-height: 180px; }
-      .hero-content { padding: 60px 0; }
-      .legacy-banner { padding: 25px; }
-      .spec-row { padding: 13px; font-size: .9rem; }
-      .footer-inner { flex-direction: column; align-items: flex-start; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        scroll-behavior: auto !important;
-        transition-duration: .01ms !important;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#061a36">
+<meta name="description" content="Explore the history of the National Hockey League, from its founding in 1917 to today's game.">
+<title>The History of the NHL | A Century of Hockey</title>
+<style>
+:root{--navy:#061a36;--blue:#0759a8;--ice:#eaf5ff;--red:#e51d35;--ink:#102544;--muted:#526780;--line:#d5e4f3;--white:#fff}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:88px}
+body{margin:0;background:linear-gradient(180deg,#061a36 0,#edf5fc 440px,#f7fbff 100%);color:var(--ink);font-family:Arial,Helvetica,sans-serif;line-height:1.55}
+a{color:#0759a8}a:focus-visible,button:focus-visible{outline:3px solid #ffbf47;outline-offset:3px}
+.topbar{position:sticky;top:0;z-index:20;background:rgba(4,19,41,.96);backdrop-filter:blur(12px);border-bottom:1px solid #ffffff22;color:white}
+.nav{max-width:1160px;margin:auto;min-height:68px;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;color:white;text-decoration:none;font-weight:900;letter-spacing:.06em}.brand-mark{display:grid;place-items:center;width:40px;height:40px;border:2px solid white;border-radius:12px;font-size:13px;transform:skew(-5deg)}
+.navlinks{display:flex;gap:7px;align-items:center;flex-wrap:wrap}.navlinks a{color:#e8f4ff;text-decoration:none;padding:8px 10px;border-radius:8px;font-size:.9rem;font-weight:700}.navlinks a:hover{background:#ffffff18;color:white}
+.menu-toggle{display:none;border:1px solid #ffffff66;background:transparent;color:white;border-radius:8px;padding:8px 12px;font-size:1rem}
+main{max-width:1160px;margin:0 auto;padding:22px 20px 52px}
+.hero{position:relative;overflow:hidden;border-radius:22px;background:#061a36;box-shadow:0 18px 50px #061a3638}
+.hero img{display:block;width:100%;height:auto;max-height:900px;object-fit:contain;background:#061a36}
+.hero-caption{position:absolute;left:20px;bottom:18px;background:#061a36df;color:white;padding:10px 14px;border:1px solid #ffffff55;border-radius:12px;font-size:.85rem;backdrop-filter:blur(8px)}
+.hero-caption a{color:#bde2ff}
+.intro{background:white;margin:22px 0;padding:22px 24px;border-radius:18px;box-shadow:0 8px 28px #12395c12;border:1px solid var(--line)}
+.eyebrow{text-transform:uppercase;letter-spacing:.14em;font-size:.75rem;color:var(--red);font-weight:900}
+h1,h2,h3,p{margin-top:0}h1{font-size:clamp(1.8rem,4vw,3rem);line-height:1.08;margin:.35rem 0 .8rem;color:var(--navy)}h2{font-size:clamp(1.4rem,2.5vw,2rem);margin-bottom:8px;color:var(--navy)}h3{margin-bottom:8px}
+.lede{font-size:1.08rem;max-width:800px;color:#405873;margin-bottom:0}
+.section-heading{display:flex;justify-content:space-between;align-items:end;gap:16px;margin:38px 0 16px}.section-heading p{margin:0;color:var(--muted);font-size:.92rem}
+.timeline{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+.card{background:white;border:1px solid var(--line);border-top:5px solid var(--blue);border-radius:16px;padding:20px;box-shadow:0 8px 25px #12395c0b;display:flex;flex-direction:column;min-width:0}
+.card.red{border-top-color:var(--red)}.card.green{border-top-color:#16865d}.card.purple{border-top-color:#6d3bc1}.card.orange{border-top-color:#ee8b13}
+.year{display:inline-flex;align-self:flex-start;border-radius:7px;background:#e9f3ff;color:#0759a8;padding:4px 9px;font-weight:900;font-size:.85rem;margin-bottom:9px}.card p{color:#425873;margin-bottom:12px}.card a,.resource a{font-weight:800;text-decoration:none}.card a:hover,.resource a:hover{text-decoration:underline}
+.pillrow{display:flex;flex-wrap:wrap;gap:7px;margin-top:auto;padding-top:5px}.pill{background:#f0f5fa;border:1px solid #d9e5f1;border-radius:999px;padding:5px 9px;font-size:.78rem;font-weight:700;color:#344d68}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.stat{background:linear-gradient(145deg,#082852,#0759a8);color:white;padding:18px;border-radius:15px;box-shadow:0 8px 22px #09264b1a}.stat strong{display:block;font-size:clamp(1.6rem,3vw,2.35rem);line-height:1.1}.stat span{font-size:.85rem;color:#e3f1ff}
+.feature-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}.feature{padding:20px;background:white;border:1px solid var(--line);border-radius:15px}.feature .icon{font-size:1.8rem;margin-bottom:8px}.feature p{color:var(--muted);margin-bottom:0}
+.teams{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.team{background:white;border:1px solid var(--line);border-radius:12px;padding:13px;text-align:center;font-weight:800}.team small{display:block;font-weight:500;color:var(--muted);margin-top:3px}
+.callout{margin:35px 0;background:linear-gradient(120deg,#061a36,#0b4e91);color:white;border-radius:18px;padding:24px;display:flex;align-items:center;justify-content:space-between;gap:20px}.callout h2{color:white;margin-bottom:5px}.callout p{margin:0;color:#d6eaff}.button{display:inline-flex;align-items:center;justify-content:center;background:var(--red);color:white!important;text-decoration:none;font-weight:900;border:0;border-radius:10px;padding:11px 15px;cursor:pointer;white-space:nowrap}.button:hover{filter:brightness(1.08)}
+.resources{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.resource{background:white;border:1px solid var(--line);border-radius:13px;padding:16px}.resource h3{font-size:1rem}.resource p{margin:0 0 9px;color:var(--muted);font-size:.92rem}
+footer{background:#041329;color:#d4e7fb;padding:28px 20px}.footer-inner{max-width:1160px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}.footer-inner p{margin:0;font-size:.9rem}.footer-links{display:flex;gap:14px;flex-wrap:wrap}.footer-links a{color:white;text-decoration:none;font-size:.9rem}.backtop{position:fixed;right:18px;bottom:18px;border:0;background:var(--red);color:white;border-radius:50%;width:46px;height:46px;font-size:1.2rem;box-shadow:0 6px 18px #0003;cursor:pointer;display:none}.backtop.show{display:block}
+@media(max-width:850px){.timeline{grid-template-columns:repeat(2,minmax(0,1fr))}.feature-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.teams{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:600px){.nav{padding:10px 14px}.menu-toggle{display:block}.navlinks{display:none;position:absolute;top:68px;left:0;right:0;background:#041329;padding:10px 14px 16px;box-shadow:0 12px 20px #0003}.navlinks.open{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.navlinks a{padding:11px}.brand{font-size:.88rem}main{padding:14px 12px 35px}.hero{border-radius:14px}.hero-caption{position:static;border-radius:0;border:0;font-size:.78rem}.intro{padding:18px;margin:14px 0}.timeline,.feature-grid,.resources{grid-template-columns:1fr}.section-heading{display:block;margin-top:30px}.section-heading p{margin-top:5px}.teams{grid-template-columns:repeat(2,minmax(0,1fr))}.callout{display:block;padding:20px}.callout .button{margin-top:15px}.card{padding:17px}}
+@media print{.topbar,.backtop,.button,.hero-caption{display:none!important}body{background:white}main{max-width:none;padding:0}.card,.intro,.feature,.resource{box-shadow:none;break-inside:avoid}.hero img{max-height:650px}}
+</style>
 </head>
-
 <body>
-  <header>
-    <nav class="navbar container" aria-label="Main navigation">
-      <a class="brand" href="#home">BOSS <span>429</span></a>
-
-      <button class="menu-toggle" id="menuToggle"
-        aria-label="Open navigation menu" aria-expanded="false"
-        aria-controls="navLinks">☰ Menu</button>
-
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#history">History</a></li>
-        <li><a href="#specifications">Specifications</a></li>
-        <li><a href="#features">Features</a></li>
-        <li><a href="#gallery">Gallery</a></li>
-        <li><a href="#resources">Resources</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <main>
-    <section class="hero" id="home">
-      <div class="container">
-        <div class="hero-content">
-          <span class="eyebrow">1969 • American Automotive Legend</span>
-          <h1>Ford Mustang<br><span>Boss 429</span></h1>
-          <div class="accent-line"></div>
-          <p>
-            Born from NASCAR ambitions and built for the streets, the
-            Boss 429 became one of the most distinctive and sought-after
-            muscle cars of the golden age of American performance.
-          </p>
-          <div class="actions">
-            <a class="btn" href="#specifications">Explore Specifications ↓</a>
-            <a class="btn btn-outline"
-              href="https://en.wikipedia.org/wiki/Ford_Mustang_Boss_429"
-              target="_blank" rel="noopener noreferrer">Read More ↗</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <div class="quick-facts" aria-label="Quick facts">
-      <div class="fact">
-        <strong>429</strong>
-        <span>Cubic-Inch V8</span>
-      </div>
-      <div class="fact">
-        <strong>375 hp</strong>
-        <span>Factory-Rated Power</span>
-      </div>
-      <div class="fact">
-        <strong>4-Speed</strong>
-        <span>Manual Transmission</span>
-      </div>
-      <div class="fact">
-        <strong>859</strong>
-        <span>1969 Production</span>
-      </div>
+<header class="topbar">
+  <nav class="nav" aria-label="Main navigation">
+    <a class="brand" href="#top" aria-label="NHL history home"><span class="brand-mark">NHL</span><span>HOCKEY HISTORY</span></a>
+    <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navlinks">☰ Menu</button>
+    <div class="navlinks" id="navlinks">
+      <a href="#timeline">Timeline</a><a href="#milestones">Milestones</a><a href="#teams">Teams</a><a href="#resources">Official Links</a>
     </div>
+  </nav>
+</header>
+<main id="top">
+  <section class="hero" aria-label="NHL history infographic">
+    <img src="nhl-history-infographic.png" alt="The History of the NHL infographic, showing major eras, iconic players, the Stanley Cup and league facts" fetchpriority="high">
+    <div class="hero-caption">Explore the infographic • <a href="https://www.nhl.com/" target="_blank" rel="noopener noreferrer">Visit NHL.com ↗</a></div>
+  </section>
+  <section class="intro">
+    <div class="eyebrow">1917 — Today</div>
+    <h1>The History of the National Hockey League</h1>
+    <p class="lede">From a small league founded in Montreal to a global sport, the NHL's story is shaped by legendary players, unforgettable rivalries, expansion, and the pursuit of the Stanley Cup. Explore key eras and jump to trusted hockey resources below.</p>
+  </section>
 
-    <section id="history">
-      <div class="container">
-        <div class="history-grid">
-          <div class="history-copy">
-            <div class="section-heading">
-              <span class="eyebrow">The Story</span>
-              <h2>A Mustang With a Mission</h2>
-              <div class="accent-line"></div>
-            </div>
-
-            <p>
-              Introduced for the 1969 model year, the Ford Mustang Boss 429
-              was created to homologate Ford's new 429-cubic-inch V8 for
-              NASCAR competition. Homologation rules required a production
-              version of the engine to be offered in road cars.
-            </p>
-
-            <p>
-              The enormous engine could not simply be dropped into a
-              standard Mustang. Ford contracted Kar Kraft, a specialist
-              engineering company in Brighton, Michigan, to modify the cars
-              and install the big-block powerplant.
-            </p>
-
-            <p>
-              Each Mustang received substantial changes, including
-              modifications to the engine compartment and suspension.
-              The result was a specialized performance machine that was
-              expensive, unusual, and unlike an ordinary Mustang.
-            </p>
-
-            <p>
-              The Boss 429 continued into 1970, after which the program
-              ended. Its limited production and racing heritage helped
-              establish its reputation among serious collectors.
-            </p>
-          </div>
-
-          <aside class="history-card">
-            <h3>At a Glance</h3>
-            <ul>
-              <li><strong>Manufacturer:</strong> Ford Motor Company</li>
-              <li><strong>Model:</strong> Mustang Boss 429</li>
-              <li><strong>Model years:</strong> 1969–1970</li>
-              <li><strong>Assembly modifications:</strong> Kar Kraft</li>
-              <li><strong>Engine:</strong> 429 cu in V8</li>
-              <li><strong>Drive layout:</strong> Front engine, rear-wheel drive</li>
-              <li><strong>Purpose:</strong> NASCAR homologation special</li>
-              <li><strong>Body style:</strong> Two-door sports roof coupe</li>
-            </ul>
-          </aside>
-        </div>
-      </div>
-    </section>
-
-    <section id="specifications">
-      <div class="container">
-        <div class="section-heading">
-          <span class="eyebrow">Under the Hood</span>
-          <h2>Technical Specifications</h2>
-          <p>
-            The Boss 429 combined a specialized big-block engine with
-            performance hardware and chassis modifications.
-          </p>
-          <div class="accent-line"></div>
-        </div>
-
-        <div class="spec-layout">
-          <div class="spec-panel">
-            <h3>Engine & Performance</h3>
-            <div class="spec-row"><span>Engine family</span><strong>Ford 385 Series V8</strong></div>
-            <div class="spec-row"><span>Displacement</span><strong>429 cu in / 7.0 L</strong></div>
-            <div class="spec-row"><span>Rated horsepower</span><strong>375 hp at 5,200 rpm</strong></div>
-            <div class="spec-row"><span>Rated torque</span><strong>450 lb-ft at 3,400 rpm</strong></div>
-            <div class="spec-row"><span>Compression ratio</span><strong>Approx. 10.5:1</strong></div>
-            <div class="spec-row"><span>Induction</span><strong>Four-barrel carburetor</strong></div>
-            <div class="spec-row"><span>Drive</span><strong>Rear-wheel drive</strong></div>
-          </div>
-
-          <div class="spec-panel">
-            <h3>Transmission & Chassis</h3>
-            <div class="spec-row"><span>Transmission</span><strong>4-speed manual</strong></div>
-            <div class="spec-row"><span>Front suspension</span><strong>Independent</strong></div>
-            <div class="spec-row"><span>Rear suspension</span><strong>Live axle</strong></div>
-            <div class="spec-row"><span>Front brakes</span><strong>Disc brakes</strong></div>
-            <div class="spec-row"><span>Body</span><strong>2-door SportsRoof</strong></div>
-            <div class="spec-row"><span>Fuel system</span><strong>Carbureted</strong></div>
-            <div class="spec-row"><span>Engine construction</span><strong>Cast-iron block, aluminum heads</strong></div>
-          </div>
-        </div>
-
-        <p class="note">
-          Specifications reflect commonly published factory figures for
-          the 1969 model. Original equipment, production details and
-          individual vehicle specifications can vary. Factory-rated
-          horsepower is not directly comparable to modern SAE net ratings.
-        </p>
-      </div>
-    </section>
-
-    <section id="features">
-      <div class="container">
-        <div class="section-heading">
-          <span class="eyebrow">Built Different</span>
-          <h2>What Made It Special?</h2>
-          <div class="accent-line"></div>
-          <p>Six reasons the Boss 429 stands apart from other classic Mustangs.</p>
-        </div>
-
-        <div class="features-grid">
-          <article class="feature">
-            <div class="feature-icon">⚙️</div>
-            <h3>The 429 V8</h3>
-            <p>
-              A large-displacement engine featuring hemispherical-style
-              combustion chambers and large valves in its specialized
-              cylinder heads.
-            </p>
-          </article>
-
-          <article class="feature">
-            <div class="feature-icon">🏁</div>
-            <h3>NASCAR Heritage</h3>
-            <p>
-              Developed to support Ford's racing ambitions and its
-              homologation requirements for the 429 engine.
-            </p>
-          </article>
-
-          <article class="feature">
-            <div class="feature-icon">🔧</div>
-            <h3>Kar Kraft Engineering</h3>
-            <p>
-              Specialized assembly and extensive modifications made room
-              for the large engine and its supporting hardware.
-            </p>
-          </article>
-
-          <article class="feature">
-            <div class="feature-icon">💨</div>
-            <h3>Distinctive Hood</h3>
-            <p>
-              A functional-looking hood scoop, aggressive proportions
-              and model-specific details gave the car its unmistakable stance.
-            </p>
-          </article>
-
-          <article class="feature">
-            <div class="feature-icon">🛞</div>
-            <h3>Performance Chassis</h3>
-            <p>
-              Revised suspension and steering-related components helped
-              accommodate the demands of the specialized powertrain.
-            </p>
-          </article>
-
-          <article class="feature">
-            <div class="feature-icon">🏆</div>
-            <h3>Collector Status</h3>
-            <p>
-              Limited production, unique engineering and racing history
-              make authentic examples especially desirable to enthusiasts.
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="gallery">
-      <div class="container">
-        <div class="section-heading">
-          <span class="eyebrow">Discover the Details</span>
-          <h2>Boss 429 Gallery & Reference Photos</h2>
-          <p>
-            Open the links below to explore photographs of the car,
-            its engine and its original styling. These links lead to
-            external image collections rather than displaying local photos.
-          </p>
-          <div class="accent-line"></div>
-        </div>
-
-        <div class="gallery-grid">
-          <a class="gallery-item"
-             href="https://commons.wikimedia.org/wiki/Category:Ford_Mustang_Boss_429"
-             target="_blank" rel="noopener noreferrer">
-            <span>Exterior</span>
-            <h3>Classic Mustang Styling ↗</h3>
-            <p>Explore exterior photographs and different paint colors.</p>
-          </a>
-
-          <a class="gallery-item"
-             href="https://www.google.com/search?tbm=isch&q=1969+Ford+Mustang+Boss+429+engine"
-             target="_blank" rel="noopener noreferrer">
-            <span>Engine Bay</span>
-            <h3>The 429 V8 ↗</h3>
-            <p>See engine bays, cylinder heads and under-hood details.</p>
-          </a>
-
-          <a class="gallery-item"
-             href="https://www.google.com/search?tbm=isch&q=1969+Ford+Mustang+Boss+429+interior"
-             target="_blank" rel="noopener noreferrer">
-            <span>Interior</span>
-            <h3>Inside the Boss ↗</h3>
-            <p>Explore the dashboard, steering wheel and cabin.</p>
-          </a>
-
-          <a class="gallery-item"
-             href="https://www.google.com/search?tbm=isch&q=1969+Ford+Mustang+Boss+429+rear+view"
-             target="_blank" rel="noopener noreferrer">
-            <span>Design Details</span>
-            <h3>Rear Styling & Badging ↗</h3>
-            <p>Discover the rear bodywork, badges and period details.</p>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <section id="legacy">
-      <div class="container">
-        <div class="legacy-banner">
-          <span class="eyebrow">The Legacy</span>
-          <h2>A Legend of the Muscle-Car Era</h2>
-          <p>
-            The 1969 Boss 429 represents a remarkable moment when racing
-            ambitions shaped a road-going automobile. Its unusual engine,
-            specialist assembly and relatively small production run have
-            secured its place among the most celebrated high-performance
-            Mustangs ever built.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section id="resources">
-      <div class="container">
-        <div class="section-heading">
-          <span class="eyebrow">Keep Exploring</span>
-          <h2>Useful Resources</h2>
-          <p>
-            Learn more about Boss 429 history, original specifications,
-            classic Mustang ownership and collector-market information.
-          </p>
-          <div class="accent-line"></div>
-        </div>
-
-        <div class="resource-list">
-          <a class="resource-link"
-             href="https://en.wikipedia.org/wiki/Ford_Mustang_Boss_429"
-             target="_blank" rel="noopener noreferrer">
-            <div>
-              <strong>Ford Mustang Boss 429 — Overview</strong>
-              <small>Background, engineering and production history</small>
-            </div>
-            <span class="arrow">↗</span>
-          </a>
-
-          <a class="resource-link"
-             href="https://www.hagerty.com/"
-             target="_blank" rel="noopener noreferrer">
-            <div>
-              <strong>Hagerty</strong>
-              <small>Classic-car valuation tools and collector-car articles</small>
-            </div>
-            <span class="arrow">↗</span>
-          </a>
-
-          <a class="resource-link"
-             href="https://www.hemmings.com/"
-             target="_blank" rel="noopener noreferrer">
-            <div>
-              <strong>Hemmings</strong>
-              <small>Classic car listings, articles and restoration information</small>
-            </div>
-            <span class="arrow">↗</span>
-          </a>
-
-          <a class="resource-link"
-             href="https://www.mustangclubofamerica.com/"
-             target="_blank" rel="noopener noreferrer">
-            <div>
-              <strong>Mustang Club of America</strong>
-              <small>Mustang community, events and enthusiast resources</small>
-            </div>
-            <span class="arrow">↗</span>
-          </a>
-
-          <a class="resource-link"
-             href="https://commons.wikimedia.org/wiki/Category:Ford_Mustang_Boss_429"
-             target="_blank" rel="noopener noreferrer">
-            <div>
-              <strong>Wikimedia Commons Photo Collection</strong>
-              <small>Browse available Boss 429 photographs and image licensing</small>
-            </div>
-            <span class="arrow">↗</span>
-          </a>
-        </div>
-
-        <p class="note">
-          This is an independent enthusiast information website and is
-          not affiliated with or endorsed by Ford Motor Company.
-          Verify historical figures and vehicle authenticity against
-          original documentation when researching a specific car.
-        </p>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container footer-inner">
-      <a class="brand" href="#home">BOSS <span>429</span></a>
-      <p>Celebrating the 1969 Ford Mustang Boss 429.</p>
-      <p>© <span id="year">2026</span> Boss 429 History</p>
-      <a href="#home">Back to home ↑</a>
+  <section id="timeline">
+    <div class="section-heading"><div><div class="eyebrow">Across the decades</div><h2>League timeline</h2></div><p>Select a resource on any card to learn more.</p></div>
+    <div class="timeline">
+      <article class="card red"><span class="year">1917 · The beginning</span><h3>A new league is born</h3><p>The National Hockey League was founded on November 26, 1917, in Montreal, Quebec. The first season began with five clubs, setting the stage for a league that would grow for generations.</p><a href="https://www.nhl.com/" target="_blank" rel="noopener noreferrer">NHL official website ↗</a><div class="pillrow"><span class="pill">Montreal</span><span class="pill">First season: 1917–18</span></div></article>
+      <article class="card"><span class="year">1920s–1930s · Early years</span><h3>Challenges and growing popularity</h3><p>The early decades brought financial challenges, changing lineups, and a growing fan base. The league's identity developed as players and clubs built its traditions.</p><a href="https://www.hhof.com/" target="_blank" rel="noopener noreferrer">Hockey Hall of Fame ↗</a><div class="pillrow"><span class="pill">Tradition</span><span class="pill">Rivalries</span></div></article>
+      <article class="card green"><span class="year">1967 · Expansion</span><h3>A bigger stage</h3><p>The NHL doubled from six to twelve teams in 1967. The expansion transformed the league and introduced new rivalries and fan communities.</p><a href="https://www.nhl.com/history" target="_blank" rel="noopener noreferrer">NHL history ↗</a><div class="pillrow"><span class="pill">12 teams</span><span class="pill">New markets</span></div></article>
+      <article class="card purple"><span class="year">1942–1967 · Original Six era</span><h3>Six teams, lasting legends</h3><p>The Original Six era featured the Montreal Canadiens, Toronto Maple Leafs, Boston Bruins, Chicago Blackhawks, Detroit Red Wings, and New York Rangers.</p><a href="https://www.hhof.com/" target="_blank" rel="noopener noreferrer">Explore hockey history ↗</a><div class="pillrow"><span class="pill">Montreal</span><span class="pill">Toronto</span><span class="pill">Boston</span><span class="pill">Chicago</span><span class="pill">Detroit</span><span class="pill">New York</span></div></article>
+      <article class="card orange"><span class="year">1970s–1990s · Modern icons</span><h3>Superstars change the game</h3><p>Expansion brought new teams and fans. Players such as Bobby Orr, Wayne Gretzky, and Mario Lemieux helped define generations of hockey and raised the sport's profile.</p><a href="https://www.hhof.com/" target="_blank" rel="noopener noreferrer">Legends at the Hall of Fame ↗</a><div class="pillrow"><span class="pill">Skill</span><span class="pill">Speed</span><span class="pill">Superstars</span></div></article>
+      <article class="card red"><span class="year">2000–present · Today's NHL</span><h3>A global game</h3><p>Today's NHL features international talent, advanced analytics, improved equipment, and continued work to make the game safer and more accessible.</p><a href="https://www.nhl.com/" target="_blank" rel="noopener noreferrer">Latest NHL coverage ↗</a><div class="pillrow"><span class="pill">Global talent</span><span class="pill">Technology</span></div></article>
     </div>
-  </footer>
+  </section>
 
-  <button id="backToTop" aria-label="Back to top" title="Back to top">↑</button>
+  <section id="milestones">
+    <div class="section-heading"><div><div class="eyebrow">The big picture</div><h2>Hockey by the numbers</h2></div></div>
+    <div class="stats">
+      <div class="stat"><strong>1917</strong><span>Year the NHL was founded</span></div>
+      <div class="stat"><strong>32</strong><span>Teams in the 2026–27 season</span></div>
+      <div class="stat"><strong>1893</strong><span>Year the Stanley Cup was donated</span></div>
+      <div class="stat"><strong>100+</strong><span>Years of NHL history</span></div>
+    </div>
+    <div class="section-heading"><div><div class="eyebrow">Legends & traditions</div><h2>What makes the NHL iconic?</h2></div></div>
+    <div class="feature-grid">
+      <article class="feature"><div class="icon" aria-hidden="true">🏆</div><h3>The Stanley Cup</h3><p>One of the most celebrated trophies in sport, awarded annually to the NHL playoff champion.</p></article>
+      <article class="feature"><div class="icon" aria-hidden="true">⭐</div><h3>Legendary players</h3><p>Generations of players have redefined what is possible through skill, vision, leadership, and determination.</p></article>
+      <article class="feature"><div class="icon" aria-hidden="true">🥅</div><h3>Unforgettable rivalries</h3><p>Local pride, playoff battles, and historic matchups make every season a new chapter.</p></article>
+    </div>
+  </section>
 
-  <script>
-    // Mobile navigation menu
-    const menuToggle = document.getElementById("menuToggle");
-    const navLinks = document.getElementById("navLinks");
+  <section id="teams">
+    <div class="section-heading"><div><div class="eyebrow">Across North America</div><h2>Explore NHL teams</h2></div><p>Team websites open in a new tab.</p></div>
+    <div class="teams">
+      <a class="team" href="https://www.nhl.com/canadiens/" target="_blank" rel="noopener noreferrer">Montreal Canadiens<small>Montreal, Quebec</small></a>
+      <a class="team" href="https://www.nhl.com/mapleleafs/" target="_blank" rel="noopener noreferrer">Toronto Maple Leafs<small>Toronto, Ontario</small></a>
+      <a class="team" href="https://www.nhl.com/bruins/" target="_blank" rel="noopener noreferrer">Boston Bruins<small>Boston, Massachusetts</small></a>
+      <a class="team" href="https://www.nhl.com/blackhawks/" target="_blank" rel="noopener noreferrer">Chicago Blackhawks<small>Chicago, Illinois</small></a>
+      <a class="team" href="https://www.nhl.com/redwings/" target="_blank" rel="noopener noreferrer">Detroit Red Wings<small>Detroit, Michigan</small></a>
+      <a class="team" href="https://www.nhl.com/rangers/" target="_blank" rel="noopener noreferrer">New York Rangers<small>New York, New York</small></a>
+      <a class="team" href="https://www.nhl.com/oilers/" target="_blank" rel="noopener noreferrer">Edmonton Oilers<small>Edmonton, Alberta</small></a>
+      <a class="team" href="https://www.nhl.com/penguins/" target="_blank" rel="noopener noreferrer">Pittsburgh Penguins<small>Pittsburgh, Pennsylvania</small></a>
+    </div>
+  </section>
 
-    menuToggle.addEventListener("click", () => {
-      const isOpen = navLinks.classList.toggle("open");
-      menuToggle.setAttribute("aria-expanded", String(isOpen));
-      menuToggle.setAttribute(
-        "aria-label",
-        isOpen ? "Close navigation menu" : "Open navigation menu"
-      );
-      menuToggle.innerHTML = isOpen ? "✕ Close" : "☰ Menu";
-    });
+  <section class="callout">
+    <div><h2>Ready for more hockey?</h2><p>Get official news, scores, standings, stats, and historical features from the league.</p></div>
+    <a class="button" href="https://www.nhl.com/" target="_blank" rel="noopener noreferrer">Go to NHL.com ↗</a>
+  </section>
 
-    // Close mobile menu when a navigation link is selected
-    navLinks.querySelectorAll("a").forEach(link => {
-      link.addEventListener("click", () => {
-        navLinks.classList.remove("open");
-        menuToggle.setAttribute("aria-expanded", "false");
-        menuToggle.setAttribute("aria-label", "Open navigation menu");
-        menuToggle.innerHTML = "☰ Menu";
-      });
-    });
-
-    // Back-to-top button
-    const backToTop = document.getElementById("backToTop");
-
-    window.addEventListener("scroll", () => {
-      backToTop.classList.toggle("visible", window.scrollY > 400);
-    }, { passive: true });
-
-    backToTop.addEventListener("click", () => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
-
-    // Automatically display the current year
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+  <section id="resources">
+    <div class="section-heading"><div><div class="eyebrow">Keep exploring</div><h2>Official hockey links</h2></div></div>
+    <div class="resources">
+      <article class="resource"><h3><a href="https://www.nhl.com/" target="_blank" rel="noopener noreferrer">National Hockey League ↗</a></h3><p>Official league news, scores, schedules, standings, statistics, and video.</p></article>
+      <article class="resource"><h3><a href="https://www.nhl.com/history" target="_blank" rel="noopener noreferrer">NHL History ↗</a></h3><p>Explore historical records, league milestones, and stories from past seasons.</p></article>
+      <article class="resource"><h3><a href="https://www.hhof.com/" target="_blank" rel="noopener noreferrer">Hockey Hall of Fame ↗</a></h3><p>Learn about inducted players, builders, teams, and important hockey artifacts.</p></article>
+      <article class="resource"><h3><a href="https://www.nhl.com/stanley-cup" target="_blank" rel="noopener noreferrer">Stanley Cup ↗</a></h3><p>Discover the trophy and the playoff tradition at the heart of the NHL.</p></article>
+    </div>
+  </section>
+</main>
+<footer><div class="footer-inner"><p>© <span id="year"></span> Hockey History • Made for hockey fans.</p><div class="footer-links"><a href="#top">Back to top ↑</a><a href="https://www.nhl.com/" target="_blank" rel="noopener noreferrer">NHL.com ↗</a><a href="https://www.hhof.com/" target="_blank" rel="noopener noreferrer">Hockey Hall of Fame ↗</a></div></div></footer>
+<button class="backtop" id="backTop" aria-label="Back to top">↑</button>
+<script>
+const menuToggle=document.getElementById('menuToggle');
+const navlinks=document.getElementById('navlinks');
+menuToggle.addEventListener('click',()=>{const open=navlinks.classList.toggle('open');menuToggle.setAttribute('aria-expanded',String(open));menuToggle.textContent=open?'✕ Close':'☰ Menu';});
+navlinks.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{navlinks.classList.remove('open');menuToggle.setAttribute('aria-expanded','false');menuToggle.textContent='☰ Menu';}));
+document.getElementById('year').textContent=new Date().getFullYear();
+const backTop=document.getElementById('backTop');
+window.addEventListener('scroll',()=>backTop.classList.toggle('show',window.scrollY>450),{passive:true});
+backTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+</script>
 </body>
 </html>
 
