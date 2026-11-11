@@ -4,660 +4,595 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>1Code AI Stock Market Advisor</title>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<title>London Job Finder | Find Jobs in London Ontario</title>
 <style>
 :root {
-  --bg:#0a1020;
-  --panel:#121d32;
-  --panel2:#192740;
-  --text:#f3f6ff;
-  --muted:#93a5c2;
-  --green:#22d69a;
-  --red:#ff647c;
-  --blue:#5398ff;
-  --border:#293953;
+  --blue:#1455a5;
+  --navy:#102d50;
+  --light:#f3f7fc;
+  --green:#16a477;
+  --text:#26364a;
 }
 *{box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{
-  margin:0;background:var(--bg);color:var(--text);
-  font-family:Inter,Arial,sans-serif;
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  color:var(--text);
+  background:var(--light);
+  line-height:1.6;
 }
+a{color:var(--blue)}
+button,input,select{font:inherit}
 header{
-  background:#101a2e;border-bottom:1px solid var(--border);
-  padding:17px 5%;display:flex;align-items:center;
-  justify-content:space-between;gap:15px;flex-wrap:wrap;
+  background:#fff;
+  position:sticky;top:0;z-index:10;
+  box-shadow:0 2px 12px #102d5012;
 }
-.logo{font-size:23px;font-weight:800;color:white}
+.nav{
+  max-width:1200px;margin:auto;padding:14px 22px;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:20px;flex-wrap:wrap;
+}
+.logo{font-size:23px;font-weight:900;color:var(--navy)}
 .logo span{color:var(--green)}
 nav{display:flex;gap:18px;flex-wrap:wrap}
-nav a{color:var(--muted);text-decoration:none;font-size:13px}
+nav a{text-decoration:none;color:var(--navy);font-weight:bold;font-size:14px}
 nav a:hover{color:var(--green)}
-.container{max-width:1450px;margin:auto;padding:25px 4%}
-h1{font-size:30px;margin-bottom:7px}
-h2{font-size:19px}
-h3{font-size:15px}
-.muted{color:var(--muted)}
-.small{font-size:12px;color:var(--muted)}
-.grid{display:grid;gap:17px}
-.stats{grid-template-columns:repeat(4,1fr);margin:24px 0}
+.hero{
+  background:linear-gradient(110deg,#102d50eF,#1455a5d9),
+  url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1800&q=85') center/cover;
+  color:white;padding:90px 20px;text-align:center;
+}
+.hero h1{font-size:clamp(32px,5vw,55px);margin:0 0 12px}
+.hero p{font-size:18px;max-width:700px;margin:0 auto 25px;color:#e5efff}
+.searchbox{
+  background:white;color:var(--text);
+  max-width:900px;margin:auto;padding:16px;
+  border-radius:14px;display:grid;
+  grid-template-columns:2fr 1fr 1fr auto;gap:10px;
+  box-shadow:0 12px 35px #0003;
+}
+input,select{
+  min-width:0;padding:13px;border:1px solid #d7e0ec;
+  border-radius:8px;background:#fff;width:100%;
+}
+.btn{
+  display:inline-block;border:0;border-radius:8px;
+  padding:12px 19px;background:var(--blue);
+  color:white;text-decoration:none;font-weight:bold;
+  cursor:pointer;text-align:center;
+}
+.btn:hover{filter:brightness(1.12)}
+.btn.green{background:var(--green)}
+.btn.light{background:#eaf2fc;color:var(--navy)}
+.container{max-width:1150px;margin:auto;padding:55px 20px}
+.section-title{text-align:center;margin-bottom:30px}
+.section-title h2{font-size:30px;color:var(--navy);margin-bottom:5px}
+.section-title p{color:#66778c}
+.stats{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:15px;max-width:900px;margin:30px auto 0;
+}
+.stat{background:#ffffff18;padding:14px;border-radius:10px}
+.stat strong{display:block;font-size:24px}
+.grid{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:20px;
+}
 .card{
- background:var(--panel);border:1px solid var(--border);
- border-radius:14px;padding:19px;min-width:0;
+  background:white;border-radius:13px;overflow:hidden;
+  box-shadow:0 4px 18px #102d5010;
+  transition:.2s;
 }
-.stat-value{font-size:25px;font-weight:800;margin:10px 0}
-.green{color:var(--green)}
-.red{color:var(--red)}
-.blue{color:var(--blue)}
-.layout{grid-template-columns:1.8fr 1fr}
-.chart-card{min-height:400px}
-.chart-top{display:flex;justify-content:space-between;
- align-items:center;gap:12px;flex-wrap:wrap}
-select,input{
- background:#0c172a;color:white;border:1px solid var(--border);
- padding:11px;border-radius:8px;max-width:100%;
+.card:hover{transform:translateY(-4px)}
+.card img{width:100%;height:175px;object-fit:cover;display:block}
+.card-body{padding:19px}
+.card h3{color:var(--navy);margin:0 0 8px}
+.card p{font-size:14px;color:#637287}
+.card a:not(.btn){font-weight:bold}
+.tags{display:flex;gap:7px;flex-wrap:wrap;margin:12px 0}
+.tag{background:#eaf2fc;color:#24558c;padding:4px 9px;border-radius:20px;font-size:12px}
+.bg-white{background:white}
+.resource-list{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.resource{
+  display:flex;gap:15px;align-items:center;
+  background:white;padding:18px;border-radius:10px;
+  box-shadow:0 3px 12px #102d500d;
 }
-button{
- background:var(--green);color:#071b18;border:0;
- padding:11px 17px;border-radius:8px;font-weight:700;
- cursor:pointer;
+.resource .symbol{font-size:27px}
+.resource a{font-weight:bold;text-decoration:none}
+.resource p{font-size:13px;margin:4px 0;color:#65758a}
+.search-results{
+  display:none;background:white;border-radius:12px;
+  padding:20px;margin-top:22px;color:var(--text);
+  text-align:left;
 }
-button:hover{filter:brightness(1.12)}
-button.secondary{background:#263955;color:white}
-.chart-wrap{height:285px;margin-top:20px}
-.indicators{display:flex;gap:15px;flex-wrap:wrap;margin-top:15px}
-.dot{display:inline-block;width:9px;height:9px;
- border-radius:50%;margin-right:5px}
-.signal{font-size:27px;font-weight:800;margin:10px 0}
-.progress{height:9px;background:#263650;border-radius:20px;overflow:hidden}
-.progress span{display:block;height:100%;border-radius:20px}
-.signal-row{margin:18px 0}
-.two{grid-template-columns:1fr 1fr;margin-top:20px}
-.three{grid-template-columns:repeat(3,1fr)}
-.section{margin-top:35px}
-.tool input{width:100%;margin:8px 0 15px}
-.result{font-size:23px;font-weight:800;color:var(--green);margin-top:12px}
-table{width:100%;border-collapse:collapse;font-size:13px}
-td,th{text-align:left;padding:12px 8px;border-bottom:1px solid var(--border)}
-th{color:var(--muted)}
-.news-grid{grid-template-columns:repeat(3,1fr)}
-.news img{width:100%;height:145px;object-fit:cover;border-radius:9px}
-.news a{color:white;text-decoration:none}
-.news a:hover{color:var(--green)}
-.resource a{color:var(--green);text-decoration:none}
-.resource a:hover{text-decoration:underline}
-footer{text-align:center;border-top:1px solid var(--border);
- padding:25px;color:var(--muted);margin-top:45px}
-.notice{padding:12px;background:#26334b;border-radius:8px;
- color:#c7d5eb;font-size:12px;line-height:1.6}
-@media(max-width:850px){
- .stats{grid-template-columns:repeat(2,1fr)}
- .layout,.two{grid-template-columns:1fr}
- .news-grid{grid-template-columns:1fr 1fr}
+.tracker{
+  background:white;padding:24px;border-radius:14px;
+  box-shadow:0 4px 20px #102d5010;
 }
-@media(max-width:500px){
- .stats,.three,.news-grid{grid-template-columns:1fr}
- h1{font-size:24px}
- nav{gap:12px}
- .container{padding:18px 4%}
+.tracker-form{
+  display:grid;grid-template-columns:2fr 1fr 1fr auto;
+  gap:10px;margin-bottom:20px;
+}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{padding:12px;text-align:left;border-bottom:1px solid #e6edf5}
+th{background:#f0f5fb;color:var(--navy)}
+.delete{color:#d33;background:none;border:0;cursor:pointer}
+.steps{counter-reset:step;display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
+.step{
+  background:white;padding:20px;border-radius:12px;
+  border-top:4px solid var(--green);
+}
+.step:before{
+  counter-increment:step;content:counter(step);
+  display:block;font-size:26px;font-weight:bold;color:var(--green)
+}
+.cta{
+  background:linear-gradient(120deg,#102d50,#1763b4);
+  color:white;text-align:center;padding:55px 20px;
+}
+.cta h2{font-size:30px;margin-top:0}
+footer{
+  background:#0c2039;color:#cbd7e6;
+  text-align:center;padding:28px 15px;font-size:13px;
+}
+footer a{color:white}
+footer .brand{font-size:20px;font-weight:bold;color:white}
+.empty{text-align:center;color:#8290a1;padding:25px}
+@media(max-width:800px){
+ .searchbox{grid-template-columns:1fr 1fr}
+ .grid{grid-template-columns:repeat(2,1fr)}
+ .steps{grid-template-columns:repeat(2,1fr)}
+ .tracker-form{grid-template-columns:1fr 1fr}
+}
+@media(max-width:540px){
+ .nav{justify-content:center}
+ nav{justify-content:center;gap:12px}
+ .hero{padding:65px 15px}
+ .searchbox,.grid,.resource-list,.steps,.stats,.tracker-form{
+   grid-template-columns:1fr
+ }
+ .container{padding:38px 15px}
+ table{font-size:12px}
+ th,td{padding:8px 5px}
 }
 </style>
 </head>
 <body>
 
 <header>
- <div class="logo">1CODE <span>AI FINANCE</span></div>
- <nav>
-  <a href="#dashboard">Dashboard</a>
-  <a href="#advisor">AI Advisor</a>
-  <a href="#tools">Calculators</a>
-  <a href="#portfolio">Portfolio</a>
-  <a href="#resources">Resources</a>
- </nav>
+ <div class="nav">
+  <div class="logo">LONDON <span>JOB FINDER</span></div>
+  <nav>
+   <a href="#home">Home</a>
+   <a href="#jobs">Find Jobs</a>
+   <a href="#agencies">Employment Help</a>
+   <a href="#resources">Resources</a>
+   <a href="#tracker">My Applications</a>
+  </nav>
+ </div>
 </header>
 
-<main class="container">
+<section class="hero" id="home">
+ <h1>Find Your Next Job in London, Ontario!</h1>
+ <p>Your local guide to finding employment, exploring careers,
+ connecting with employers and building your future.</p>
 
-<section id="dashboard">
- <h1>Stock Market Dashboard</h1>
- <p class="muted">Your investment research and technical analysis center.</p>
-
- <div class="grid stats">
-  <div class="card">
-   <div class="small">Selected Stock</div>
-   <div class="stat-value" id="stockName">AAPL</div>
-   <div class="small">Market symbol</div>
-  </div>
-  <div class="card">
-   <div class="small">Latest Price</div>
-   <div class="stat-value" id="stockPrice">$225.00</div>
-   <div class="small" id="priceChange">Demo data</div>
-  </div>
-  <div class="card">
-   <div class="small">20-Day Moving Average</div>
-   <div class="stat-value blue" id="ma20">$0.00</div>
-   <div class="small">Short-term trend</div>
-  </div>
-  <div class="card">
-   <div class="small">50-Day Moving Average</div>
-   <div class="stat-value" id="ma50">$0.00</div>
-   <div class="small">Long-term trend</div>
-  </div>
+ <div class="searchbox">
+  <input id="keyword" placeholder="Job title, keyword or company">
+  <select id="jobType">
+   <option value="">All job types</option>
+   <option>Full-time</option>
+   <option>Part-time</option>
+   <option>Temporary</option>
+   <option>Contract</option>
+   <option>Remote</option>
+  </select>
+  <select id="industry">
+   <option value="">All industries</option>
+   <option>Retail</option>
+   <option>Warehouse</option>
+   <option>Manufacturing</option>
+   <option>Healthcare</option>
+   <option>Construction</option>
+   <option>Office</option>
+   <option>Customer Service</option>
+   <option>Food Service</option>
+   <option>Technology</option>
+  </select>
+  <button class="btn green" onclick="searchJobs()">Search Jobs</button>
  </div>
+ <div class="search-results" id="searchResults" aria-live="polite"></div>
 
- <div class="grid layout">
-  <div class="card chart-card">
-   <div class="chart-top">
-    <div>
-     <h2>Interactive Stock Chart</h2>
-     <div class="small">Price history and technical moving averages</div>
-    </div>
-    <select id="stockSelect" onchange="changeStock()">
-     <option value="AAPL">Apple - AAPL</option>
-     <option value="MSFT">Microsoft - MSFT</option>
-     <option value="NVDA">NVIDIA - NVDA</option>
-     <option value="TSLA">Tesla - TSLA</option>
-     <option value="AMZN">Amazon - AMZN</option>
-     <option value="GOOGL">Alphabet - GOOGL</option>
-     <option value="META">Meta - META</option>
-     <option value="AMD">AMD - AMD</option>
-     <option value="SHOP">Shopify - SHOP</option>
-     <option value="RY">Royal Bank - RY</option>
-     <option value="TD">TD Bank - TD</option>
-     <option value="ENB">Enbridge - ENB</option>
-    </select>
-   </div>
+ <div class="stats">
+  <div class="stat"><strong>Local</strong>London job opportunities</div>
+  <div class="stat"><strong>Free</strong>Employment resources</div>
+  <div class="stat"><strong>24/7</strong>Online job searching</div>
+ </div>
+</section>
 
-   <div class="chart-wrap">
-    <canvas id="stockChart"></canvas>
+<section class="container" id="jobs">
+ <div class="section-title">
+  <h2>Explore Job Opportunities</h2>
+  <p>Start searching for employment in London and surrounding areas.</p>
+ </div>
+ <div class="grid">
+
+  <article class="card">
+   <a href="https://www.indeed.com/jobs?q=&l=London%2C+ON" target="_blank">
+    <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=700&q=80" alt="People working together">
+   </a>
+   <div class="card-body">
+    <h3>Indeed Canada</h3>
+    <p>Search thousands of job advertisements from employers in London.</p>
+    <div class="tags"><span class="tag">All industries</span><span class="tag">Local jobs</span></div>
+    <a class="btn" href="https://ca.indeed.com/jobs?l=London%2C+ON" target="_blank">Find Jobs →</a>
    </div>
-   <div class="indicators small">
-    <span><i class="dot" style="background:#22d69a"></i>Stock Price</span>
-    <span><i class="dot" style="background:#5398ff"></i>MA 20</span>
-    <span><i class="dot" style="background:#ffbd58"></i>MA 50</span>
+  </article>
+
+  <article class="card">
+   <a href="https://www.jobbank.gc.ca/" target="_blank">
+    <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=700&q=80" alt="Job search paperwork">
+   </a>
+   <div class="card-body">
+    <h3>Canada Job Bank</h3>
+    <p>Search verified Canadian job postings and explore wages and careers.</p>
+    <div class="tags"><span class="tag">Government</span><span class="tag">Wages</span></div>
+    <a class="btn" href="https://www.on.jobbank.gc.ca/jobsearch/jobsearch?mid=39077" target="_blank">Search Job Bank →</a>
+   </div>
+  </article>
+
+  <article class="card">
+   <a href="https://www.linkedin.com/jobs/" target="_blank">
+    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=700&q=80" alt="Professional business meeting">
+   </a>
+   <div class="card-body">
+    <h3>LinkedIn Jobs</h3>
+    <p>Find professional opportunities and connect with hiring managers.</p>
+    <div class="tags"><span class="tag">Networking</span><span class="tag">Careers</span></div>
+    <a class="btn" href="https://www.linkedin.com/jobs/" target="_blank">Explore Jobs →</a>
+   </div>
+  </article>
+
+  <article class="card">
+   <a href="https://www.glassdoor.ca/Job/index.htm" target="_blank">
+    <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=700&q=80" alt="Modern workplace">
+   </a>
+   <div class="card-body">
+    <h3>Glassdoor</h3>
+    <p>Explore employment opportunities, company information and workplace reviews.</p>
+    <div class="tags"><span class="tag">Reviews</span><span class="tag">Salary research</span></div>
+    <a class="btn" href="https://www.glassdoor.ca/Job/index.htm" target="_blank">Find Opportunities →</a>
+   </div>
+  </article>
+
+  <article class="card">
+   <a href="https://www.knighthunter.com/" target="_blank">
+    <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=700&q=80" alt="Professional handshake">
+   </a>
+   <div class="card-body">
+    <h3>Knighthunter</h3>
+    <p>Explore employment opportunities in London and Southwestern Ontario.</p>
+    <div class="tags"><span class="tag">Local</span><span class="tag">Regional</span></div>
+    <a class="btn" href="https://www.knighthunter.com/" target="_blank">Visit Knighthunter →</a>
+   </div>
+  </article>
+
+  <article class="card">
+   <a href="https://www.ledc.com/working-london" target="_blank">
+    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=700&q=80" alt="Office and business workspace">
+   </a>
+   <div class="card-body">
+    <h3>Working in London</h3>
+    <p>Discover London employers, local job portals and career opportunities.</p>
+    <div class="tags"><span class="tag">Local employers</span><span class="tag">Career growth</span></div>
+    <a class="btn" href="https://www.ledc.com/working-london" target="_blank">Explore London Jobs →</a>
+   </div>
+  </article>
+
+ </div>
+</section>
+
+<section class="container bg-white" id="agencies">
+ <div class="section-title">
+  <h2>Local Employment Agencies & Services</h2>
+  <p>Get help finding work, improving your resume and connecting with employers.</p>
+ </div>
+ <div class="grid">
+
+  <article class="card">
+   <a href="https://www.lresnetwork.ca/job-seekers/" target="_blank">
+    <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=700&q=80" alt="Employment advisor helping a job seeker">
+   </a>
+   <div class="card-body">
+    <h3>London Regional Employment Services</h3>
+    <p>Free career planning, resume assistance, interview preparation and job matching.</p>
+    <a href="https://www.lresnetwork.ca/job-seekers/" target="_blank">Get Employment Help →</a>
+   </div>
+  </article>
+
+  <article class="card">
+   <a href="https://pathways.on.ca/" target="_blank">
+    <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=700&q=80" alt="Career support meeting">
+   </a>
+   <div class="card-body">
+    <h3>Pathways Employment Help Centre</h3>
+    <p>Employment support, career planning, training and job search assistance.</p>
+    <a href="https://pathways.on.ca/" target="_blank">Visit Pathways →</a>
+   </div>
+  </article>
+
+  <article class="card">
+   <a href="https://www.leadsservices.com/" target="_blank">
+    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=700&q=80" alt="Team working together">
+   </a>
+   <div class="card-body">
+    <h3>LEADS Employment Services</h3>
+    <p>Explore employment services, skills development and career support.</p>
+    <a href="https://www.leadsservices.com/" target="_blank">Visit LEADS →</a>
+   </div>
+  </article>
+
+  <article class="card">
+   <a href="https://www.ablemployment.com/" target="_blank">
+    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=700&q=80" alt="Industrial worker">
+   </a>
+   <div class="card-body">
+    <h3>ABL Employment</h3>
+    <p>Explore staffing opportunities in industrial, administrative and other sectors.</p>
+    <a href="https://www.ablemployment.com/" target="_blank">Find Work →</a>
+   </div>
+  </article>
+
+  <article class="card">
+   <a href="https://www.expresspros.com/" target="_blank">
+    <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=700&q=80" alt="Professional office">
+   </a>
+   <div class="card-body">
+    <h3>Express Employment Professionals</h3>
+    <p>Explore temporary, contract and permanent employment opportunities.</p>
+    <a href="https://www.expresspros.com/" target="_blank">Visit Express →</a>
+   </div>
+  </article>
+
+  <article class="card">
+   <a href="https://www.libertystaffing.ca/" target="_blank">
+    <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=700&q=80" alt="Office environment">
+   </a>
+   <div class="card-body">
+    <h3>Liberty Staffing</h3>
+    <p>Explore local staffing and recruitment opportunities.</p>
+    <a href="https://www.libertystaffing.ca/" target="_blank">Visit Liberty Staffing →</a>
+   </div>
+  </article>
+ </div>
+</section>
+
+<section class="container" id="resources">
+ <div class="section-title">
+  <h2>Career & Employment Resources</h2>
+  <p>Useful resources to help you get hired.</p>
+ </div>
+ <div class="resource-list">
+  <div class="resource">
+   <div class="symbol">📄</div><div>
+    <a href="https://www.jobbank.gc.ca/findajob/resources/write-good-resume" target="_blank">Resume Writing</a>
+    <p>Learn how to build a professional resume.</p>
    </div>
   </div>
-
-  <div class="card" id="advisor">
-   <h2>AI Financial Advisor</h2>
-   <div class="small">Technical signal analysis</div>
-   <div class="signal green" id="mainSignal">HOLD</div>
-   <p class="muted small" id="signalReason">Analyzing market trends...</p>
-
-   <div class="signal-row">
-    <div class="chart-top"><b>Buy</b><span id="buyPct">40%</span></div>
-    <div class="progress"><span id="buyBar" style="width:40%;background:#22d69a"></span></div>
+  <div class="resource">
+   <div class="symbol">✉️</div><div>
+    <a href="https://www.jobbank.gc.ca/findajob/resources/cover-letters" target="_blank">Cover Letters</a>
+    <p>Learn how to write a strong cover letter.</p>
    </div>
-   <div class="signal-row">
-    <div class="chart-top"><b>Hold</b><span id="holdPct">40%</span></div>
-    <div class="progress"><span id="holdBar" style="width:40%;background:#5398ff"></span></div>
+  </div>
+  <div class="resource">
+   <div class="symbol">🎤</div><div>
+    <a href="https://www.jobbank.gc.ca/findajob/resources/interviews" target="_blank">Interview Preparation</a>
+    <p>Prepare for job interviews and common questions.</p>
    </div>
-   <div class="signal-row">
-    <div class="chart-top"><b>Sell</b><span id="sellPct">20%</span></div>
-    <div class="progress"><span id="sellBar" style="width:20%;background:#ff647c"></span></div>
+  </div>
+  <div class="resource">
+   <div class="symbol">🎓</div><div>
+    <a href="https://www.ontario.ca/page/employment-ontario" target="_blank">Employment Ontario</a>
+    <p>Find free employment and training support.</p>
    </div>
-   <hr style="border-color:var(--border)">
-   <h3>Technical Price Targets</h3>
-   <div class="chart-top">
-    <span class="muted">Bullish target</span>
-    <b class="green" id="bullTarget">$0</b>
+  </div>
+  <div class="resource">
+   <div class="symbol">🏛️</div><div>
+    <a href="https://london.ca/government/careers-city-london" target="_blank">City of London Careers</a>
+    <p>Find municipal government employment opportunities.</p>
    </div>
-   <div class="chart-top" style="margin-top:12px">
-    <span class="muted">Bearish target</span>
-    <b class="red" id="bearTarget">$0</b>
+  </div>
+  <div class="resource">
+   <div class="symbol">🏭</div><div>
+    <a href="https://www.ledc.com/working-london" target="_blank">London Industry Careers</a>
+    <p>Explore technology and manufacturing opportunities.</p>
    </div>
-   <div class="chart-top" style="margin-top:12px">
-    <span class="muted">RSI (14)</span>
-    <b id="rsi">50</b>
-   </div>
-   <div class="chart-top" style="margin-top:12px">
-    <span class="muted">Trend</span>
-    <b id="trend">Neutral</b>
-   </div>
-   <p class="small">Illustrative technical scenarios, not guaranteed forecasts.</p>
   </div>
  </div>
 </section>
 
-<section class="section">
- <h2>Market Data Connection</h2>
- <div class="card">
-  <p class="small">Connect Twelve Data to retrieve historical stock prices.
-  An API key is required. Without one, the dashboard uses clearly labeled demo data.</p>
-  <input id="apiKey" type="password" placeholder="Enter your Twelve Data API key">
-  <button onclick="loadLiveData()">Load Market Data</button>
-  <button class="secondary" onclick="useDemo()">Use Demo Data</button>
-  <p id="apiStatus" class="small">Demo mode active.</p>
+<section class="container bg-white">
+ <div class="section-title">
+  <h2>4 Steps to Finding a Job</h2>
+  <p>A simple plan to help you get started.</p>
+ </div>
+ <div class="steps">
+  <div class="step"><h3>Prepare Your Resume</h3><p>Update your work experience, education, skills and contact information.</p></div>
+  <div class="step"><h3>Search for Jobs</h3><p>Check job boards every day and explore local employers.</p></div>
+  <div class="step"><h3>Apply for Positions</h3><p>Customize your application to match each job description.</p></div>
+  <div class="step"><h3>Follow Up</h3><p>Prepare for interviews and politely follow up with employers.</p></div>
  </div>
 </section>
 
-<section class="section" id="portfolio">
- <h2>Investment Portfolio Tracker</h2>
- <div class="card">
-  <div class="grid two">
-   <div>
-    <label class="small">Stock symbol</label>
-    <input id="pSymbol" placeholder="Example: AAPL">
-   </div>
-   <div>
-    <label class="small">Shares owned</label>
-    <input id="pShares" type="number" min="0" placeholder="10">
-   </div>
-   <div>
-    <label class="small">Average purchase price ($)</label>
-    <input id="pCost" type="number" min="0" placeholder="150">
-   </div>
-   <div>
-    <label class="small">Current share price ($)</label>
-    <input id="pCurrent" type="number" min="0" placeholder="225">
-   </div>
-  </div>
-  <button onclick="addHolding()">Add Investment</button>
-  <h3>Your Holdings</h3>
+<section class="container" id="tracker">
+ <div class="section-title">
+  <h2>My Job Application Tracker</h2>
+  <p>Keep track of your applications directly on this website.</p>
+ </div>
+ <div class="tracker">
+  <form class="tracker-form" id="jobForm">
+   <input id="company" placeholder="Company / Job title" required>
+   <select id="status">
+    <option>Applied</option>
+    <option>Interview</option>
+    <option>Follow-up</option>
+    <option>Offer</option>
+    <option>Rejected</option>
+   </select>
+   <input id="applyDate" type="date" required>
+   <button class="btn green" type="submit">+ Add Job</button>
+  </form>
   <div style="overflow-x:auto">
    <table>
-    <thead><tr><th>Stock</th><th>Shares</th><th>Value</th><th>Profit/Loss</th><th></th></tr></thead>
-    <tbody id="portfolioRows"></tbody>
+    <thead>
+     <tr><th>Company / Job</th><th>Date</th><th>Status</th><th>Action</th></tr>
+    </thead>
+    <tbody id="jobTable"></tbody>
    </table>
   </div>
-  <h3 id="portfolioTotal">Total Portfolio: $0.00</h3>
+  <p id="jobCount" style="font-weight:bold;margin-top:18px">0 applications tracked</p>
+  <button class="btn light" onclick="exportJobs()">Export Applications CSV</button>
  </div>
 </section>
 
-<section class="section" id="tools">
- <h2>Advanced Financial Tools</h2>
- <div class="grid two">
-  <div class="card tool">
-   <h3>Compound Interest Calculator</h3>
-   <p class="small">Estimate how your investments may grow over time.</p>
-   <label class="small">Initial investment ($)</label>
-   <input id="principal" type="number" value="10000" min="0">
-   <label class="small">Annual interest rate (%)</label>
-   <input id="rate" type="number" value="7" min="0">
-   <label class="small">Years invested</label>
-   <input id="years" type="number" value="20" min="0">
-   <label class="small">Monthly contribution ($)</label>
-   <input id="monthly" type="number" value="200" min="0">
-   <button onclick="calculateCompound()">Calculate Growth</button>
-   <div class="result" id="compoundResult">$0</div>
-   <p class="small" id="compoundDetails"></p>
-  </div>
-
-  <div class="card tool">
-   <h3>Dividend Reinvestment Tracker</h3>
-   <p class="small">Calculate estimated shares acquired by reinvesting dividends.</p>
-   <label class="small">Shares owned</label>
-   <input id="dShares" type="number" value="100" min="0">
-   <label class="small">Annual dividend per share ($)</label>
-   <input id="dDividend" type="number" value="2.50" min="0">
-   <label class="small">Current share price ($)</label>
-   <input id="dPrice" type="number" value="50" min="0.01">
-   <label class="small">Years of reinvestment</label>
-   <input id="dYears" type="number" value="10" min="0">
-   <button onclick="calculateDRIP()">Calculate Reinvestment</button>
-   <div class="result" id="dripResult">0 Shares</div>
-   <p class="small" id="dripDetails"></p>
-  </div>
- </div>
+<section class="cta">
+ <h2>Your Next Opportunity Starts Today!</h2>
+ <p>Explore jobs, improve your skills and take the next step in your career.</p>
+ <a class="btn green" href="https://www.on.jobbank.gc.ca/jobsearch/jobsearch?mid=39077" target="_blank">Start Your Job Search →</a>
 </section>
 
-<section class="section">
- <h2>Technical Analysis Guide</h2>
- <div class="grid three">
-  <div class="card">
-   <h3 class="blue">Moving Averages</h3>
-   <p class="small">Compare short-term and long-term average prices to identify trends and possible moving-average crossovers.</p>
-  </div>
-  <div class="card">
-   <h3 class="green">RSI Indicator</h3>
-   <p class="small">The Relative Strength Index measures momentum. Readings above 70 are commonly considered overbought and below 30 oversold.</p>
-  </div>
-  <div class="card">
-   <h3 class="red">Support & Resistance</h3>
-   <p class="small">Identify historical price areas where buying or selling pressure may become stronger.</p>
-  </div>
- </div>
-</section>
-
-<section class="section">
- <h2>Financial News & Research</h2>
- <div class="grid news-grid">
-  <div class="card news">
-   <a href="https://www.cnbc.com/markets/" target="_blank">
-    <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=700" alt="Financial market charts">
-    <h3>Stock Market News</h3>
-    <p class="small">Follow global financial markets and breaking market news.</p>
-    <span class="green">Visit CNBC →</span>
-   </a>
-  </div>
-  <div class="card news">
-   <a href="https://finance.yahoo.com/" target="_blank">
-    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=700" alt="Financial data analytics">
-    <h3>Yahoo Finance</h3>
-    <p class="small">Research stocks, market prices, company fundamentals and financial news.</p>
-    <span class="green">Visit Yahoo Finance →</span>
-   </a>
-  </div>
-  <div class="card news">
-   <a href="https://www.investing.com/" target="_blank">
-    <img src="https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=700" alt="Investment trading screen">
-    <h3>Investing.com</h3>
-    <p class="small">Explore economic calendars, stock markets and technical analysis.</p>
-    <span class="green">Visit Investing.com →</span>
-   </a>
-  </div>
- </div>
-</section>
-
-<section class="section" id="resources">
- <h2>Investment Resources</h2>
- <div class="card resource">
-  <p><a href="https://www.nasdaq.com/" target="_blank">NASDAQ</a> — US stock market information.</p>
-  <p><a href="https://www.tsx.com/" target="_blank">Toronto Stock Exchange</a> — Canadian market information.</p>
-  <p><a href="https://www.sec.gov/edgar/search/" target="_blank">SEC EDGAR</a> — Company filings and financial statements.</p>
-  <p><a href="https://www.investor.gov/" target="_blank">Investor.gov</a> — Investor education and protection.</p>
-  <p><a href="https://www.bankofcanada.ca/" target="_blank">Bank of Canada</a> — Canadian interest rates and economic data.</p>
- </div>
-</section>
-
-<div class="notice section">
- <b>Investment disclaimer:</b> This website is an educational financial research tool.
- Demo prices are not real market quotes. Technical signals and calculated targets
- are hypothetical, not financial advice or guarantees. Stock investments involve
- risk, including loss of principal. Verify market information independently before
- making investment decisions.
-</div>
-
-</main>
-
-<footer>1Code © 2026 | AI Stock Market Advisor</footer>
+<footer>
+ <div class="brand">LONDON JOB FINDER</div>
+ <p>Helping people discover employment opportunities in London, Ontario.</p>
+ <p>
+  <a href="#home">Home</a> ·
+  <a href="#jobs">Find Jobs</a> ·
+  <a href="#agencies">Employment Help</a> ·
+  <a href="#resources">Career Resources</a>
+ </p>
+ <p>Always verify job details, deadlines and employer information before applying.</p>
+ <p>© 2026 London Job Finder. All Rights Reserved.</p>
+ <p>Website concept by <strong>1Code</strong></p>
+</footer>
 
 <script>
-// STOCK CONFIGURATION
-const stocks = {
- AAPL:{price:225,vol:3},
- MSFT:{price:510,vol:4},
- NVDA:{price:185,vol:5},
- TSLA:{price:440,vol:8},
- AMZN:{price:225,vol:4},
- GOOGL:{price:295,vol:3},
- META:{price:650,vol:5},
- AMD:{price:220,vol:7},
- SHOP:{price:160,vol:7},
- RY:{price:180,vol:2},
- TD:{price:100,vol:2},
- ENB:{price:65,vol:1}
-};
+// JOB SEARCH
+function searchJobs(){
+ const keyword=document.getElementById('keyword').value.trim();
+ const type=document.getElementById('jobType').value;
+ const industry=document.getElementById('industry').value;
+ const query=[keyword,industry,type].filter(Boolean).join(' ');
+ const encoded=encodeURIComponent(query);
+ const results=document.getElementById('searchResults');
 
-let symbol="AAPL";
-let prices=[];
-let liveMode=false;
-let chart=null;
-let portfolio=[];
-
-function average(data,n){
- return data.map((v,i)=>{
-  if(i<n-1)return null;
-  const slice=data.slice(i-n+1,i+1);
-  return slice.reduce((a,b)=>a+b,0)/n;
- });
+ results.style.display='block';
+ results.innerHTML=`
+  <h3>Job search results for London, Ontario</h3>
+  <p>Search for: <strong>${escapeHTML(query||'All jobs')}</strong></p>
+  <p>Choose a job board to view current listings:</p>
+  <p>
+   <a class="btn" target="_blank" rel="noopener"
+   href="https://ca.indeed.com/jobs?q=${encoded}&l=London%2C+ON">Indeed</a>
+   <a class="btn green" target="_blank" rel="noopener"
+   href="https://www.jobbank.gc.ca/jobsearch/jobsearch?searchstring=${encoded}&locationstring=London%2C+ON">Job Bank</a>
+   <a class="btn light" target="_blank" rel="noopener"
+   href="https://www.linkedin.com/jobs/search/?keywords=${encoded}&location=London%2C%20Ontario%2C%20Canada">LinkedIn</a>
+  </p>
+  <p><small>These links open live search pages. Results and availability depend on each job board.</small></p>
+ `;
+ results.scrollIntoView({behavior:'smooth',block:'nearest'});
 }
-
-function generateDemo(ticker){
- const config=stocks[ticker]||stocks.AAPL;
- let price=config.price*0.83;
- let result=[];
- let seed=Array.from(ticker).reduce((a,c)=>a+c.charCodeAt(0),0);
- for(let i=0;i<100;i++){
-  const wave=Math.sin(i/8+seed)*config.vol*.18;
-  const noise=(Math.sin(i*12.9898+seed*4.2)*.5+
-  Math.cos(i*7.234+seed)*.5)*config.vol*.32;
-  price*=1+(0.0008+wave/100+noise/100);
-  result.push(Number(price.toFixed(2)));
- }
- result[99]=config.price;
- return result;
+function escapeHTML(value){
+ return String(value).replace(/[&<>"']/g,c=>({
+ '&':'&amp;','<':'&lt;','>':'&gt;',
+ '"':'&quot;',"'":'&#39;'
+ })[c]);
 }
+document.getElementById('keyword').addEventListener('keydown',e=>{
+ if(e.key==='Enter')searchJobs();
+});
 
-function money(v){
- return "$"+Number(v).toLocaleString("en-US",{
- minimumFractionDigits:2,maximumFractionDigits:2
- });
+// APPLICATION TRACKER
+let applications=[];
+try{
+ applications=JSON.parse(localStorage.getItem('londonJobApplications')||'[]');
+ if(!Array.isArray(applications))applications=[];
+}catch(e){applications=[];}
+
+function saveJobs(){
+ localStorage.setItem('londonJobApplications',JSON.stringify(applications));
+ renderJobs();
 }
-
-function updateChart(){
- const m20=average(prices,20);
- const m50=average(prices,50);
- const labels=prices.map((_,i)=>"Day "+(i+1));
-
- if(chart)chart.destroy();
-
- chart=new Chart(document.getElementById("stockChart"),{
-  type:"line",
-  data:{
-   labels,
-   datasets:[
-    {label:"Stock Price",data:prices,borderColor:"#22d69a",
-     backgroundColor:"rgba(34,214,154,.08)",fill:true,
-     pointRadius:0,borderWidth:2,tension:.3},
-    {label:"MA 20",data:m20,borderColor:"#5398ff",
-     pointRadius:0,borderWidth:2,tension:.3},
-    {label:"MA 50",data:m50,borderColor:"#ffbd58",
-     pointRadius:0,borderWidth:2,tension:.3}
-   ]
-  },
-  options:{
-   responsive:true,maintainAspectRatio:false,
-   interaction:{mode:"index",intersect:false},
-   plugins:{legend:{display:false}},
-   scales:{
-    x:{ticks:{display:false},grid:{color:"#293953"}},
-    y:{grid:{color:"#293953"},ticks:{
-     color:"#93a5c2",
-     callback:v=>"$"+v
-    }}
-   }
-  }
- });
-
- analyze();
-}
-
-function analyze(){
- const price=prices.at(-1);
- const ma20=average(prices,20).at(-1);
- const ma50=average(prices,50).at(-1);
- const change=prices.at(-1)-prices.at(-2);
-
- // RSI calculation
- let gains=0,losses=0;
- for(let i=prices.length-14;i<prices.length;i++){
-  const diff=prices[i]-prices[i-1];
-  if(diff>0)gains+=diff;
-  else losses-=diff;
- }
- const rs=losses===0?100:gains/losses;
- const rsi=100-(100/(1+rs));
-
- let score=0;
- if(price>ma20)score++;
- if(ma20>ma50)score++;
- if(rsi<70&&rsi>45)score++;
- if(change>0)score++;
- if(rsi>75)score-=2;
- if(rsi<30)score+=1;
-
- let buy,hold,sell,signal;
- if(score>=3){
-  signal="BUY";buy=65;hold=25;sell=10;
- }else if(score<=0){
-  signal="SELL";buy=10;hold=25;sell=65;
- }else{
-  signal="HOLD";buy=25;hold=60;sell=15;
- }
-
- document.getElementById("stockName").textContent=symbol;
- document.getElementById("stockPrice").textContent=money(price);
- document.getElementById("priceChange").textContent=
-  liveMode?"Live historical feed":
-  "Illustrative demo market data";
- document.getElementById("ma20").textContent=money(ma20);
- document.getElementById("ma50").textContent=money(ma50);
-
- const signalEl=document.getElementById("mainSignal");
- signalEl.textContent=signal;
- signalEl.className="signal "+(signal==="BUY"?"green":signal==="SELL"?"red":"blue");
-
- document.getElementById("signalReason").textContent=
-  signal==="BUY"?"Bullish technical conditions detected. Review risk and valuation.":
-  signal==="SELL"?"Bearish or overheated technical conditions detected. Review downside risks.":
-  "Mixed technical conditions. Waiting for a clearer trend.";
-
- [["buy",buy],["hold",hold],["sell",sell]].forEach(([id,val])=>{
-  document.getElementById(id+"Pct").textContent=val+"%";
-  document.getElementById(id+"Bar").style.width=val+"%";
- });
-
- document.getElementById("bullTarget").textContent=money(price*1.08);
- document.getElementById("bearTarget").textContent=money(price*.92);
- document.getElementById("rsi").textContent=rsi.toFixed(1);
- document.getElementById("trend").textContent=
-  price>ma20&&ma20>ma50?"Bullish":
-  price<ma20&&ma20<ma50?"Bearish":"Neutral";
-}
-
-function changeStock(){
- symbol=document.getElementById("stockSelect").value;
- liveMode=false;
- prices=generateDemo(symbol);
- updateChart();
-}
-
-async function loadLiveData(){
- const key=document.getElementById("apiKey").value.trim();
- if(!key){
-  alert("Please enter your Twelve Data API key.");
-  return;
- }
- document.getElementById("apiStatus").textContent="Loading market history...";
- try{
-  const url=`https://api.twelvedata.com/time_series?symbol=${encodeURIComponent(symbol)}&interval=1day&outputsize=100&apikey=${encodeURIComponent(key)}`;
-  const response=await fetch(url);
-  const data=await response.json();
-  if(!response.ok||!data.values||!data.values.length){
-   throw new Error(data.message||data.code||"No price history returned.");
-  }
-  prices=data.values.slice().reverse().map(x=>Number(x.close));
-  if(prices.some(x=>!Number.isFinite(x))||prices.length<50){
-   throw new Error("Insufficient valid price history.");
-  }
-  liveMode=true;
-  updateChart();
-  document.getElementById("apiStatus").textContent=
-   "Historical market data loaded successfully. Latest available daily close: "+data.values[0].datetime;
- }catch(e){
-  document.getElementById("apiStatus").textContent=
-   "Unable to load data: "+e.message+". Check your API key, symbol and usage limits.";
- }
-}
-
-function useDemo(){
- liveMode=false;
- prices=generateDemo(symbol);
- updateChart();
- document.getElementById("apiStatus").textContent="Demo mode active.";
-}
-
-// COMPOUND INTEREST
-function calculateCompound(){
- const p=Number(document.getElementById("principal").value);
- const r=Number(document.getElementById("rate").value)/100/12;
- const years=Number(document.getElementById("years").value);
- const monthly=Number(document.getElementById("monthly").value);
- if(![p,r,years,monthly].every(Number.isFinite)||p<0||r<0||years<0||monthly<0||years>100){
-  alert("Enter valid non-negative values (maximum 100 years).");return;
- }
- const n=Math.round(years*12);
- const growth=Math.pow(1+r,n);
- const initial=p*growth;
- const contributions=r===0?monthly*n:monthly*(growth-1)/r;
- const total=initial+contributions;
- document.getElementById("compoundResult").textContent=money(total);
- document.getElementById("compoundDetails").textContent=
-  "Contributions: "+money(p+monthly*n)+
-  " | Estimated growth: "+money(total-p-monthly*n);
-}
-
-// DIVIDEND REINVESTMENT
-function calculateDRIP(){
- const shares=Number(document.getElementById("dShares").value);
- const dividend=Number(document.getElementById("dDividend").value);
- const price=Number(document.getElementById("dPrice").value);
- const years=Number(document.getElementById("dYears").value);
- if(![shares,dividend,price,years].every(Number.isFinite)||
- shares<0||dividend<0||price<=0||years<0||years>100){
-  alert("Enter valid dividend investment values.");return;
- }
- let current=shares;
- let totalDividends=0;
- for(let i=0;i<years*4;i++){
-  const payment=current*dividend/4;
-  totalDividends+=payment;
-  current+=payment/price;
- }
- document.getElementById("dripResult").textContent=current.toFixed(4)+" Shares";
- document.getElementById("dripDetails").textContent=
-  "Additional shares: "+(current-shares).toFixed(4)+
-  " | Dividends reinvested: "+money(totalDividends);
-}
-
-// PORTFOLIO
-function addHolding(){
- const sym=document.getElementById("pSymbol").value.trim().toUpperCase();
- const shares=Number(document.getElementById("pShares").value);
- const cost=Number(document.getElementById("pCost").value);
- const current=Number(document.getElementById("pCurrent").value);
- if(!sym||![shares,cost,current].every(Number.isFinite)||
- shares<=0||cost<0||current<0){
-  alert("Enter a valid symbol, share quantity and prices.");return;
- }
- portfolio.push({sym,shares,cost,current});
- renderPortfolio();
-}
-
-function renderPortfolio(){
- const body=document.getElementById("portfolioRows");
- body.innerHTML="";
- let total=0;
- portfolio.forEach((p,i)=>{
-  const value=p.shares*p.current;
-  const profit=p.shares*(p.current-p.cost);
-  total+=value;
-  const tr=document.createElement("tr");
-  [p.sym,p.shares,money(value),money(profit)].forEach((v,j)=>{
-   const td=document.createElement("td");
-   td.textContent=v;
-   if(j===3)td.style.color=profit>=0?"#22d69a":"#ff647c";
+function renderJobs(){
+ const table=document.getElementById('jobTable');
+ table.innerHTML='';
+ applications.forEach((job,index)=>{
+  const tr=document.createElement('tr');
+  [job.company,job.date,job.status].forEach(value=>{
+   const td=document.createElement('td');
+   td.textContent=value;
    tr.appendChild(td);
   });
-  const td=document.createElement("td");
-  const btn=document.createElement("button");
-  btn.className="secondary";
-  btn.textContent="Remove";
-  btn.onclick=()=>{portfolio.splice(i,1);renderPortfolio();};
-  td.appendChild(btn);tr.appendChild(td);
-  body.appendChild(tr);
+  const action=document.createElement('td');
+  const remove=document.createElement('button');
+  remove.className='delete';
+  remove.textContent='Delete';
+  remove.onclick=()=>deleteJob(index);
+  action.appendChild(remove);
+  tr.appendChild(action);
+  table.appendChild(tr);
  });
- document.getElementById("portfolioTotal").textContent=
-  "Total Portfolio: "+money(total);
+ if(!applications.length){
+  table.innerHTML='<tr><td colspan="4" class="empty">No applications yet. Add your first job above!</td></tr>';
+ }
+ document.getElementById('jobCount').textContent=
+  applications.length+' applications tracked';
 }
+document.getElementById('jobForm').addEventListener('submit',e=>{
+ e.preventDefault();
+ applications.unshift({
+  company:document.getElementById('company').value.trim(),
+  status:document.getElementById('status').value,
+  date:document.getElementById('applyDate').value
+ });
+ saveJobs();
+ e.target.reset();
+});
+function deleteJob(index){
+ if(confirm('Delete this application?')){
+  applications.splice(index,1);
+  saveJobs();
+ }
+}
+function exportJobs(){
+ if(!applications.length){
+  alert('Add an application before exporting.');
+  return;
+ }
+ const rows=[['Company / Job','Date','Status'],
+ ...applications.map(j=>[j.company,j.date,j.status])];
+ const csv=rows.map(row=>row.map(v=>
+  '"'+String(v).replace(/"/g,'""')+'"'
+ ).join(',')).join('\n');
+ const blob=new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8;'});
+ const url=URL.createObjectURL(blob);
+ const a=document.createElement('a');
+ a.href=url;a.download='London-Job-Applications.csv';
+ a.click();
+ URL.revokeObjectURL(url);
+}
+renderJobs();
 
-// INITIALIZATION
-calculateCompound();
-calculateDRIP();
-changeStock();
+// DEFAULT DATE
+document.getElementById('applyDate').value=
+ new Date().toLocaleDateString('en-CA');
 </script>
 </body>
 </html>
+
 
 
