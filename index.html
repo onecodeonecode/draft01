@@ -1,596 +1,854 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>London Job Finder | Find Jobs in London Ontario</title>
-<style>
-:root {
-  --blue:#1455a5;
-  --navy:#102d50;
-  --light:#f3f7fc;
-  --green:#16a477;
-  --text:#26364a;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  margin:0;
-  font-family:Arial,Helvetica,sans-serif;
-  color:var(--text);
-  background:var(--light);
-  line-height:1.6;
-}
-a{color:var(--blue)}
-button,input,select{font:inherit}
-header{
-  background:#fff;
-  position:sticky;top:0;z-index:10;
-  box-shadow:0 2px 12px #102d5012;
-}
-.nav{
-  max-width:1200px;margin:auto;padding:14px 22px;
-  display:flex;align-items:center;justify-content:space-between;
-  gap:20px;flex-wrap:wrap;
-}
-.logo{font-size:23px;font-weight:900;color:var(--navy)}
-.logo span{color:var(--green)}
-nav{display:flex;gap:18px;flex-wrap:wrap}
-nav a{text-decoration:none;color:var(--navy);font-weight:bold;font-size:14px}
-nav a:hover{color:var(--green)}
-.hero{
-  background:linear-gradient(110deg,#102d50eF,#1455a5d9),
-  url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1800&q=85') center/cover;
-  color:white;padding:90px 20px;text-align:center;
-}
-.hero h1{font-size:clamp(32px,5vw,55px);margin:0 0 12px}
-.hero p{font-size:18px;max-width:700px;margin:0 auto 25px;color:#e5efff}
-.searchbox{
-  background:white;color:var(--text);
-  max-width:900px;margin:auto;padding:16px;
-  border-radius:14px;display:grid;
-  grid-template-columns:2fr 1fr 1fr auto;gap:10px;
-  box-shadow:0 12px 35px #0003;
-}
-input,select{
-  min-width:0;padding:13px;border:1px solid #d7e0ec;
-  border-radius:8px;background:#fff;width:100%;
-}
-.btn{
-  display:inline-block;border:0;border-radius:8px;
-  padding:12px 19px;background:var(--blue);
-  color:white;text-decoration:none;font-weight:bold;
-  cursor:pointer;text-align:center;
-}
-.btn:hover{filter:brightness(1.12)}
-.btn.green{background:var(--green)}
-.btn.light{background:#eaf2fc;color:var(--navy)}
-.container{max-width:1150px;margin:auto;padding:55px 20px}
-.section-title{text-align:center;margin-bottom:30px}
-.section-title h2{font-size:30px;color:var(--navy);margin-bottom:5px}
-.section-title p{color:#66778c}
-.stats{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  gap:15px;max-width:900px;margin:30px auto 0;
-}
-.stat{background:#ffffff18;padding:14px;border-radius:10px}
-.stat strong{display:block;font-size:24px}
-.grid{
-  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:20px;
-}
-.card{
-  background:white;border-radius:13px;overflow:hidden;
-  box-shadow:0 4px 18px #102d5010;
-  transition:.2s;
-}
-.card:hover{transform:translateY(-4px)}
-.card img{width:100%;height:175px;object-fit:cover;display:block}
-.card-body{padding:19px}
-.card h3{color:var(--navy);margin:0 0 8px}
-.card p{font-size:14px;color:#637287}
-.card a:not(.btn){font-weight:bold}
-.tags{display:flex;gap:7px;flex-wrap:wrap;margin:12px 0}
-.tag{background:#eaf2fc;color:#24558c;padding:4px 9px;border-radius:20px;font-size:12px}
-.bg-white{background:white}
-.resource-list{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
-.resource{
-  display:flex;gap:15px;align-items:center;
-  background:white;padding:18px;border-radius:10px;
-  box-shadow:0 3px 12px #102d500d;
-}
-.resource .symbol{font-size:27px}
-.resource a{font-weight:bold;text-decoration:none}
-.resource p{font-size:13px;margin:4px 0;color:#65758a}
-.search-results{
-  display:none;background:white;border-radius:12px;
-  padding:20px;margin-top:22px;color:var(--text);
-  text-align:left;
-}
-.tracker{
-  background:white;padding:24px;border-radius:14px;
-  box-shadow:0 4px 20px #102d5010;
-}
-.tracker-form{
-  display:grid;grid-template-columns:2fr 1fr 1fr auto;
-  gap:10px;margin-bottom:20px;
-}
-table{width:100%;border-collapse:collapse;font-size:14px}
-th,td{padding:12px;text-align:left;border-bottom:1px solid #e6edf5}
-th{background:#f0f5fb;color:var(--navy)}
-.delete{color:#d33;background:none;border:0;cursor:pointer}
-.steps{counter-reset:step;display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
-.step{
-  background:white;padding:20px;border-radius:12px;
-  border-top:4px solid var(--green);
-}
-.step:before{
-  counter-increment:step;content:counter(step);
-  display:block;font-size:26px;font-weight:bold;color:var(--green)
-}
-.cta{
-  background:linear-gradient(120deg,#102d50,#1763b4);
-  color:white;text-align:center;padding:55px 20px;
-}
-.cta h2{font-size:30px;margin-top:0}
-footer{
-  background:#0c2039;color:#cbd7e6;
-  text-align:center;padding:28px 15px;font-size:13px;
-}
-footer a{color:white}
-footer .brand{font-size:20px;font-weight:bold;color:white}
-.empty{text-align:center;color:#8290a1;padding:25px}
-@media(max-width:800px){
- .searchbox{grid-template-columns:1fr 1fr}
- .grid{grid-template-columns:repeat(2,1fr)}
- .steps{grid-template-columns:repeat(2,1fr)}
- .tracker-form{grid-template-columns:1fr 1fr}
-}
-@media(max-width:540px){
- .nav{justify-content:center}
- nav{justify-content:center;gap:12px}
- .hero{padding:65px 15px}
- .searchbox,.grid,.resource-list,.steps,.stats,.tracker-form{
-   grid-template-columns:1fr
- }
- .container{padding:38px 15px}
- table{font-size:12px}
- th,td{padding:8px 5px}
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top 50 Restaurants in London, Ontario</title>
+    <!-- Google Fonts & FontAwesome for Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #FF5A36;
+            --primary-dark: #e04825;
+            --dark: #1e1e24;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --border: #e9ecef;
+            --card-bg: #ffffff;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1e1e24 0%, #2c3e50 100%);
+            color: white;
+            padding: 4rem 1rem 3rem 1rem;
+            text-align: center;
+            position: relative;
+        }
+
+        header h1 {
+            font-size: 2.75rem;
+            font-weight: 800;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.5px;
+        }
+
+        header h1 span {
+            color: var(--primary);
+        }
+
+        header p {
+            font-size: 1.15rem;
+            color: #adb5bd;
+            max-width: 600px;
+            margin: 0 auto 2rem auto;
+        }
+
+        /* Search & Filter Bar */
+        .filter-container {
+            max-width: 700px;
+            margin: -24px auto 0 auto;
+            position: relative;
+            padding: 0 1rem;
+            z-index: 10;
+        }
+
+        .search-bar {
+            display: flex;
+            background: white;
+            border-radius: 50px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .search-bar input {
+            flex: 1;
+            padding: 1.1rem 1.5rem;
+            border: none;
+            outline: none;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        .search-bar button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0 2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .search-bar button:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1300px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .section-title span {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--gray);
+        }
+
+        /* Grid Layout */
+        .restaurant-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Card Design */
+        .restaurant-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            border: 1px solid var(--border);
+            position: relative;
+        }
+
+        .restaurant-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+
+        .card-img-wrapper {
+            position: relative;
+            height: 210px;
+            overflow: hidden;
+        }
+
+        .card-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .restaurant-card:hover .card-img-wrapper img {
+            transform: scale(1.06);
+        }
+
+        .badge-category {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: rgba(30, 30, 36, 0.85);
+            backdrop-filter: blur(4px);
+            color: white;
+            padding: 0.35rem 0.8rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border-radius: 20px;
+            z-index: 2;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .card-header-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+        }
+
+        .restaurant-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--dark);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .restaurant-name:hover {
+            color: var(--primary);
+        }
+
+        .rating {
+            background: #fff8f6;
+            color: var(--primary);
+            padding: 0.2rem 0.5rem;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .neighborhood {
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .description {
+            font-size: 0.92rem;
+            color: #495057;
+            margin-bottom: 1.25rem;
+            flex: 1;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .map-link {
+            font-size: 0.85rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: var(--transition);
+        }
+
+        .map-link:hover {
+            color: var(--primary-dark);
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: #adb5bd;
+            text-align: center;
+            padding: 2.5rem 1rem;
+            margin-top: 4rem;
+            font-size: 0.95rem;
+        }
+
+        footer p {
+            color: #fff;
+            font-weight: 600;
+        }
+
+        /* No results message */
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 4rem;
+            color: var(--gray);
+            font-size: 1.2rem;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.1rem;
+            }
+            .filter-container {
+                margin-top: -20px;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<header>
- <div class="nav">
-  <div class="logo">LONDON <span>JOB FINDER</span></div>
-  <nav>
-   <a href="#home">Home</a>
-   <a href="#jobs">Find Jobs</a>
-   <a href="#agencies">Employment Help</a>
-   <a href="#resources">Resources</a>
-   <a href="#tracker">My Applications</a>
-  </nav>
- </div>
-</header>
+    <header>
+        <h1>London's Finest <span>50 Dining Spots</span></h1>
+        <p>Explore the ultimate guide to top-rated eateries, hidden gems, and iconic restaurants across London, Ontario.</p>
+    </header>
 
-<section class="hero" id="home">
- <h1>Find Your Next Job in London, Ontario!</h1>
- <p>Your local guide to finding employment, exploring careers,
- connecting with employers and building your future.</p>
+    <div class="filter-container">
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search by restaurant name, food style, or neighborhood..." onkeyup="filterRestaurants()">
+            <button onclick="filterRestaurants()"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
+        </div>
+    </div>
 
- <div class="searchbox">
-  <input id="keyword" placeholder="Job title, keyword or company">
-  <select id="jobType">
-   <option value="">All job types</option>
-   <option>Full-time</option>
-   <option>Part-time</option>
-   <option>Temporary</option>
-   <option>Contract</option>
-   <option>Remote</option>
-  </select>
-  <select id="industry">
-   <option value="">All industries</option>
-   <option>Retail</option>
-   <option>Warehouse</option>
-   <option>Manufacturing</option>
-   <option>Healthcare</option>
-   <option>Construction</option>
-   <option>Office</option>
-   <option>Customer Service</option>
-   <option>Food Service</option>
-   <option>Technology</option>
-  </select>
-  <button class="btn green" onclick="searchJobs()">Search Jobs</button>
- </div>
- <div class="search-results" id="searchResults" aria-live="polite"></div>
+    <main class="container">
+        <div class="section-title">
+            <h2>Featured Curated Selections</h2>
+            <span id="countDisplay">Showing 50 restaurants</span>
+        </div>
 
- <div class="stats">
-  <div class="stat"><strong>Local</strong>London job opportunities</div>
-  <div class="stat"><strong>Free</strong>Employment resources</div>
-  <div class="stat"><strong>24/7</strong>Online job searching</div>
- </div>
-</section>
+        <div class="restaurant-grid" id="restaurantGrid">
+            <!-- Dynamically populated via JavaScript -->
+        </div>
 
-<section class="container" id="jobs">
- <div class="section-title">
-  <h2>Explore Job Opportunities</h2>
-  <p>Start searching for employment in London and surrounding areas.</p>
- </div>
- <div class="grid">
+        <div class="no-results" id="noResults">
+            <i class="fa-solid fa-utensils fa-2x" style="margin-bottom: 1rem; color: var(--primary);"></i>
+            <p>No matching restaurants found. Try looking for another keyword!</p>
+        </div>
+    </main>
 
-  <article class="card">
-   <a href="https://www.indeed.com/jobs?q=&l=London%2C+ON" target="_blank">
-    <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=700&q=80" alt="People working together">
-   </a>
-   <div class="card-body">
-    <h3>Indeed Canada</h3>
-    <p>Search thousands of job advertisements from employers in London.</p>
-    <div class="tags"><span class="tag">All industries</span><span class="tag">Local jobs</span></div>
-    <a class="btn" href="https://ca.indeed.com/jobs?l=London%2C+ON" target="_blank">Find Jobs →</a>
-   </div>
-  </article>
+    <footer>
+        <p>1Code © 2026</p>
+    </footer>
 
-  <article class="card">
-   <a href="https://www.jobbank.gc.ca/" target="_blank">
-    <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=700&q=80" alt="Job search paperwork">
-   </a>
-   <div class="card-body">
-    <h3>Canada Job Bank</h3>
-    <p>Search verified Canadian job postings and explore wages and careers.</p>
-    <div class="tags"><span class="tag">Government</span><span class="tag">Wages</span></div>
-    <a class="btn" href="https://www.on.jobbank.gc.ca/jobsearch/jobsearch?mid=39077" target="_blank">Search Job Bank →</a>
-   </div>
-  </article>
+    <script>
+        // Data set of 50 popular restaurants in London, Ontario
+        const restaurants = [
+            {
+                name: "The Early Bird",
+                category: "Breakfast & Brunch",
+                neighborhood: "Downtown / Talbot St",
+                rating: 4.8,
+                desc: "A retro-inspired punk & hip-hop twist diner famous for massive portions, unique cocktails, and incredible comfort brunch plates.",
+                image: "https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?auto=format&fit=crop&w=600&q=80",
+                url: "https://www.google.com/search?q=The+Early+Bird+London+Ontario"
+            },
+            {
+                name: "Grace Restaurant",
+                category: "Fine Dining",
+                neighborhood: "Downtown",
+                rating: 4.9,
+                desc: "The gold standard for contemporary Canadian fine dining, featuring seasonal farm-to-table tasting menus and fresh local sourdough.",
+                image: "https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&w=600&q=80",
+                url: "https://www.google.com/search?q=Grace+Restaurant+London+Ontario"
+            },
+            {
+                name: "Craft Farmacy",
+                category: "Gastropub",
+                neighborhood: "Wortley Village",
+                rating: 4.7,
+                desc: "Rustic-chic neighborhood favorite known for its exceptional raw bar, creative cocktails, and rotating farm-fresh plates.",
+                image: "https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=600&q=80",
+                url: "https://www.google.com/search?q=Craft+Farmacy+London+Ontario"
+            },
+            {
+                name: "Dolcetto",
+                category: "Italian",
+                neighborhood: "South London",
+                rating: 4.6,
+                desc: "Upscale Italian destination offering fresh house-made pastas, wood-fired pizzas, and scenic views near Colonel Talbot.",
+                image: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80",
+                url: "https://www.google.com/search?q=Dolcetto+London+Ontario"
+            },
+            {
+                name: "Abruzzi Ristorante",
+                category: "Italian",
+                neighborhood: "Downtown (Covent Garden)",
+                rating: 4.7,
+                desc: "Sophisticated eatery right across from Covent Garden Market serving incredible artisanal Italian entrees and grilled beef tenderloin.",
+                image: "https://images.unsplash.com/photo-1537047902294-62a40c20a6ae?auto=format&fit=crop&w=600&q=80",
+                url: "https://www.google.com/search?q=Abruzzi+Ristorante+London+Ontario"
+            },
+            {
+                name: "Hunter & Co.",
+                category: "Tapas & Cocktails",
+                neighborhood: "Downtown",
+                rating: 4.8,
+                desc: "Vibrant North American tapas bar specializing in brilliant small plates, rich flavors, and craft cocktails like the famous Anvil.",
+                image: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80",
+                url: "https://www.google.com/search?q=Hunter+and+Co+London+Ontario"
+            },
+            {
+                name: "Thaifoon Restaurant & Bar",
+                category: "Thai Cuisine",
+                neighborhood: "Richmond Row",
+                rating: 4.7,
+                desc: "Elevated Thai dining experience famous for aromatic curries, authentic spice balances, and exceptional pad thai.",
+                image: "https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=600&q=80",
+                url: "https://www.google.com/search?q=Thaifoon+Restaurant+London+Ontario"
+            },
+            {
+                name: "MORI Japanese Bar",
+                category: "Japanese & Sushi",
+                neighborhood: "Wortley Village",
+                rating: 4.8,
+                desc: "Cozy, lantern-lit sanctuary in Wortley offering exquisite traditional small plates, high-end sake, and top-tier sushi.",
+                image: "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=600&q=80",
+                url: "https://www.google.com/search?q=MORI+Japanese+Bar+London+Ontario"
+            },
+            {
+                name: "Toboggan Brewing Co.",
+                category: "Brewpub",
+                neighborhood: "Richmond Row",
+                rating: 4.6,
+                desc: "Popular local microbrewery with an energetic patio scene, wood-fired pizzas, and craft beers brewed on-site.",
+                image: "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=600&q=80",
+                url: "https://www.google.com/search?q=Toboggan+Brewing+Co+London+Ontario"
+            },
+            {
+                name: "The Church Key Bistro-Pub",
+                category: "Gastropub",
+                neighborhood: "Downtown",
+                rating: 4.6,
+                desc: "Upscale British-style gastropub celebrated for its famous mushroom dip, hearty comfort plates, and cozy Sunday brunches.",
+                image: "https://images.unsplash.com/photo-1572116469696-31de0f17cc34?auto=format&fit=crop&w=600&q=80",
+                url: "https://www.google.com/search?q=The+Church+Key+Bistro-Pub+London+Ontario"
+            },
+            {
+                name: "Sagi of Wortley",
+                category: "Asian Fusion",
+                neighborhood: "Wortley Village",
+                rating: 4.8,
+                desc: "Heart-of-Wortley hotspot serving innovative and delicious Asian-fusion dishes that pull crowds from all over the city.",
+                image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=600&q=80",
+                url: "https://www.google.com/search?q=Sagi+Wortley+Village+London+Ontario"
+            },
+            {
+                name: "Mr and Mrs Bao",
+                category: "Asian Street Food",
+                neighborhood: "Richmond Row",
+                rating: 4.7,
+                desc: "Modern Asian street food eatery serving creative steamed bao buns with fillings like jerk chicken and bulgogi beef.",
+                image: "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=600&q=80",
+                url: "https://www.google.com/search?q=Mr+and+Mrs+Bao+London+Ontario"
+            },
+            {
+                name: "Cintro",
+                category: "Asian Fusion",
+                neighborhood: "Wellington St",
+                rating: 4.9,
+                desc: "Acclaimed fine-dining gem recognized among Canada's top dining spots, offering high-end Asian fusion masterpieces.",
+                image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=80",
+                url: "https://www.google.com/search?q=Cintro+London+Ontario"
+            },
+            {
+                name: "Reverie",
+                category: "Fine Dining",
+                neighborhood: "Central / Downtown",
+                rating: 4.9,
+                desc: "Intimate tasting-menu destination designed for quiet romance, offering carefully curated multi-course menus and wine pairings.",
+                image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=600&q=80",
+                url: "https://www.google.com/search?q=Reverie+restaurant+London+Ontario"
+            },
+            {
+                name: "Plant Matter Kitchen",
+                category: "Plant-Based / Vegan",
+                neighborhood: "Wortley Village",
+                rating: 4.6,
+                desc: "Premier 100% organic, plant-based comfort food destination that impresses vegans and dedicated meat-eaters alike.",
+                image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=600&q=80",
+                url: "https://www.google.com/search?q=Plant+Matter+Kitchen+London+Ontario"
+            },
+            {
+                name: "Garlic's of London",
+                category: "Fine Dining",
+                neighborhood: "Richmond Row",
+                rating: 4.6,
+                desc: "A long-standing pillar of London's culinary scene, specializing in fine contemporary cuisine infused with rich garlic-forward twists.",
+                image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=600&q=80",
+                url: "https://www.google.com/search?q=Garlics+of+London+Ontario"
+            },
+            {
+                name: "Karahi Point",
+                category: "Pakistani / Indian",
+                neighborhood: "Old East Village",
+                rating: 4.7,
+                desc: "Renowned for sizzling iron-pot karahis, authentic goat charsi, and deeply aromatic halal Pakistani classics.",
+                image: "https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=600&q=80",
+                url: "https://www.google.com/search?q=Karahi+Point+London+Ontario"
+            },
+            {
+                name: "Cochin Delights",
+                category: "South Indian",
+                neighborhood: "Wonderland Rd N",
+                rating: 4.7,
+                desc: "Bright, colorful spot celebrated for crispy, massive South Indian masalas dosas and aromatic regional curries.",
+                image: "https://images.unsplash.com/photo-1610192244261-3f33de3f55e4?auto=format&fit=crop&w=600&q=80",
+                url: "https://www.google.com/search?q=Cochin+Delights+London+Ontario"
+            },
+            {
+                name: "Pizzeria Madre",
+                category: "Artisanal Pizza",
+                neighborhood: "Old South",
+                rating: 4.8,
+                desc: "Local favorite serving authentic, wood-fired Neapolitan pizzas with premium toppings and perfectly charred crusts.",
+                image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=600&q=80",
+                url: "https://www.google.com/search?q=Pizzeria+Madre+London+Ontario"
+            },
+            {
+                name: "Through Thick and Thin",
+                category: "Artisanal Pizza",
+                neighborhood: "Old South / Downtown",
+                rating: 4.8,
+                desc: "Acclaimed pizzeria praised across the city for its unique, Detroit-style and creative sourdough pizza pies.",
+                image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=600&q=80",
+                url: "https://www.google.com/search?q=Through+Thick+and+Thin+London+Ontario"
+            },
+            {
+                name: "Black Walnut Bakery Café",
+                category: "Bakery & Cafe",
+                neighborhood: "Wortley / Richmond",
+                rating: 4.7,
+                desc: "Independent local bakery crafting scratch-made pastries, golden croissants, and hand-roasted coffee beans.",
+                image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80",
+                url: "https://www.google.com/search?q=Black_Walnut_Bakery_Cafe_London_Ontario"
+            },
+            {
+                name: "David's Bistro",
+                category: "French Bistro",
+                neighborhood: "Downtown",
+                rating: 4.7,
+                desc: "Cozy, classic French bistro delivering exquisite traditional plates, fine wine selections, and top-tier hospitality.",
+                image: "https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&w=600&q=80",
+                url: "https://www.google.com/search?q=Davids+Bistro+London+Ontario"
+            },
+            {
+                name: "Ironwood Kitchen & Bar",
+                category: "Contemporary",
+                neighborhood: "North London",
+                rating: 4.6,
+                desc: "Locally-sourced ingredients prepared with an ambitious international flair in a warm, welcoming neighborhood space.",
+                image: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80",
+                url: "https://www.google.com/search?q=Ironwood+Kitchen+and+Bar+London+Ontario"
+            },
+            {
+                name: "The Cappa (Cappadocia Cafe)",
+                category: "Mediterranean / Brunch",
+                neighborhood: "Gainsborough Rd",
+                rating: 4.8,
+                desc: "Brings vibrant Mediterranean flair with authentic gozlemes, Turkish menemen eggs, and year-round patio dining.",
+                image: "https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?auto=format&fit=crop&w=600&q=80",
+                url: "https://www.google.com/search?q=Cappadocia+Breakfast+Cafe+London+Ontario"
+            },
+            {
+                name: "KatsuMe",
+                category: "Japanese / Korean",
+                neighborhood: "Queens Ave",
+                rating: 4.7,
+                desc: "Celebrates crispy pork katsu, savory udon, comforting tteokbokki, and traditional Korean bibimbap bowls.",
+                image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80",
+                url: "https://www.google.com/search?q=KatsuMe+London+Ontario"
+            },
+            {
+                name: "Yaya's Kitchen",
+                category: "Black Global Cuisine",
+                neighborhood: "Old East Village",
+                rating: 4.8,
+                desc: "Culinary powerhouse offering incredible tasting menus exploring the rich spices and heritage of the African diaspora.",
+                image: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80",
+                url: "https://www.google.com/search?q=Yayas+Kitchen+London+Ontario"
+            },
+            {
+                name: "BTRMLK",
+                category: "Southern Fried Chicken",
+                neighborhood: "Multiple Locations",
+                rating: 4.7,
+                desc: "Famous for exceptionally crispy fried chicken sandwiches, rich mac n' cheese, and classic southern comfort sides.",
+                image: "https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?auto=format&fit=crop&w=600&q=80",
+                url: "https://www.google.com/search?q=BTRMLK+London+Ontario"
+            },
+            {
+                name: "Burger Burger",
+                category: "Burgers",
+                neighborhood: "Richmond St",
+                rating: 4.6,
+                desc: "Gourmet burger joint crafting thick, juicy patties with creative, loaded toppings and house-cut fries.",
+                image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80",
+                url: "https://www.google.com/search?q=Burger+Burger+London+Ontario"
+            },
+            {
+                name: "Cocina La Michoacana",
+                category: "Mexican",
+                neighborhood: "Downtown",
+                rating: 4.8,
+                desc: "Authentic, budget-friendly Mexican gem serving genuine street tacos, homemade salsas, and traditional treats.",
+                image: "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=600&q=80",
+                url: "https://www.google.com/search?q=Cocina+La+Michoacana+London+Ontario"
+            },
+            {
+                name: "Kenzo Ramen",
+                category: "Japanese Ramen",
+                neighborhood: "Downtown",
+                rating: 4.6,
+                desc: "Beloved ramen house offering rich, slow-simmered broths, handmade noodles, and perfect chashu pork.",
+                image: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=600&q=80",
+                url: "https://www.google.com/search?q=Kenzo+Ramen+London+Ontario"
+            },
+            {
+                name: "Milo's Craft Beer Lounge",
+                category: "Pub & Craft Beer",
+                neighborhood: "Talbot St",
+                rating: 4.7,
+                desc: "An institution for craft beer lovers featuring rotating taps, gourmet burgers, and elevated pub fare.",
+                image: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80",
+                url: "https://www.google.com/search?q=Milos+Craft+Beer+Lounge+London+Ontario"
+            },
+            {
+                name: "Spare Parts Diner",
+                category: "Diner & Brunch",
+                neighborhood: "Clarke Rd",
+                rating: 4.7,
+                desc: "Inventive all-day diner set in a playful, garage-inspired interior with vintage auto pieces and massive breakfast spreads.",
+                image: "https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?auto=format&fit=crop&w=600&q=80",
+                url: "https://www.google.com/search?q=Spare+Parts+Diner+London+Ontario"
+            },
+            {
+                name: "Ellie's Pizzeria",
+                category: "Pizza",
+                neighborhood: "North London",
+                rating: 4.7,
+                desc: "Celebrated for classic Italian pies, crispy crusts, and delicious old-world style family recipes.",
+                image: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=600&q=80",
+                url: "https://www.google.com/search?q=Ellies+Pizzeria+London+Ontario"
+            },
+            {
+                name: "Dem Stush Jamaican Cuisine",
+                category: "Caribbean",
+                neighborhood: "London East",
+                rating: 4.8,
+                desc: "Authentic Jamaican hotspot famous for jerk chicken, savory patties, and authentic island spices that frequently sell out.",
+                image: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=600&q=80",
+                url: "https://www.google.com/search?q=Dem+Stush+Jamaican+London+Ontario"
+            },
+            {
+                name: "Fadi's Shawarma",
+                category: "Middle Eastern",
+                neighborhood: "Oxford St",
+                rating: 4.7,
+                desc: "Local favorite for perfectly seasoned chicken and beef shawarma wraps, garlic sauce, and fresh fattouche salads.",
+                image: "https://images.unsplash.com/photo-1561651878-37d6e52bc31e?auto=format&fit=crop&w=600&q=80",
+                url: "https://www.google.com/search?q=Fadis+Shawarma+London+Ontario"
+            },
+            {
+                name: "Udupi Krishna",
+                category: "South Indian",
+                neighborhood: "Dundas St",
+                rating: 4.6,
+                desc: "Specializes in traditional vegetarian South Indian cuisine, delicious dosas, idlis, and authentic filtering coffee.",
+                image: "https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=600&q=80",
+                url: "https://www.google.com/search?q=Udupi+Krishna+London+Ontario"
+            },
+            {
+                name: "Roll Roll",
+                category: "Sushi & Japanese",
+                neighborhood: "Downtown",
+                rating: 4.7,
+                desc: "Immaculate sushi rolls, fresh sashimi platters, and Bento boxes that delight Japanese food lovers across London.",
+                image: "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=600&q=80",
+                url: "https://www.google.com/search?q=Roll+Roll+London+Ontario"
+            },
+            {
+                name: "Sweet Onion Bistro",
+                category: "Comfort Bistro",
+                neighborhood: "South London",
+                rating: 4.7,
+                desc: "Charming neighborhood restaurant delivering high-quality bistro classics, warm atmosphere, and hearty comfort plates.",
+                image: "https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&w=600&q=80",
+                url: "https://www.google.com/search?q=Sweet+Onion+Bistro+London+Ontario"
+            },
+            {
+                name: "Old South Village Pub",
+                category: "Pub Fare",
+                neighborhood: "Wortley Village",
+                rating: 4.6,
+                desc: "Traditional cozy pub serving great pints on tap, cottage pies, fish and chips, and warm neighborhood vibes.",
+                image: "https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=600&q=80",
+                url: "https://www.google.com/search?q=Old+South+Village+Pub+London+Ontario"
+            },
+            {
+                name: "Mai's Café & Bistro",
+                category: "Thai & Vietnamese",
+                neighborhood: "Wortley Village",
+                rating: 4.6,
+                desc: "Delightful family-run restaurant serving aromatic Thai curries, noodle dishes, and comforting Asian staples.",
+                image: "https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=600&q=80",
+                url: "https://www.google.com/search?q=Mais+Cafe+Bistro+London+Ontario"
+            },
+            {
+                name: "The Green Window",
+                category: "Healthy Bowls & Salads",
+                neighborhood: "Queens Ave",
+                rating: 4.6,
+                desc: "Health-enthusiast favorite offering a colorful array of nutrient-dense grain bowls, fresh salads, and smoothies.",
+                image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=600&q=80",
+                url: "https://www.google.com/search?q=The+Green+Window+London+Ontario"
+            },
+            {
+                name: "Katana Kafe & Grill",
+                category: "American Grill",
+                neighborhood: "London International Airport",
+                rating: 4.5,
+                desc: "Unique airplane-themed restaurant situated by the runway, serving classic burgers, wings, and grill favorites.",
+                image: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80",
+                url: "https://www.google.com/search?q=Katana+Kafe+and+Grill+London+Ontario"
+            },
+            {
+                name: "Billy's Downtown Deli",
+                category: "Deli & Breakfast",
+                neighborhood: "Dundas St",
+                rating: 4.6,
+                desc: "A legendary downtown family-operated staple serving classic breakfast platters and overstuffed sandwiches for over 30 years.",
+                image: "https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?auto=format&fit=crop&w=600&q=80",
+                url: "https://www.google.com/search?q=Billys+Downtown+Deli+London+Ontario"
+            },
+            {
+                name: "Taverna 13thirtyone",
+                category: "Mediterranean / Tapas",
+                neighborhood: "Canterbury Park area",
+                rating: 4.7,
+                desc: "Charming local tavern known for incredible tapas, tacos al pastor, and unique malt aioli creations.",
+                image: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80",
+                url: "https://www.google.com/search?q=Taverna+13thirtyone+London+Ontario"
+            },
+            {
+                name: "Dimi's Greek House",
+                category: "Greek",
+                neighborhood: "Downtown",
+                rating: 4.6,
+                desc: "Long-standing Greek taverna serving legendary souvlaki, flaming saganaki cheese, moussaka, and fresh Greek salads.",
+                image: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80",
+                url: "https://www.google.com/search?q=Dimis+Greek+House+London+Ontario"
+            },
+            {
+                name: "Nepal's Kitchen",
+                category: "Nepalese & Momos",
+                neighborhood: "Old East Village",
+                rating: 4.8,
+                desc: "Cozy hidden gem famous for serving the juiciest, most flavorful spiced momo dumplings in Southwestern Ontario.",
+                image: "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=600&q=80",
+                url: "https://www.google.com/search?q=Nepals+Kitchen+London+Ontario"
+            },
+            {
+                name: "Pierogi Queen",
+                category: "Polish Comfort",
+                neighborhood: "Old East Village",
+                rating: 4.7,
+                desc: "Traditional Polish eatery celebrated for handmade savory pierogis, stuffed cabbage rolls, and seasonal fruit specialties.",
+                image: "https://images.unsplash.com/photo-1599487488170-ded1ec26ae1f?auto=format&fit=crop&w=600&q=80",
+                url: "https://www.google.com/search?q=Pierogi+Queen+London+Ontario"
+            },
+            {
+                name: "Luca",
+                category: "Italian & Hand-Made Pasta",
+                neighborhood: "Central London",
+                rating: 4.9,
+                desc: "Secret garden-style Italian sanctuary widely revered for having the finest hand-rolled pasta and cacio e pepe in the city.",
+                image: "https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=600&q=80",
+                url: "https://www.google.com/search?q=Luca+restaurant+London+Ontario"
+            },
+            {
+                name: "Kino Restaurant",
+                category: "Japanese-European Fusion",
+                neighborhood: "Downtown",
+                rating: 4.8,
+                desc: "Minimalist fine-dining fusion concept marrying clean Japanese techniques with classic European culinary structures.",
+                image: "https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&w=600&q=80",
+                url: "https://www.google.com/search?q=Kino+Restaurant+London+Ontario"
+            },
+            {
+                name: "The WORKS Craft Burgers & Beer",
+                category: "Gourmet Burgers",
+                neighborhood: "Richmond Row",
+                rating: 4.5,
+                desc: "Legendary gourmet burger bar offering over 50 different decadent burger combinations and ice-cold craft beers.",
+                image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80",
+                url: "https://www.google.com/search?q=The+WORKS+Craft+Burgers+London+Ontario"
+            }
+        ];
 
-  <article class="card">
-   <a href="https://www.linkedin.com/jobs/" target="_blank">
-    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=700&q=80" alt="Professional business meeting">
-   </a>
-   <div class="card-body">
-    <h3>LinkedIn Jobs</h3>
-    <p>Find professional opportunities and connect with hiring managers.</p>
-    <div class="tags"><span class="tag">Networking</span><span class="tag">Careers</span></div>
-    <a class="btn" href="https://www.linkedin.com/jobs/" target="_blank">Explore Jobs →</a>
-   </div>
-  </article>
+        // Function to render restaurants onto the DOM
+        function renderRestaurants(data) {
+            const grid = document.getElementById('restaurantGrid');
+            const noResults = document.getElementById('noResults');
+            const countDisplay = document.getElementById('countDisplay');
+            
+            grid.innerHTML = '';
+            countDisplay.innerText = `Showing ${data.length} restaurants`;
 
-  <article class="card">
-   <a href="https://www.glassdoor.ca/Job/index.htm" target="_blank">
-    <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=700&q=80" alt="Modern workplace">
-   </a>
-   <div class="card-body">
-    <h3>Glassdoor</h3>
-    <p>Explore employment opportunities, company information and workplace reviews.</p>
-    <div class="tags"><span class="tag">Reviews</span><span class="tag">Salary research</span></div>
-    <a class="btn" href="https://www.glassdoor.ca/Job/index.htm" target="_blank">Find Opportunities →</a>
-   </div>
-  </article>
+            if (data.length === 0) {
+                noResults.style.display = 'block';
+                return;
+            } else {
+                noResults.style.display = 'none';
+            }
 
-  <article class="card">
-   <a href="https://www.knighthunter.com/" target="_blank">
-    <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=700&q=80" alt="Professional handshake">
-   </a>
-   <div class="card-body">
-    <h3>Knighthunter</h3>
-    <p>Explore employment opportunities in London and Southwestern Ontario.</p>
-    <div class="tags"><span class="tag">Local</span><span class="tag">Regional</span></div>
-    <a class="btn" href="https://www.knighthunter.com/" target="_blank">Visit Knighthunter →</a>
-   </div>
-  </article>
+            data.forEach((restaurant, index) => {
+                const card = document.createElement('div');
+                card.className = 'restaurant-card';
 
-  <article class="card">
-   <a href="https://www.ledc.com/working-london" target="_blank">
-    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=700&q=80" alt="Office and business workspace">
-   </a>
-   <div class="card-body">
-    <h3>Working in London</h3>
-    <p>Discover London employers, local job portals and career opportunities.</p>
-    <div class="tags"><span class="tag">Local employers</span><span class="tag">Career growth</span></div>
-    <a class="btn" href="https://www.ledc.com/working-london" target="_blank">Explore London Jobs →</a>
-   </div>
-  </article>
+                card.innerHTML = `
+                    <div class="card-img-wrapper">
+                        <span class="badge-category">${restaurant.category}</span>
+                        <a href="${restaurant.url}" target="_blank" rel="noopener noreferrer" title="Click to visit ${restaurant.name}">
+                            <img src="${restaurant.image}" alt="${restaurant.name}" loading="lazy">
+                        </a>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header-flex">
+                            <a href="${restaurant.url}" target="_blank" rel="noopener noreferrer" class="restaurant-name">
+                                ${index + 1}. ${restaurant.name}
+                            </a>
+                            <div class="rating">
+                                <i class="fa-solid fa-star"></i> ${restaurant.rating}
+                            </div>
+                        </div>
+                        <div class="neighborhood">
+                            <i class="fa-solid fa-location-dot"></i> ${restaurant.neighborhood}
+                        </div>
+                        <p class="description">${restaurant.desc}</p>
+                        <div class="card-footer">
+                            <a href="${restaurant.url}" target="_blank" rel="noopener noreferrer" class="map-link">
+                                View Info / Map <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </a>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
 
- </div>
-</section>
+        // Live Search Filtering Function
+        function filterRestaurants() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = restaurants.filter(r => 
+                r.name.toLowerCase().includes(query) || 
+                r.category.toLowerCase().includes(query) || 
+                r.neighborhood.toLowerCase().includes(query) ||
+                r.desc.toLowerCase().includes(query)
+            );
+            renderRestaurants(filtered);
+        }
 
-<section class="container bg-white" id="agencies">
- <div class="section-title">
-  <h2>Local Employment Agencies & Services</h2>
-  <p>Get help finding work, improving your resume and connecting with employers.</p>
- </div>
- <div class="grid">
-
-  <article class="card">
-   <a href="https://www.lresnetwork.ca/job-seekers/" target="_blank">
-    <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=700&q=80" alt="Employment advisor helping a job seeker">
-   </a>
-   <div class="card-body">
-    <h3>London Regional Employment Services</h3>
-    <p>Free career planning, resume assistance, interview preparation and job matching.</p>
-    <a href="https://www.lresnetwork.ca/job-seekers/" target="_blank">Get Employment Help →</a>
-   </div>
-  </article>
-
-  <article class="card">
-   <a href="https://pathways.on.ca/" target="_blank">
-    <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=700&q=80" alt="Career support meeting">
-   </a>
-   <div class="card-body">
-    <h3>Pathways Employment Help Centre</h3>
-    <p>Employment support, career planning, training and job search assistance.</p>
-    <a href="https://pathways.on.ca/" target="_blank">Visit Pathways →</a>
-   </div>
-  </article>
-
-  <article class="card">
-   <a href="https://www.leadsservices.com/" target="_blank">
-    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=700&q=80" alt="Team working together">
-   </a>
-   <div class="card-body">
-    <h3>LEADS Employment Services</h3>
-    <p>Explore employment services, skills development and career support.</p>
-    <a href="https://www.leadsservices.com/" target="_blank">Visit LEADS →</a>
-   </div>
-  </article>
-
-  <article class="card">
-   <a href="https://www.ablemployment.com/" target="_blank">
-    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=700&q=80" alt="Industrial worker">
-   </a>
-   <div class="card-body">
-    <h3>ABL Employment</h3>
-    <p>Explore staffing opportunities in industrial, administrative and other sectors.</p>
-    <a href="https://www.ablemployment.com/" target="_blank">Find Work →</a>
-   </div>
-  </article>
-
-  <article class="card">
-   <a href="https://www.expresspros.com/" target="_blank">
-    <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=700&q=80" alt="Professional office">
-   </a>
-   <div class="card-body">
-    <h3>Express Employment Professionals</h3>
-    <p>Explore temporary, contract and permanent employment opportunities.</p>
-    <a href="https://www.expresspros.com/" target="_blank">Visit Express →</a>
-   </div>
-  </article>
-
-  <article class="card">
-   <a href="https://www.libertystaffing.ca/" target="_blank">
-    <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=700&q=80" alt="Office environment">
-   </a>
-   <div class="card-body">
-    <h3>Liberty Staffing</h3>
-    <p>Explore local staffing and recruitment opportunities.</p>
-    <a href="https://www.libertystaffing.ca/" target="_blank">Visit Liberty Staffing →</a>
-   </div>
-  </article>
- </div>
-</section>
-
-<section class="container" id="resources">
- <div class="section-title">
-  <h2>Career & Employment Resources</h2>
-  <p>Useful resources to help you get hired.</p>
- </div>
- <div class="resource-list">
-  <div class="resource">
-   <div class="symbol">📄</div><div>
-    <a href="https://www.jobbank.gc.ca/findajob/resources/write-good-resume" target="_blank">Resume Writing</a>
-    <p>Learn how to build a professional resume.</p>
-   </div>
-  </div>
-  <div class="resource">
-   <div class="symbol">✉️</div><div>
-    <a href="https://www.jobbank.gc.ca/findajob/resources/cover-letters" target="_blank">Cover Letters</a>
-    <p>Learn how to write a strong cover letter.</p>
-   </div>
-  </div>
-  <div class="resource">
-   <div class="symbol">🎤</div><div>
-    <a href="https://www.jobbank.gc.ca/findajob/resources/interviews" target="_blank">Interview Preparation</a>
-    <p>Prepare for job interviews and common questions.</p>
-   </div>
-  </div>
-  <div class="resource">
-   <div class="symbol">🎓</div><div>
-    <a href="https://www.ontario.ca/page/employment-ontario" target="_blank">Employment Ontario</a>
-    <p>Find free employment and training support.</p>
-   </div>
-  </div>
-  <div class="resource">
-   <div class="symbol">🏛️</div><div>
-    <a href="https://london.ca/government/careers-city-london" target="_blank">City of London Careers</a>
-    <p>Find municipal government employment opportunities.</p>
-   </div>
-  </div>
-  <div class="resource">
-   <div class="symbol">🏭</div><div>
-    <a href="https://www.ledc.com/working-london" target="_blank">London Industry Careers</a>
-    <p>Explore technology and manufacturing opportunities.</p>
-   </div>
-  </div>
- </div>
-</section>
-
-<section class="container bg-white">
- <div class="section-title">
-  <h2>4 Steps to Finding a Job</h2>
-  <p>A simple plan to help you get started.</p>
- </div>
- <div class="steps">
-  <div class="step"><h3>Prepare Your Resume</h3><p>Update your work experience, education, skills and contact information.</p></div>
-  <div class="step"><h3>Search for Jobs</h3><p>Check job boards every day and explore local employers.</p></div>
-  <div class="step"><h3>Apply for Positions</h3><p>Customize your application to match each job description.</p></div>
-  <div class="step"><h3>Follow Up</h3><p>Prepare for interviews and politely follow up with employers.</p></div>
- </div>
-</section>
-
-<section class="container" id="tracker">
- <div class="section-title">
-  <h2>My Job Application Tracker</h2>
-  <p>Keep track of your applications directly on this website.</p>
- </div>
- <div class="tracker">
-  <form class="tracker-form" id="jobForm">
-   <input id="company" placeholder="Company / Job title" required>
-   <select id="status">
-    <option>Applied</option>
-    <option>Interview</option>
-    <option>Follow-up</option>
-    <option>Offer</option>
-    <option>Rejected</option>
-   </select>
-   <input id="applyDate" type="date" required>
-   <button class="btn green" type="submit">+ Add Job</button>
-  </form>
-  <div style="overflow-x:auto">
-   <table>
-    <thead>
-     <tr><th>Company / Job</th><th>Date</th><th>Status</th><th>Action</th></tr>
-    </thead>
-    <tbody id="jobTable"></tbody>
-   </table>
-  </div>
-  <p id="jobCount" style="font-weight:bold;margin-top:18px">0 applications tracked</p>
-  <button class="btn light" onclick="exportJobs()">Export Applications CSV</button>
- </div>
-</section>
-
-<section class="cta">
- <h2>Your Next Opportunity Starts Today!</h2>
- <p>Explore jobs, improve your skills and take the next step in your career.</p>
- <a class="btn green" href="https://www.on.jobbank.gc.ca/jobsearch/jobsearch?mid=39077" target="_blank">Start Your Job Search →</a>
-</section>
-
-<footer>
- <div class="brand">LONDON JOB FINDER</div>
- <p>Helping people discover employment opportunities in London, Ontario.</p>
- <p>
-  <a href="#home">Home</a> ·
-  <a href="#jobs">Find Jobs</a> ·
-  <a href="#agencies">Employment Help</a> ·
-  <a href="#resources">Career Resources</a>
- </p>
- <p>Always verify job details, deadlines and employer information before applying.</p>
- <p>© 2026 London Job Finder. All Rights Reserved.</p>
- <p>Website concept by <strong>1Code</strong></p>
-</footer>
-
-<script>
-// JOB SEARCH
-function searchJobs(){
- const keyword=document.getElementById('keyword').value.trim();
- const type=document.getElementById('jobType').value;
- const industry=document.getElementById('industry').value;
- const query=[keyword,industry,type].filter(Boolean).join(' ');
- const encoded=encodeURIComponent(query);
- const results=document.getElementById('searchResults');
-
- results.style.display='block';
- results.innerHTML=`
-  <h3>Job search results for London, Ontario</h3>
-  <p>Search for: <strong>${escapeHTML(query||'All jobs')}</strong></p>
-  <p>Choose a job board to view current listings:</p>
-  <p>
-   <a class="btn" target="_blank" rel="noopener"
-   href="https://ca.indeed.com/jobs?q=${encoded}&l=London%2C+ON">Indeed</a>
-   <a class="btn green" target="_blank" rel="noopener"
-   href="https://www.jobbank.gc.ca/jobsearch/jobsearch?searchstring=${encoded}&locationstring=London%2C+ON">Job Bank</a>
-   <a class="btn light" target="_blank" rel="noopener"
-   href="https://www.linkedin.com/jobs/search/?keywords=${encoded}&location=London%2C%20Ontario%2C%20Canada">LinkedIn</a>
-  </p>
-  <p><small>These links open live search pages. Results and availability depend on each job board.</small></p>
- `;
- results.scrollIntoView({behavior:'smooth',block:'nearest'});
-}
-function escapeHTML(value){
- return String(value).replace(/[&<>"']/g,c=>({
- '&':'&amp;','<':'&lt;','>':'&gt;',
- '"':'&quot;',"'":'&#39;'
- })[c]);
-}
-document.getElementById('keyword').addEventListener('keydown',e=>{
- if(e.key==='Enter')searchJobs();
-});
-
-// APPLICATION TRACKER
-let applications=[];
-try{
- applications=JSON.parse(localStorage.getItem('londonJobApplications')||'[]');
- if(!Array.isArray(applications))applications=[];
-}catch(e){applications=[];}
-
-function saveJobs(){
- localStorage.setItem('londonJobApplications',JSON.stringify(applications));
- renderJobs();
-}
-function renderJobs(){
- const table=document.getElementById('jobTable');
- table.innerHTML='';
- applications.forEach((job,index)=>{
-  const tr=document.createElement('tr');
-  [job.company,job.date,job.status].forEach(value=>{
-   const td=document.createElement('td');
-   td.textContent=value;
-   tr.appendChild(td);
-  });
-  const action=document.createElement('td');
-  const remove=document.createElement('button');
-  remove.className='delete';
-  remove.textContent='Delete';
-  remove.onclick=()=>deleteJob(index);
-  action.appendChild(remove);
-  tr.appendChild(action);
-  table.appendChild(tr);
- });
- if(!applications.length){
-  table.innerHTML='<tr><td colspan="4" class="empty">No applications yet. Add your first job above!</td></tr>';
- }
- document.getElementById('jobCount').textContent=
-  applications.length+' applications tracked';
-}
-document.getElementById('jobForm').addEventListener('submit',e=>{
- e.preventDefault();
- applications.unshift({
-  company:document.getElementById('company').value.trim(),
-  status:document.getElementById('status').value,
-  date:document.getElementById('applyDate').value
- });
- saveJobs();
- e.target.reset();
-});
-function deleteJob(index){
- if(confirm('Delete this application?')){
-  applications.splice(index,1);
-  saveJobs();
- }
-}
-function exportJobs(){
- if(!applications.length){
-  alert('Add an application before exporting.');
-  return;
- }
- const rows=[['Company / Job','Date','Status'],
- ...applications.map(j=>[j.company,j.date,j.status])];
- const csv=rows.map(row=>row.map(v=>
-  '"'+String(v).replace(/"/g,'""')+'"'
- ).join(',')).join('\n');
- const blob=new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8;'});
- const url=URL.createObjectURL(blob);
- const a=document.createElement('a');
- a.href=url;a.download='London-Job-Applications.csv';
- a.click();
- URL.revokeObjectURL(url);
-}
-renderJobs();
-
-// DEFAULT DATE
-document.getElementById('applyDate').value=
- new Date().toLocaleDateString('en-CA');
-</script>
+        // Initial render on load
+        window.onload = () => {
+            renderRestaurants(restaurants);
+        };
+    </script>
 </body>
 </html>
 
